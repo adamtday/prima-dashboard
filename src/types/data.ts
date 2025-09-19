@@ -223,9 +223,15 @@ export interface PortfolioMetrics {
   totalRevenue: number
   totalBookings: number
   totalGuests: number
+  totalDiners: number
   averageBookingValue: number
   totalPromoters: number
   activeVenues: number
+  // Change metrics (vs previous period)
+  revenueChange: number
+  bookingsChange: number
+  dinersChange: number
+  avgBookingValueChange: number
   period: {
     from: string
     to: string

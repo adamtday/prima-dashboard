@@ -53,6 +53,39 @@ function findPromoterById(id: string): Promoter | undefined {
   return mockPromoters.find(promoter => promoter.id === id)
 }
 
+// Helper function to generate weekly trends data
+function generateWeeklyTrends(from: string, to: string, _venueId?: string) {
+  const startDate = new Date(from)
+  const endDate = new Date(to)
+  const trends = []
+  
+  // Generate data for each day in the range
+  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+    const date = new Date(d)
+    const dayOfWeek = date.getDay()
+    
+    // Weekend patterns (higher activity)
+    const isWeekend = dayOfWeek === 0 || dayOfWeek === 6
+    const baseMultiplier = isWeekend ? 1.5 : 1.0
+    
+    // Add some randomness
+    const randomFactor = 0.8 + Math.random() * 0.4
+    
+    const revenue = Math.floor((isWeekend ? 8000 : 5000) * baseMultiplier * randomFactor)
+    const bookings = Math.floor((isWeekend ? 25 : 15) * baseMultiplier * randomFactor)
+    const diners = Math.floor(bookings * (3.5 + Math.random() * 1.5)) // 3.5-5 diners per booking
+    
+    trends.push({
+      date: date.toISOString().split('T')[0],
+      revenue,
+      bookings,
+      diners,
+    })
+  }
+  
+  return trends
+}
+
 export const handlers = [
   // ===== VENUE ENDPOINTS =====
   http.get('*/api/prima/venues', async () => {
@@ -295,6 +328,41 @@ export const handlers = [
     }
     
     return HttpResponse.json(metrics)
+  }),
+
+  // Weekly trends endpoint
+  http.get('*/api/prima/metrics/trends', async ({ request }) => {
+    await delay(400)
+    const url = new URL(request.url)
+    const from = url.searchParams.get('from') || '2024-09-01T00:00:00Z'
+    const to = url.searchParams.get('to') || '2024-09-18T23:59:59Z'
+    const venueId = url.searchParams.get('venueId')
+    
+    // Generate mock weekly trends data
+    const trends = generateWeeklyTrends(from, to, venueId || undefined)
+    
+    return HttpResponse.json(trends)
+  }),
+
+  // Recent bookings endpoint
+  http.get('*/api/prima/bookings/recent', async ({ request }) => {
+    await delay(200)
+    const url = new URL(request.url)
+    const venueId = url.searchParams.get('venueId')
+    const limit = parseInt(url.searchParams.get('limit') || '10')
+    
+    let recentBookings = [...mockBookings]
+    
+    if (venueId) {
+      recentBookings = recentBookings.filter(booking => booking.venueId === venueId)
+    }
+    
+    // Sort by creation date (most recent first) and limit
+    recentBookings = recentBookings
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+      .slice(0, limit)
+    
+    return HttpResponse.json(recentBookings)
   }),
 
   // ===== COMMISSION ENDPOINTS =====

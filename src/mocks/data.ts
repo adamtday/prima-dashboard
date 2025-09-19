@@ -300,9 +300,15 @@ export const mockPortfolioMetrics: PortfolioMetrics = {
   totalRevenue: 456750,
   totalBookings: 312,
   totalGuests: 936,
+  totalDiners: 1248,
   averageBookingValue: 1463.94,
   totalPromoters: 12,
   activeVenues: 4,
+  // Change metrics (vs previous period)
+  revenueChange: 12.5,
+  bookingsChange: 8.3,
+  dinersChange: 15.2,
+  avgBookingValueChange: 4.1,
   period: {
     from: '2024-09-01T00:00:00Z',
     to: '2024-09-18T23:59:59Z'

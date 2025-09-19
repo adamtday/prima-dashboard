@@ -200,6 +200,29 @@ export const primaApi = createApi({
       providesTags: ['Metrics']
     }),
 
+    getWeeklyTrends: builder.query<Array<{
+      date: string
+      revenue: number
+      bookings: number
+      diners: number
+    }>, { venueId?: string; from: string; to: string }>({
+      query: ({ venueId, from, to }) => {
+        const params = new URLSearchParams({ from, to })
+        if (venueId) params.set('venueId', venueId)
+        return `metrics/trends?${params.toString()}`
+      },
+      providesTags: ['Metrics']
+    }),
+
+    getRecentBookings: builder.query<Booking[], { venueId?: string; limit?: number }>({
+      query: ({ venueId, limit = 10 }) => {
+        const params = new URLSearchParams({ limit: limit.toString() })
+        if (venueId) params.set('venueId', venueId)
+        return `bookings/recent?${params.toString()}`
+      },
+      providesTags: ['Booking']
+    }),
+
     // ===== FINANCIAL ENDPOINTS =====
     getTransactions: builder.query<PaginatedResponse<Transaction>, { promoterId?: string; venueId?: string; page?: number; limit?: number }>({
       query: (params) => {
@@ -283,6 +306,8 @@ export const {
   useGetVenueMetricsQuery,
   useGetPromoterMetricsQuery,
   useGetPortfolioMetricsQuery,
+  useGetWeeklyTrendsQuery,
+  useGetRecentBookingsQuery,
   
   // Financial hooks
   useGetTransactionsQuery,
