@@ -1,7 +1,7 @@
 {
-  "name": "shadcnblocks-admin",
+  "name": "primaclient-dashboard",
   "version": "1.0.0",
-  "author": "Shadcnblocks.com",
+  "author": "PrimaClient.co",
   "private": true,
   "scripts": {
     "dev": "next dev",

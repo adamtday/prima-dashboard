@@ -11,8 +11,8 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Shadcnblocks - Admin Kit",
-  description: "Shadcnblocks - Admin Kit built with NextJS",
+  title: "PrimaClient - Partner Dashboard",
+  description: "PrimaClient - Partner Dashboard built with NextJS",
 }
 
 export default function RootLayout({

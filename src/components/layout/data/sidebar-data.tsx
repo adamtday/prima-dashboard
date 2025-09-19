@@ -34,13 +34,13 @@ import { type SidebarData } from "../types"
 
 export const sidebarData: SidebarData = {
   user: {
-    name: "ausrobdev",
-    email: "rob@shadcnblocks.com",
+    name: "John Doe",
+    email: "John@primaclient.co",
     avatar: "/avatars/ausrobdev-avatar.png",
   },
   teams: [
     {
-      name: "Shadcnblocks - Admin Kit",
+      name: "PrimaClient - Partner Dashboard",
       logo: ({ className }: { className: string }) => (
         <Logo className={cn("invert dark:invert-0", className)} />
       ),
