@@ -5,6 +5,7 @@ This guide covers deploying the Prima Dashboard to both staging and production e
 ## ✅ Current Status
 
 **DEPLOYED**: The Prima Dashboard is currently deployed and accessible at:
+
 - **Production**: [prima-dashboard.vercel.app](https://prima-dashboard.vercel.app)
 - **Staging**: Available via Vercel dashboard
 
@@ -32,6 +33,7 @@ This guide covers deploying the Prima Dashboard to both staging and production e
 Set up the following environment variables in Vercel:
 
 #### Production Environment
+
 ```
 NODE_ENV=production
 NEXT_PUBLIC_APP_URL=https://your-domain.vercel.app
@@ -44,6 +46,7 @@ NEXT_PUBLIC_FEATURE_ANALYTICS=true
 ```
 
 #### Staging Environment
+
 ```
 NODE_ENV=production
 NEXT_PUBLIC_APP_URL=https://your-staging-domain.vercel.app
@@ -67,6 +70,7 @@ The project is configured with GitHub Actions for automatic deployment:
 ### Method 2: Manual Deployment
 
 #### Deploy to Staging
+
 ```bash
 # Create and switch to staging branch
 git checkout -b staging
@@ -77,6 +81,7 @@ pnpm run deploy:staging
 ```
 
 #### Deploy to Production
+
 ```bash
 # Deploy from main branch
 git checkout main
@@ -89,16 +94,19 @@ pnpm run deploy:production
 ### Method 3: Vercel CLI
 
 1. **Login to Vercel**:
+
    ```bash
    vercel login
    ```
 
 2. **Link Project**:
+
    ```bash
    vercel link
    ```
 
 3. **Deploy**:
+
    ```bash
    # Deploy to preview
    pnpm run deploy:preview
@@ -130,14 +138,17 @@ To enable automatic deployment, add these secrets to your GitHub repository:
 ## Monitoring and Maintenance
 
 ### Health Checks
+
 - Production: `https://your-domain.vercel.app/api/test`
 - Staging: `https://your-staging-domain.vercel.app/api/test`
 
 ### Logs
+
 - View deployment logs in Vercel Dashboard
 - Monitor application logs in Vercel Functions tab
 
 ### Performance
+
 - Monitor Core Web Vitals in Vercel Analytics
 - Check build performance in Vercel Dashboard
 
