@@ -1,7 +1,11 @@
 // PRIMA Route Group Layout
-// Based on RFC-001: Authentication & Base Infrastructure
+// Based on RFC-003: Layout Shell & Multi-Venue Navigation
 
+import { Suspense } from 'react'
 import { ProtectedRoute } from '@/lib/auth/protected-route'
+import { PrimaLayoutShell } from '@/components/prima/layout-shell'
+import { VenueContextProvider } from '@/lib/contexts/venue-context'
+import { ErrorBoundary } from '@/components/error-boundary'
 
 interface PrimaLayoutProps {
   children: React.ReactNode
@@ -10,23 +14,19 @@ interface PrimaLayoutProps {
 export default function PrimaLayout({ children }: PrimaLayoutProps) {
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-background">
-        {/* Temporary layout for RFC-001 - will be enhanced in RFC-003 */}
-        <header className="border-b bg-card">
-          <div className="container mx-auto px-4 py-4">
-            <h1 className="text-2xl font-semibold text-foreground">
-              PRIMA Partner Dashboard
-            </h1>
-            <p className="text-sm text-muted-foreground">
-              Revenue optimization and partner management platform
-            </p>
-          </div>
-        </header>
-        
-        <main className="container mx-auto px-4 py-6">
-          {children}
-        </main>
-      </div>
+      <ErrorBoundary>
+        <VenueContextProvider>
+          <PrimaLayoutShell>
+            <Suspense fallback={
+              <div className="flex items-center justify-center p-8">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+              </div>
+            }>
+              {children}
+            </Suspense>
+          </PrimaLayoutShell>
+        </VenueContextProvider>
+      </ErrorBoundary>
     </ProtectedRoute>
   )
 }

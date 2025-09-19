@@ -14,6 +14,7 @@ interface BaseNavItem {
   title: string
   badge?: string
   icon?: React.ElementType
+  description?: string
 }
 
 export type NavItem =

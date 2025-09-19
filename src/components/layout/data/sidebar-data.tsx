@@ -17,7 +17,17 @@ import {
   IconUserOff,
   IconUsers,
 } from "@tabler/icons-react"
-import { AudioWaveform, GalleryVerticalEnd } from "lucide-react"
+import { 
+  AudioWaveform, 
+  GalleryVerticalEnd,
+  BarChart3,
+  Calendar,
+  CreditCard,
+  DollarSign,
+  Gift,
+  Trophy,
+  Users,
+} from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Logo } from "@/components/logo"
 import { type SidebarData } from "../types"
@@ -132,6 +142,65 @@ export const sidebarData: SidebarData = {
               icon: IconBarrierBlock,
             },
           ],
+        },
+      ],
+    },
+    {
+      title: "PRIMA Partner",
+      items: [
+        {
+          title: "Overview",
+          url: "/overview",
+          icon: BarChart3,
+          description: "Dashboard and key metrics"
+        },
+        {
+          title: "Bookings",
+          url: "/bookings", 
+          icon: Calendar,
+          description: "Manage reservations"
+        },
+        {
+          title: "Pricing",
+          url: "/pricing",
+          icon: DollarSign,
+          description: "Configure pricing rules"
+        },
+        {
+          title: "Promoters",
+          url: "/promoters",
+          icon: Users,
+          description: "Manage promoter network"
+        },
+        {
+          title: "Finance",
+          url: "/finance",
+          icon: CreditCard,
+          description: "Payments and payouts"
+        },
+        {
+          title: "Incentives",
+          url: "/incentives",
+          icon: Gift,
+          description: "Promoter incentive programs"
+        },
+        {
+          title: "Commissions",
+          url: "/commissions",
+          icon: Trophy,
+          description: "Commission structure"
+        },
+        {
+          title: "Team",
+          url: "/team",
+          icon: Users,
+          description: "Team & access control"
+        },
+        {
+          title: "Settings",
+          url: "/settings",
+          icon: IconSettings,
+          description: "PRIMA configuration"
         },
       ],
     },

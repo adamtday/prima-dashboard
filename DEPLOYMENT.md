@@ -107,16 +107,19 @@ git push origin staging
 ### Method 3: Manual Vercel CLI Deployment
 
 1. **Login to Vercel**:
+
    ```bash
    npx vercel login
    ```
 
 2. **Link Project** (if not already linked):
+
    ```bash
    npx vercel link
    ```
 
 3. **Deploy**:
+
    ```bash
    # Deploy to preview
    npx vercel
