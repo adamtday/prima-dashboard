@@ -6,8 +6,10 @@ import { useForm } from "react-hook-form"
 import { IconBrandFacebook, IconBrandGithub } from "@tabler/icons-react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
-import { nofitySubmittedValues } from "@/lib/notify-submitted-values"
+import { useRouter } from "next/navigation"
+import { useAuth } from "@/lib/auth/auth-context"
 import { cn } from "@/lib/utils"
+import { useToast } from "@/hooks/use-toast"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -29,9 +31,6 @@ const formSchema = z.object({
     .string()
     .min(1, {
       message: "Please enter your password",
-    })
-    .min(7, {
-      message: "Password must be at least 7 characters long",
     }),
 })
 
@@ -40,6 +39,9 @@ export function UserAuthForm({
   ...props
 }: HTMLAttributes<HTMLDivElement>) {
   const [isLoading, setIsLoading] = useState(false)
+  const { login } = useAuth()
+  const router = useRouter()
+  const { toast } = useToast()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -49,17 +51,50 @@ export function UserAuthForm({
     },
   })
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
+  async function onSubmit(data: z.infer<typeof formSchema>) {
     setIsLoading(true)
-    nofitySubmittedValues(data)
-
-    setTimeout(() => {
+    
+    try {
+      const result = await login(data.email, data.password)
+      
+      if (result.success) {
+        toast({
+          title: "Login successful",
+          description: `Welcome back, ${result.user?.firstName}!`,
+        })
+        
+        // Redirect to overview dashboard
+        router.push('/overview')
+      } else {
+        toast({
+          title: "Login failed",
+          description: result.error || "Invalid credentials",
+          variant: "destructive",
+        })
+      }
+    } catch (error) {
+      toast({
+        title: "Login error",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
       setIsLoading(false)
-    }, 3000)
+    }
   }
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
+      {/* Demo credentials info */}
+      <div className="rounded-lg border bg-card p-4 text-sm">
+        <h4 className="font-medium text-card-foreground mb-2">Demo Credentials</h4>
+        <div className="space-y-1 text-muted-foreground">
+          <p><strong>Admin:</strong> admin@prima.com / admin123</p>
+          <p><strong>Manager:</strong> manager@prima.com / manager123</p>
+          <p><strong>Coordinator:</strong> coordinator@prima.com / coordinator123</p>
+        </div>
+      </div>
+      
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="grid gap-2">

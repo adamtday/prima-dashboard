@@ -1,8 +1,11 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { Provider } from "react-redux"
 import SearchProvider from "@/components/search-provider"
 import { ThemeProvider } from "@/components/theme-provider"
+import { AuthProvider } from "@/lib/auth/auth-context"
+import { store } from "@/lib/store/store"
 
 interface Props {
   children: React.ReactNode
@@ -23,13 +26,17 @@ export function Providers({ children }: Props) {
   }, [])
 
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-    >
-      <SearchProvider value={{ open, setOpen }}>{children}</SearchProvider>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <AuthProvider>
+          <SearchProvider value={{ open, setOpen }}>{children}</SearchProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </Provider>
   )
 }
