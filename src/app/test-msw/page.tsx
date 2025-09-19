@@ -6,7 +6,7 @@
 import { useEffect, useState } from 'react'
 
 export default function TestMSWPage() {
-  const [data, setData] = useState<any>(null)
+  const [data, setData] = useState<Record<string, unknown> | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 

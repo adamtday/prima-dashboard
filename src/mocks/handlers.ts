@@ -16,8 +16,6 @@ import type {
   Promoter,
   PricingConfig,
   CommissionRate,
-  VenueMetrics,
-  PortfolioMetrics,
   PaginatedResponse
 } from '@/types/data'
 
@@ -282,7 +280,7 @@ export const handlers = [
     const to = url.searchParams.get('to')
     const venueIds = url.searchParams.getAll('venueIds')
     
-    let metrics = { ...mockPortfolioMetrics }
+    const metrics = { ...mockPortfolioMetrics }
     
     // Update period if provided
     if (from && to) {
@@ -429,7 +427,7 @@ export const handlers = [
     
     // Add generated fields
     const newIncentive = {
-      ...incentive,
+      ...(incentive as Record<string, unknown>),
       id: `incentive-${Date.now()}`,
       currentProgress: 0,
       createdAt: new Date().toISOString(),

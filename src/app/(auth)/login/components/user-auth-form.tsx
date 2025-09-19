@@ -72,7 +72,7 @@ export function UserAuthForm({
           variant: "destructive",
         })
       }
-    } catch (error) {
+    } catch (_error) {
       toast({
         title: "Login error",
         description: "An unexpected error occurred. Please try again.",

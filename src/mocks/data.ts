@@ -6,12 +6,8 @@ import type {
   Booking,
   Promoter,
   PricingConfig,
-  Transaction,
-  Payout,
-  Incentive,
   CommissionRate,
   VenueMetrics,
-  PromoterMetrics,
   PortfolioMetrics
 } from '@/types/data'
 

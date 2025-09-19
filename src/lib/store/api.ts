@@ -14,7 +14,6 @@ import type {
   CommissionRate,
   BookingFilters,
   PromoterFilters,
-  VenueFilters,
   VenueMetrics,
   PromoterMetrics,
   PortfolioMetrics,
@@ -59,7 +58,7 @@ export const primaApi = createApi({
     
     getVenue: builder.query<Venue, string>({
       query: (id) => `venues/${id}`,
-      providesTags: (result, error, id) => [{ type: 'Venue', id }]
+      providesTags: (_result, _error, id) => [{ type: 'Venue', id }]
     }),
 
     // ===== BOOKING ENDPOINTS =====
@@ -90,7 +89,7 @@ export const primaApi = createApi({
 
     getBooking: builder.query<Booking, string>({
       query: (id) => `bookings/${id}`,
-      providesTags: (result, error, id) => [{ type: 'Booking', id }]
+      providesTags: (_result, _error, id) => [{ type: 'Booking', id }]
     }),
 
     updateBookingStatus: builder.mutation<Booking, { id: string; status: Booking['status'] }>({
@@ -99,7 +98,7 @@ export const primaApi = createApi({
         method: 'PATCH',
         body: { status }
       }),
-      invalidatesTags: (result, error, { id }) => [
+      invalidatesTags: (_result, _error, { id }) => [
         { type: 'Booking', id },
         'Booking',
         'Metrics'
@@ -146,7 +145,7 @@ export const primaApi = createApi({
 
     getPromoter: builder.query<Promoter, string>({
       query: (id) => `promoters/${id}`,
-      providesTags: (result, error, id) => [{ type: 'Promoter', id }]
+      providesTags: (_result, _error, id) => [{ type: 'Promoter', id }]
     }),
 
     updatePromoterTier: builder.mutation<Promoter, { id: string; tier: Promoter['tier'] }>({
@@ -155,7 +154,7 @@ export const primaApi = createApi({
         method: 'PATCH',
         body: { tier }
       }),
-      invalidatesTags: (result, error, { id }) => [
+      invalidatesTags: (_result, _error, { id }) => [
         { type: 'Promoter', id },
         'Promoter'
       ]
@@ -164,7 +163,7 @@ export const primaApi = createApi({
     // ===== PRICING ENDPOINTS =====
     getPricingConfig: builder.query<PricingConfig, string>({
       query: (venueId) => `pricing/${venueId}`,
-      providesTags: (result, error, venueId) => [{ type: 'Pricing', id: venueId }]
+      providesTags: (_result, _error, venueId) => [{ type: 'Pricing', id: venueId }]
     }),
 
     updatePricingConfig: builder.mutation<PricingConfig, { venueId: string; config: Partial<PricingConfig> }>({
@@ -173,7 +172,7 @@ export const primaApi = createApi({
         method: 'PUT',
         body: config
       }),
-      invalidatesTags: (result, error, { venueId }) => [
+      invalidatesTags: (_result, _error, { venueId }) => [
         { type: 'Pricing', id: venueId },
         'Pricing'
       ]
@@ -182,12 +181,12 @@ export const primaApi = createApi({
     // ===== METRICS ENDPOINTS =====
     getVenueMetrics: builder.query<VenueMetrics, { venueId: string; from: string; to: string }>({
       query: ({ venueId, from, to }) => `metrics/venues/${venueId}?from=${from}&to=${to}`,
-      providesTags: (result, error, { venueId }) => [{ type: 'Metrics', id: `venue-${venueId}` }]
+      providesTags: (_result, _error, { venueId }) => [{ type: 'Metrics', id: `venue-${venueId}` }]
     }),
 
     getPromoterMetrics: builder.query<PromoterMetrics, { promoterId: string; from: string; to: string }>({
       query: ({ promoterId, from, to }) => `metrics/promoters/${promoterId}?from=${from}&to=${to}`,
-      providesTags: (result, error, { promoterId }) => [{ type: 'Metrics', id: `promoter-${promoterId}` }]
+      providesTags: (_result, _error, { promoterId }) => [{ type: 'Metrics', id: `promoter-${promoterId}` }]
     }),
 
     getPortfolioMetrics: builder.query<PortfolioMetrics, { from: string; to: string; venueIds?: string[] }>({

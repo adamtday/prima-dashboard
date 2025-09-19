@@ -26,6 +26,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setUser(parsedUser)
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Failed to load stored user:', error)
       localStorage.removeItem('prima_user')
     }
@@ -59,6 +60,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       
       return { success: false, error: 'Invalid email or password' }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Login error:', error)
       return { success: false, error: 'Login failed. Please try again.' }
     }

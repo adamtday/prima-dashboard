@@ -20,6 +20,7 @@ export function MSWInit({ children }: MSWInitProps) {
           setMswReady(true)
         })
         .catch((error) => {
+          // eslint-disable-next-line no-console
           console.error('Failed to initialize MSW:', error)
           setMswReady(true) // Continue anyway
         })

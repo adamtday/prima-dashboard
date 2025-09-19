@@ -22,7 +22,7 @@ export function ProtectedRoute({
   fallback = <div className="p-4 text-center text-muted-foreground">Access denied</div>,
   redirectTo = '/login'
 }: ProtectedRouteProps) {
-  const { isAuthenticated, hasPermission, user, isLoading } = useAuth()
+  const { isAuthenticated, hasPermission, isLoading } = useAuth()
   const router = useRouter()
 
   useEffect(() => {
