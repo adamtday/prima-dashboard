@@ -11,6 +11,7 @@
     "format:fix": "prettier --write .",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
+    "deploy": "./scripts/deploy.sh",
     "deploy:staging": "vercel --prod=false",
     "deploy:production": "vercel --prod=true",
     "deploy:preview": "vercel"
