@@ -11,10 +11,20 @@
     "format:fix": "prettier --write .",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "test": "echo \"No tests yet\" && exit 0",
+    "test:watch": "echo \"No tests yet\" && exit 0",
+    "audit": "npm audit --audit-level moderate",
+    "audit:fix": "npm audit fix",
     "deploy": "./scripts/deploy.sh",
-    "deploy:staging": "vercel --prod=false",
-    "deploy:production": "vercel --prod=true",
-    "deploy:preview": "vercel"
+    "deploy:staging": "vercel --target staging --yes",
+    "deploy:production": "vercel --prod --yes",
+    "deploy:preview": "vercel --yes",
+    "deploy:rollback": "vercel rollback",
+    "deploy:logs": "vercel logs",
+    "deploy:status": "vercel ls",
+    "setup:vercel": "vercel link",
+    "setup:env": "cp .env.example .env.local"
   },
   "dependencies": {
     "@faker-js/faker": "^9.3.0",
