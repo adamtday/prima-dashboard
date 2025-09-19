@@ -104,48 +104,43 @@ git push origin rfc/001-authentication
 
 ## 🌊 Git Workflow
 
-### Branch Strategy
+### Current Branch Strategy
 
 ```
-main                           # Production-ready code
-├── staging                    # Demo and stakeholder preview environment
-├── develop                    # Integration branch for completed RFCs
-├── rfc/001-authentication     # RFC implementation branches
-├── rfc/002-data-layer        
-├── rfc/003-layout-shell
-├── hotfix/critical-fix       # Emergency fixes
+main                           # Production-ready code (auto-deploys to production)
+├── staging                    # Demo and stakeholder preview environment (auto-deploys to staging)
+├── feature/new-feature        # Feature development branches (auto-deploy preview)
+├── hotfix/critical-fix       # Emergency fixes (can deploy directly)
 └── release/v1.0.0            # Release preparation
 ```
 
 #### Branch Purposes
 
-- **`main`**: Production-ready code, final deliverable
-- **`staging`**: Stable demo environment for stakeholder presentations  
-- **`develop`**: Integration of completed RFCs, continuous testing
-- **`rfc/*`**: Individual RFC implementation branches
-- **`release/*`**: Release preparation and final testing
+- **`main`**: Production-ready code, auto-deploys to [prima-dashboard.vercel.app](https://prima-dashboard.vercel.app)
+- **`staging`**: Stable demo environment for stakeholder presentations, auto-deploys to staging
+- **`feature/*`**: Feature development branches, auto-deploy preview environments
 - **`hotfix/*`**: Critical fixes that need immediate deployment
+- **`release/*`**: Release preparation and final testing
 
 ### Branch Naming Conventions
 
 ```bash
-# RFC implementation branches
-rfc/001-authentication
-rfc/002-data-layer
-rfc/005-booking-management
-
-# Feature branches (for non-RFC work)
-feature/update-dependencies
-feature/improve-documentation
+# Feature branches (current standard)
+feature/booking-management
+feature/pricing-configuration
+feature/promoter-dashboard
 
 # Bug fixes
-
 fix/booking-status-update
 fix/venue-selector-crash
 
 # Hotfixes
 hotfix/security-vulnerability
 hotfix/production-crash
+
+# Documentation updates
+docs/update-readme
+docs/api-documentation
 ```
 
 ### Staging Branch Workflow
@@ -333,51 +328,57 @@ A PR can only be approved when:
 4. Manual testing confirms functionality
 5. No breaking changes to existing features
 
-## 🚀 Continuous Integration & Deployment
+## 🚀 Current Deployment & CI/CD
 
-### Automated Checks
+### Vercel Integration (Current Setup)
 
-```yaml
-# .github/workflows/ci.yml
-name: CI
+The project uses **Vercel's GitHub Integration** for automatic deployments:
 
-on:
-  pull_request:
-    branches: [main, develop, staging]
-  push:
-    branches: [main, staging, develop]
+- **Production**: Auto-deploys from `main` branch → [prima-dashboard.vercel.app](https://prima-dashboard.vercel.app)
+- **Staging**: Auto-deploys from `staging` branch → Vercel staging environment
+- **Preview**: Auto-deploys from all pull requests → Unique preview URLs
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-          cache: 'pnpm'
-      
-      - name: Install dependencies
-        run: pnpm install
-      
+### Current Workflow
 
-      - name: Type check
+```bash
+# 1. Feature Development
+git checkout main
+git pull origin main
+git checkout -b feature/your-feature
+# ... make changes ...
+git add .
+git commit -m "feat: add your feature"
+git push origin feature/your-feature
 
-        run: pnpm type-check
-      
-      - name: Lint
-        run: pnpm lint
-      
-      - name: Unit tests
-        run: pnpm test
-      
-      - name: Build
-        run: pnpm build
+# 2. Create Pull Request
+# - GitHub automatically creates preview deployment
+# - Test the preview URL
+# - Get code review
 
-      
-      - name: E2E tests
-        run: pnpm test:e2e
+# 3. Merge to Production
+git checkout main
+git pull origin main
+git merge feature/your-feature
+git push origin main
+# Vercel automatically deploys to production
+
+# 4. Update Staging (for demos)
+git checkout staging
+git pull origin staging
+git merge main
+git push origin staging
+# Vercel automatically deploys to staging
 ```
+
+### Automated Checks (Vercel)
+
+Vercel automatically runs these checks on every deployment:
+
+- ✅ **Build Check**: Ensures `pnpm build` succeeds
+- ✅ **TypeScript Check**: Validates TypeScript compilation
+- ✅ **Lint Check**: Runs ESLint validation
+- ✅ **Performance Check**: Monitors Core Web Vitals
+- ✅ **Security Check**: Scans for vulnerabilities
 
 ### Staging Deployment Pipeline
 

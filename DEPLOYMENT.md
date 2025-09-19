@@ -60,69 +60,119 @@ NEXT_PUBLIC_FEATURE_ANALYTICS=false
 
 ## Deployment Methods
 
-### Method 1: Automatic Deployment (Recommended)
+### Method 1: Automatic Deployment (Recommended) ✅
 
-The project is configured with GitHub Actions for automatic deployment:
+The project is configured with **Vercel's GitHub Integration** for automatic deployment:
 
-- **Staging**: Deploys automatically when code is pushed to the `staging` branch
 - **Production**: Deploys automatically when code is pushed to the `main` branch
+- **Staging**: Deploys automatically when code is pushed to the `staging` branch
+- **Preview**: Deploys automatically for all pull requests
 
-### Method 2: Manual Deployment
+### Method 2: Git-Based Deployment Workflow
 
-#### Deploy to Staging
-
-```bash
-# Create and switch to staging branch
-git checkout -b staging
-git push origin staging
-
-# Or deploy directly with Vercel CLI
-pnpm run deploy:staging
-```
-
-#### Deploy to Production
+#### Current Git Workflow
 
 ```bash
-# Deploy from main branch
+# 1. Development on feature branches
+git checkout -b feature/new-feature
+# ... make changes ...
+git add .
+git commit -m "feat: add new feature"
+git push origin feature/new-feature
+
+# 2. Create Pull Request to main
+# GitHub will automatically create a preview deployment
+
+# 3. After PR approval, merge to main
 git checkout main
+git pull origin main
+git merge feature/new-feature
 git push origin main
+# This triggers automatic production deployment
 
-# Or deploy directly with Vercel CLI
-pnpm run deploy:production
+# 4. Deploy to staging for demos
+git checkout staging
+git pull origin staging
+git merge main
+git push origin staging
+# This triggers automatic staging deployment
 ```
 
-### Method 3: Vercel CLI
+#### Branch Strategy
+
+- **`main`** → Production deployment (prima-dashboard.vercel.app)
+- **`staging`** → Staging deployment (for demos and testing)
+- **`feature/*`** → Preview deployments (for development)
+
+### Method 3: Manual Vercel CLI Deployment
 
 1. **Login to Vercel**:
-
    ```bash
-   vercel login
+   npx vercel login
    ```
 
-2. **Link Project**:
-
+2. **Link Project** (if not already linked):
    ```bash
-   vercel link
+   npx vercel link
    ```
 
 3. **Deploy**:
-
    ```bash
    # Deploy to preview
-   pnpm run deploy:preview
+   npx vercel
    
    # Deploy to staging
-   pnpm run deploy:staging
+   npx vercel --prod=false
    
    # Deploy to production
-   pnpm run deploy:production
+   npx vercel --prod=true
    ```
 
-## Branch Strategy
+## 🔄 Current Deployment Workflow
+
+### Daily Development Workflow
+
+```bash
+# 1. Start new feature
+git checkout main
+git pull origin main
+git checkout -b feature/your-feature-name
+
+# 2. Make changes and commit
+git add .
+git commit -m "feat: implement your feature"
+git push origin feature/your-feature-name
+
+# 3. Create Pull Request
+# - GitHub automatically creates preview deployment
+# - Review code and test preview
+# - Merge to main when ready
+
+# 4. Production deployment (automatic)
+git checkout main
+git pull origin main
+# Vercel automatically deploys to production
+
+# 5. Update staging for demos (if needed)
+git checkout staging
+git pull origin staging
+git merge main
+git push origin staging
+# Vercel automatically deploys to staging
+```
+
+### Branch Strategy
 
 - **`main`**: Production branch - deploys to production environment
-- **`staging`**: Staging branch - deploys to staging environment
-- **Feature branches**: Can be deployed as preview deployments
+- **`staging`**: Staging branch - deploys to staging environment  
+- **`feature/*`**: Feature branches - create preview deployments
+- **`hotfix/*`**: Emergency fixes - can be deployed directly
+
+### Environment URLs
+
+- **Production**: [prima-dashboard.vercel.app](https://prima-dashboard.vercel.app)
+- **Staging**: Available via Vercel dashboard
+- **Preview**: Generated for each pull request
 
 ## GitHub Actions Setup
 
