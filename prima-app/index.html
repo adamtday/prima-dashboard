@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>PRIMA, end to end</title>
+<meta name="description" content="Tap through a guest's evening and a venue's first night with PRIMA, end to end on iPhone. Concept prototype.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="PRIMA">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PRIMA">
+<meta property="og:title" content="PRIMA: your table, vouched for">
+<meta property="og:description" content="Tap through a guest's evening and a venue's first night with PRIMA, end to end on iPhone. Concept prototype.">
+<meta property="og:url" content="https://prima-app.vercel.app/">
+<meta property="og:image" content="https://prima-app.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A PRIMA pass: 19:00, Calder Room, table for 2, vouched for by The Aldwych House.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://prima-app.vercel.app/og.png">
+<style>[hidden]{display:none!important}img{max-width:100%}</style>
+</head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Public+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@500&family=Cormorant+Garamond:wght@600&family=Libre+Caslon+Text:wght@700&family=DM+Serif+Display&family=Syne:wght@700&display=swap" rel="stylesheet">
+<style>
+/* VOICE work, a design review object shown to the team and to venues
+   IDEA the Provenance line: guest, house, PRIMA, venue, drawn as one hairline that every screen advances
+   PICTURE a working iPhone, the full member and venue journey clickable inside it
+   COLOUR near-achromatic PRIMA chrome; colour belongs to the partner tenant, switched live
+   TYPE Marcellus (PRIMA mark) + Public Sans reading face, Spline Sans Mono for the register only; partner supplies display face
+   LAYOUT laptop: journey left, phone centre, rationale right. 720px: phone + rationale. phone: title, phone, rationale, controls */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0d0e10);--ink:light-dark(#111214,#f1f0ec);--mute:light-dark(#55575c,#a9aaae);--rule:light-dark(#d6d5d1,#2e3034);--panel:light-dark(#f4f4f2,#16181b);--sel:light-dark(#111214,#f1f0ec);--onsel:light-dark(#fff,#111214)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 "Public Sans",system-ui,sans-serif;overflow-x:clip;margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid #2f6fed;outline-offset:2px}
+.band{padding-block:clamp(24px,3vw,44px);padding-left:max(5vw,16px,env(safe-area-inset-left,0px));padding-right:max(5vw,16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1320px;margin:0 auto}
+.head{display:grid;gap:12px 40px;grid-template-columns:minmax(0,1fr);align-items:end;border-bottom:1px solid var(--rule);padding-bottom:20px}
+.head h1{font:400 clamp(32px,4.4vw,50px)/1.05 Marcellus,serif;letter-spacing:-.02em;margin:0}
+.head p{margin:0;color:var(--mute);max-width:62ch}
+@media(min-width:900px){.head{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}}
+.stage{display:grid;gap:28px;margin-top:28px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:720px){.stage{grid-template-columns:400px minmax(0,1fr)}.journey{grid-column:1/-1}}
+@media(min-width:1180px){.stage{grid-template-columns:250px 400px minmax(0,1fr)}.journey{grid-column:auto}}
+.journey h2,.why h2{font-size:13px;font-weight:600;color:var(--mute);margin:0 0 8px}
+.jgroup{margin-bottom:18px}
+.jlist{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+@media(min-width:720px) and (max-width:1179px){.jwrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}}
+.jlist button{width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--rule);padding:10px 4px;min-height:44px;display:flex;gap:10px;align-items:baseline;cursor:pointer}
+.jlist button:hover{background:var(--panel)}
+.jlist button[aria-current=step]{font-weight:700}
+.jlist button[aria-current=step] .jn{background:var(--sel);color:var(--onsel)}
+.jn{font:500 12px "Spline Sans Mono",monospace;border:1px solid var(--rule);border-radius:3px;padding:1px 5px;flex:none}
+.ctl{display:grid;gap:12px;margin-top:6px}
+.ctl fieldset{border:0;margin:0;padding:0}
+.ctl legend{font-size:13px;font-weight:600;color:var(--mute);margin-bottom:6px}
+.seg{display:flex;flex-wrap:wrap;border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.seg button{flex:1 1 auto;min-height:40px;border:0;background:none;padding:6px 10px;cursor:pointer;font-size:14px;border-right:1px solid var(--rule)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed=true]{background:var(--sel);color:var(--onsel)}
+.phonecol{display:flex;justify-content:center}
+.phone{width:min(390px,100%);height:min(844px,calc(100svh - 24px));min-height:640px;border-radius:54px;padding:12px;background:#0b0b0c;box-shadow:0 0 0 1px #2a2a2d,0 30px 60px -30px rgba(0,0,0,.45);position:relative}
+.screen{--s:1;--ground:#f7f3f1;--primary:#3a0e1c;--onp:#fff;--acc:#d98ca0;--acct:#8e3f55;--ink:#141414;--mute:#5b5b5f;--rule:#d8d2cf;height:100%;border-radius:42px;overflow:hidden;background:var(--ground);color:var(--ink);position:relative;display:flex;flex-direction:column;font-family:-apple-system,"SF Pro Text","Public Sans",system-ui,sans-serif;font-size:calc(var(--s)*16px)}
+.screen.hc{--ink:#000;--mute:#1d1d1f;--rule:#6b6b6b}
+.screen.rm *{transition:none!important;animation:none!important}
+.sb{flex:none;height:50px;display:flex;justify-content:space-between;align-items:center;padding:0 30px 0 34px;font:600 15px -apple-system,system-ui,sans-serif;position:relative;z-index:3}
+.sb.dark{color:var(--onp);background:var(--primary)}
+.island{position:absolute;left:50%;top:11px;width:118px;height:34px;margin-left:-59px;background:#000;border-radius:20px}
+.sbi{display:flex;gap:6px;align-items:center}
+.app{flex:1;overflow-y:auto;overflow-x:hidden;position:relative;scrollbar-width:none}
+.app::-webkit-scrollbar{display:none}
+.home{position:absolute;bottom:8px;left:50%;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:#111;opacity:.85;z-index:5}
+.dark+.app~.home,.screen.night .home{background:#fff}
+.field{background:var(--primary);color:var(--onp);padding:10px 22px 22px}
+.pad{padding:18px 22px 120px}
+.disp{font-family:var(--df);font-weight:var(--dw);line-height:1.05;letter-spacing:-.01em;margin:0}
+.t1{font-size:calc(var(--s)*34px)}
+.t2{font-size:calc(var(--s)*26px)}
+.lede{font-size:calc(var(--s)*16px);line-height:1.45;margin:10px 0 0;opacity:.92}
+.small{font-size:calc(var(--s)*13px);color:var(--mute);line-height:1.4}
+.field .small{color:var(--onp);opacity:.85}
+h1.sr,h2.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.mark{font:400 calc(var(--s)*18px) Marcellus,serif;letter-spacing:.04em}
+/* the line of introduction */
+.line{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:relative}
+.line li{position:relative;padding-top:18px;font-size:calc(var(--s)*12px);line-height:1.25;text-align:left}
+.line li::before{content:"";position:absolute;top:5px;left:0;right:0;height:1px;background:currentColor;opacity:.35}
+.line li:last-child::before{right:auto;width:0}
+.line li::after{content:"";position:absolute;top:0;left:0;width:11px;height:11px;border-radius:50%;border:1.5px solid currentColor;background:var(--lbg,var(--ground));transition:background .35s}
+.line li.on::after{background:currentColor}
+.line li.on::before{opacity:1}
+.line li.on+li:not(.on)::before{opacity:.35}
+.line b{display:block;font-weight:600}
+.line span{opacity:.75}
+.field .line{--lbg:var(--primary)}
+.seal .line li::after{transition:background .3s calc(var(--i)*.35s)}
+/* controls inside the app */
+.btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;border-radius:14px;border:0;background:var(--primary);color:var(--onp);font-weight:600;font-size:calc(var(--s)*17px);cursor:pointer;padding:12px 18px;transition:transform .12s}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--rule)}
+.btn.light{background:var(--onp);color:var(--primary)}
+.dock{position:sticky;bottom:0;padding:14px 22px 30px;background:linear-gradient(to top,var(--ground) 70%,transparent);display:grid;gap:8px;z-index:4}
+.night .dock{background:linear-gradient(to top,var(--primary) 70%,transparent)}
+.lbl{display:block;font-size:calc(var(--s)*13px);font-weight:600;margin:18px 0 6px}
+.in{width:100%;min-height:48px;border:1px solid var(--rule);border-radius:12px;background:#fff;padding:10px 14px;font-size:calc(var(--s)*17px)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:44px;border-radius:22px;border:1px solid var(--rule);background:#fff;padding:8px 14px;font-size:calc(var(--s)*15px);cursor:pointer}
+.chip[aria-pressed=true],.chip[aria-checked=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.step{display:flex;align-items:center;border:1px solid var(--rule);border-radius:12px;background:#fff;width:max-content}
+.step button{width:48px;height:48px;border:0;background:none;font-size:22px;cursor:pointer}
+.step output{min-width:5.5em;text-align:center;font-weight:600}
+.rules{border-top:1px solid var(--ink);margin-top:18px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:14px 0;border-bottom:1px solid var(--rule)}
+/* ledger */
+.ledger{list-style:none;margin:8px 0 0;padding:0;border-top:1px solid var(--ink)}
+.entry{display:grid;grid-template-columns:2.2em minmax(0,1fr);gap:0 10px;width:100%;text-align:left;border:0;border-bottom:1px solid var(--rule);background:none;padding:16px 0;cursor:pointer}
+.entry:hover{background:rgba(0,0,0,.025)}
+.num{font:500 calc(var(--s)*12px) "Spline Sans Mono",monospace;color:var(--mute);padding-top:5px}
+.vn{font-size:calc(var(--s)*20px);font-weight:600;letter-spacing:-.01em}
+.vk{font-size:calc(var(--s)*14px);color:var(--mute)}
+.vq{font-size:calc(var(--s)*15px);margin:8px 0 6px;line-height:1.4}
+.vq b{color:var(--acct)}
+.times{display:flex;gap:6px;flex-wrap:wrap}
+.times span{font-size:calc(var(--s)*13px);font-variant-numeric:tabular-nums;border:1px solid var(--rule);border-radius:6px;padding:2px 7px;white-space:nowrap}
+.flag{font-size:calc(var(--s)*13px);margin-top:6px;display:flex;gap:6px;align-items:center}
+.flag.ok{color:#1d6b3a}.flag.no{color:#8a3b00}
+.filter{display:flex;gap:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin-top:14px;background:#fff}
+.filter button{flex:1;min-height:40px;border:0;background:none;font-size:calc(var(--s)*14px);cursor:pointer;border-right:1px solid var(--rule)}
+.filter button:last-child{border-right:0}
+.filter button[aria-checked=true]{background:var(--ink);color:#fff}
+/* hour rail */
+.rail{position:relative;height:64px;margin:16px 4px 6px}
+.rail .base{position:absolute;left:0;right:0;top:30px;height:1px;background:var(--ink)}
+.tick{position:absolute;top:24px;width:1px;height:7px;background:var(--mute)}
+.tick.h{top:18px;height:13px;background:var(--ink)}
+.tl{position:absolute;top:38px;font-size:calc(var(--s)*12px);color:var(--mute);transform:translateX(-50%);font-variant-numeric:tabular-nums}
+.notch{position:absolute;top:10px;width:3px;height:21px;margin-left:-1px;background:var(--acct);border-radius:2px}
+.notch.sel{top:0;height:31px;width:5px;margin-left:-2px;background:var(--ink)}
+.big{font-size:calc(var(--s)*44px);font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
+/* pass */
+.pass{background:var(--primary);color:var(--onp);border-radius:22px;padding:20px;margin-top:4px;position:relative;overflow:hidden}
+.ref{font:500 calc(var(--s)*13px) "Spline Sans Mono",monospace;letter-spacing:.02em}
+.reg{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 14px;margin:18px -20px 0;padding:14px 20px 0;border-top:1px dashed rgba(255,255,255,.45);font-size:calc(var(--s)*14px)}
+.reg dt{opacity:.75;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.2)}
+.reg dd{margin:0;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.2);font-weight:600;text-align:right}
+.qr{width:92px;height:92px;background:#fff;border-radius:10px;padding:7px;margin:16px auto 0}
+.stamp{display:inline-flex;align-items:center;gap:8px;border:1.5px solid currentColor;border-radius:6px;padding:4px 10px;font:500 calc(var(--s)*13px) "Spline Sans Mono",monospace;animation:stamp .4s ease-out}
+@keyframes stamp{from{transform:scale(1.5);opacity:0}to{transform:scale(1);opacity:1}}
+.la{background:#1c1c1e;color:#fff;border-radius:22px;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;margin-top:16px}
+.la .walk{grid-column:1/-1;height:4px;background:#3a3a3c;border-radius:2px;position:relative;margin-top:8px}
+.la .walk i{position:absolute;left:0;top:0;bottom:0;width:62%;background:var(--acc);border-radius:2px}
+.tabs{position:sticky;bottom:0;display:grid;grid-template-columns:repeat(3,1fr);background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-top:1px solid var(--rule);padding:6px 6px 26px;z-index:4}
+.tabs button{min-height:48px;border:0;background:none;font-size:calc(var(--s)*11px);font-weight:600;color:var(--mute);display:grid;justify-items:center;gap:2px;cursor:pointer}
+.tabs button[aria-current=page]{color:var(--ink)}
+.tabs svg{width:24px;height:24px}
+.toast{position:absolute;left:16px;right:16px;top:58px;background:#1c1c1e;color:#fff;border-radius:16px;padding:12px 16px;font-size:14px;z-index:6;animation:stamp .25s}
+.sw{display:flex;gap:10px;margin-top:8px}
+.sw button{width:44px;height:44px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--rule);cursor:pointer}
+.sw button[aria-checked=true]{box-shadow:0 0 0 3px var(--ink)}
+.preview{border-radius:18px;overflow:hidden;border:1px solid var(--rule);margin-top:10px;background:var(--ground)}
+.preview .pf{background:var(--primary);color:var(--onp);padding:12px 14px;font-size:13px}
+.guest{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 10px;padding:14px 0;border-bottom:1px solid var(--rule);align-items:center}
+.seat{min-height:44px;min-width:76px;border-radius:12px;border:1px solid var(--ink);background:#fff;font-weight:600;cursor:pointer}
+.seat[aria-pressed=true]{background:var(--ink);color:#fff}
+.tally{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--ink);border-bottom:1px solid var(--rule);margin-top:16px}
+.tally div{padding:10px 0}.tally b{display:block;font-size:calc(var(--s)*24px);font-variant-numeric:tabular-nums}
+.q{border-bottom:1px solid var(--rule);padding:14px 0}
+.q p{margin:0 0 10px;font-weight:600}
+details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-size:calc(var(--s)*15px)}
+/* rationale */
+.why{border-top:1px solid var(--ink);padding-top:14px}
+.why h3{font:400 clamp(26px,2.6vw,34px)/1.08 Marcellus,serif;margin:0 0 4px;letter-spacing:-.01em}
+.why .pat{color:var(--mute);margin:0 0 14px}
+.cols{display:grid;gap:18px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:1000px){.cols{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.cols h4{font-size:14px;margin:0 0 6px;padding-bottom:6px;border-bottom:1px solid var(--rule)}
+.cols ul{margin:0;padding-left:18px;font-size:15px}
+.cols li{margin-bottom:8px}
+.vo{background:var(--panel);border-radius:12px;padding:12px 14px;margin-top:18px;font-size:15px}
+.vo b{display:block;font-size:13px;color:var(--mute);margin-bottom:2px}
+.contrast{margin-top:14px;font-size:14px;color:var(--mute)}
+.contrast i{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:4px;border:1px solid var(--rule)}
+.mbar{display:none}
+.coach{position:absolute;inset:0;z-index:8;background:rgba(10,10,12,.55);display:flex;align-items:flex-end;padding:16px 16px 34px}
+.coach div{background:#fff;color:#141414;border-radius:24px;padding:22px;width:100%}
+.coach h2{font:400 26px/1.1 Marcellus,serif;margin:0 0 8px}
+.coach p{margin:0 0 16px;font-size:16px;line-height:1.45;color:#3a3a3d}
+.next{display:grid;gap:8px;margin-top:16px}
+@media(max-width:600px){
+.band{padding:0}
+.head,.foot{display:none}
+.mbar{display:flex;position:sticky;top:0;z-index:20;height:44px;align-items:center;justify-content:space-between;padding:0 max(16px,env(safe-area-inset-left,0px));background:var(--bg);border-bottom:1px solid var(--rule)}
+.mbar b{font:400 18px Marcellus,serif}
+.mbar a{color:var(--ink);font-size:15px;font-weight:600;min-height:44px;display:flex;align-items:center;text-decoration:none}
+.stage{display:flex;flex-direction:column;margin-top:0;gap:0}
+.phonecol{order:1}
+.why{order:2;padding:24px 16px 8px}
+.journey{order:3;padding:8px 16px 40px}
+.phone{width:100%;height:calc(100svh - 44px);min-height:560px;border-radius:0;padding:0;background:none;box-shadow:none}
+.screen{border-radius:0}
+.sb,.home{display:none}
+.field{padding-top:22px}
+}
+.foot{border-top:1px solid var(--rule);margin-top:36px;padding-top:14px;font-size:13px;color:var(--mute);display:flex;flex-wrap:wrap;gap:6px 24px}
+</style>
+
+<div class="mbar"><b>PRIMA</b><a href="#why">How it works ↓</a></div>
+<div class="band"><div class="wrap">
+  <header class="head">
+    <h1>PRIMA for iPhone, end to end</h1>
+    <p>One app, two doors. Members are introduced by their hotel and book in three taps; venues join in four answers. The partner owns the colour, PRIMA owns the line. Tap through the phone, or jump to any screen.</p>
+  </header>
+
+  <div class="stage">
+    <nav class="journey" aria-label="Prototype screens">
+      <div class="jwrap">
+        <div class="jgroup"><h2>Member journey</h2><ol class="jlist" id="jm"></ol></div>
+        <div class="jgroup"><h2>Venue journey</h2><ol class="jlist" id="jv"></ol></div>
+        <div class="ctl">
+          <fieldset><legend>Partner hotel (TenantConfig)</legend><div class="seg" id="tenants"></div></fieldset>
+          <fieldset><legend>Concierge names (the hotel decides)</legend><div class="seg" id="names"></div></fieldset>
+          <fieldset><legend>Text size (Dynamic Type)</legend><div class="seg" id="sizes"></div></fieldset>
+          <fieldset><legend>iOS accessibility settings</legend><div class="seg"><button type="button" id="rm" aria-pressed="false">Reduce Motion</button><button type="button" id="hc" aria-pressed="false">Increase Contrast</button></div></fieldset>
+        </div>
+      </div>
+    </nav>
+
+    <div class="phonecol"><div class="phone"><div class="screen" id="screen"></div></div></div>
+
+    <section class="why" id="why" aria-live="off"></section>
+  </div>
+
+  <footer class="foot"><span>Prepared for PRIMA product design · 26 Nov 2026</span><span>Prototype. Hotels, venues, guests, fees and counts are sample data.</span><span>Contrast is computed live with the WCAG 2.2 formula.</span></footer>
+</div></div>
+
+<script>
+{
+const T={
+  ldn:{key:'ldn',city:'London',hotel:'The Aldwych House',room:'412',until:'Sun 29 Nov',c:'Marta',short:'Aldwych',ground:'#F7F3F1',primary:'#3A0E1C',acc:'#D98CA0',df:'"Cormorant Garamond",serif',dw:600,lang:'en-GB',cur:'GBP',code:'LDN',
+    v:[['Calder Room','Modern British, counter seats','Covent Garden',6,'c','Ask for the counter. Chef plates the last course in front of you.',[1110,1140,1215,1230,1290],30,true],
+       ['Wren Counter','Seafood and natural wine','Seven Dials',9,'c','Small room, big oysters. Go early.',[1080,1095,1320],0,false],
+       ['Sixty Lamb','Wood fire, Basque leaning','Clerkenwell',14,'h','The house pick this month. Booked out publicly until January.',[1170,1260,1275],45,true],
+       ['Tamsin\'s','Supper club, set menu','Marylebone',17,'h','Twelve seats, one sitting, very quiet.',[1170],0,true]]},
+  nyc:{key:'nyc',city:'New York',hotel:'The Hollis',room:'1806',until:'Sat 28 Nov',c:'Desmond',short:'Hollis',ground:'#F4F4F1',primary:'#17322A',acc:'#7FA88F',df:'"Libre Caslon Text",serif',dw:700,lang:'en-US',cur:'USD',code:'NYC',
+    v:[['Halvard','Nordic tasting room','Tribeca',8,'c','Sit at the pass if you like to watch.',[1080,1170,1230,1260],40,true],
+       ['Nineteen Bowery','Chophouse, late','Lower East Side',12,'c','Best after nine. I know the floor manager.',[1260,1290,1350],0,false],
+       ['Ostra Fina','Raw bar','West Village',10,'h','House pick. Walk-ins wait an hour; you will not.',[1110,1125,1200],25,true],
+       ['Pell & Mott','Cantonese banquet','Chinatown',15,'h','Order the duck when you book.',[1140,1200],0,true]]},
+  mia:{key:'mia',city:'Miami',hotel:'Casa Marea',room:'7',until:'Mon 30 Nov',c:'Lucía',short:'Marea',ground:'#F2F7F6',primary:'#0B4F55',acc:'#FF7A5C',df:'"DM Serif Display",serif',dw:400,lang:'en-US',cur:'USD',code:'MIA',
+    v:[['Low Tide Counter','Ceviche and grill','Brickell',7,'c','Outdoor counter at sunset, ask for the end seats.',[1110,1125,1140],0,true],
+       ['Palmeiro','Brazilian, live music','Wynwood',16,'c','Loud in the best way. Tables after nine.',[1260,1290,1320],35,true],
+       ['Casa Brisa','Coastal Italian','Miami Beach',11,'h','House pick. The terrace is the one to get.',[1155,1200,1230],50,false],
+       ['Mangle','Tasting counter','Little Havana',13,'h','Ten courses, two hours, worth it.',[1110],0,true]]},
+  ibz:{key:'ibz',city:'Ibiza',hotel:'Sa Punta',room:'Villa 3',until:'Tue 1 Dec',c:'Toni',short:'Sa Punta',ground:'#FAF6EE',primary:'#9A3F1E',acc:'#F2C14E',df:'Syne,sans-serif',dw:700,lang:'en-GB',cur:'EUR',code:'IBZ',
+    v:[['Es Fum','Fire and fish','Santa Eulària',12,'c','The grill master is my cousin. Truly.',[1170,1200,1260],0,true],
+       ['Cala Lume','Beach club dinner','Cala Jondal',22,'c','Sunset sitting is the one. Shoes optional.',[1110,1125],60,false],
+       ['Sal y Roca','Cliff terrace, Mediterranean','Sant Josep',18,'h','House pick. Ask for the edge table.',[1215,1230,1290],40,true],
+       ['Nit','Late counter','Ibiza Town',9,'h','After midnight it becomes something else.',[1320,1350],0,true]]}
+};
+const NEEDS=['Step-free access','Quiet table','Vegetarian','Shellfish allergy','Celebrating'];
+const S={i:0,t:'ldn',v:0,slot:null,party:2,needs:new Set(['Step-free access']),name:'Jordan Ellis',filter:'all',sealing:false,ans:{},note:'',scale:1,rm:matchMedia('(prefers-reduced-motion: reduce)').matches,hc:false,vname:'Orla',vkind:'Neighbourhood bistro',covers:8,win:new Set([1140,1200,1260]),vacc:'#E4572E',seated:new Set(),toast:'',names:{},coach:true};
+const W=(x=t())=>S.names[x.key]?x.c:x.short;
+
+const SCREENS=[
+ {id:'intro',g:'m',n:'Introduction',p:'The hotel introduces you',why:'There is no sign-up. The member arrives already vouched for: the hotel scanned them in at check-in, so the first screen is a welcome, not a form.',
+  hig:['Onboarding: "get people to the experience quickly"; defer account creation until it adds value.','Privacy: explain what is shared before asking, in plain language (the disclosure below the button).','Layout: primary action anchored at the bottom, within the reachable zone.'],
+  sci:['Endowed progress effect (Nunes and Drèze, 2006): the line opens with two of four nodes already filled, which raises completion.','Authority and social proof (Cialdini, 1984): a named house vouching is stronger than any rating.','Fitts\'s law (Fitts, 1954) and the thumb zone (Hoober, 2013): the one action is large and low.'],
+  vo:'Heading. The Aldwych House introduces you. Line of introduction, step 2 of 4. Button, Accept the introduction.'},
+ {id:'you',g:'m',n:'About you',p:'Asked once, carried everywhere',why:'Three fields, all prefilled from the hotel stay. Needs are captured once and travel to every venue, so a guest never explains a wheelchair or an allergy twice.',
+  hig:['Accessibility: support people\'s needs as a feature, not a setting buried in a menu.','Text fields: prefill what you know; use the right keyboard and content type.','Toggles and buttons: every chip is a 44 by 44 pt target.'],
+  sci:['Recognition over recall (Nielsen heuristic 6): pick from chips, never type a need.','Form length and abandonment (Baymard Institute checkout research): every field must earn its place, so this screen has three.','Default effect (Johnson and Goldstein, 2003): party of 2 is the sensible default.'],
+  vo:'Heading. About you. Text field, Name, Jordan Ellis. Party size, 2, adjustable. Step-free access, toggle button, on.'},
+ {id:'tonight',g:'m',n:'Tonight',p:'The vouch ledger',why:'Discovery is a short ledger, not an infinite feed. Each entry leads with who is vouching and what they said, not stars. Needs are matched honestly: a venue with steps is shown and flagged, never hidden.',
+  hig:['Lists and tables: one tap target per row, generous row height.','Segmented controls: two to five options for filtering one list.','Tab bars: three destinations, labels always shown.'],
+  sci:['Hick-Hyman law (Hick, 1952): four choices per filter keeps decision time low.','Choice overload (Iyengar and Lepper, 2000): curated sets convert better than large ones.','Source credibility: a quoted person reads as testimony, not advertising.'],
+  vo:'Heading. Tonight in London. Filter, All, selected, 1 of 3. Button. Calder Room, Modern British, 6 minute walk. Marta says: Ask for the counter. Step-free.'},
+ {id:'venue',g:'m',n:'Choose a time',p:'The hour rail',why:'Time is shown as a ruled line of the evening, so you see the shape of availability at a glance, then pick from large time buttons below it. The earliest good slot is preselected.',
+  hig:['Pickers: show only valid values; never offer a time that cannot be booked.','Layout: the selection is echoed large at the top so it is confirmed without reading the list.','VoiceOver: the rail is decorative; the times are a radio group with clear labels.'],
+  sci:['Progressive disclosure (Nielsen, 2006): price and policy appear only after a time is picked.','Gestalt continuity: notches on one line read as one evening.','Default effect: the first available slot is set, so one tap books it.'],
+  vo:'Heading. Calder Room. Selected time, 6:30 PM. Radio button, 6:30 PM, selected, 1 of 5. Button, Ask Marta to vouch.'},
+ {id:'seal',g:'m',n:'Seal',p:'Sealing the introduction',why:'Review is a register entry, not a form. One button seals it; the line of introduction draws itself to the venue while the request is carried, with a success haptic on confirmation.',
+  hig:['Playing haptics: the system success notification on confirmation.','Feedback: show progress for anything over a moment, and say what is happening in words.','Motion: purposeful, short, and replaced by an instant state change when Reduce Motion is on.'],
+  sci:['Doherty threshold (Doherty and Thadani, 1982): feedback within 400 ms keeps people engaged.','Goal-gradient effect (Hull, 1932; Kivetz et al., 2006): visible progress toward the last node accelerates action.','Labor illusion (Buell and Norton, 2011): showing the work being done raises perceived value.'],
+  vo:'Heading. Seal the introduction. Venue, Calder Room. Time, 6:30 PM. Button, Seal. Then: Marta is vouching. Confirmed by Calder Room.'},
+ {id:'pass',g:'m',n:'Your pass',p:'The provenance pass',why:'The confirmation is a typeset record of the chain: who vouched, who confirmed, when, under which reference. It is designed to live in Apple Wallet and on the Lock Screen.',
+  hig:['Wallet: passes should show only what is needed at the door, with a scannable code.','Live Activities: real-time state on the Lock Screen for a time-bound event.','Typography: the reference uses a monospaced face so it can be read aloud.'],
+  sci:['Peak-end rule (Kahneman et al., 1993): confirmation is a peak; it is made to feel like an object, not a receipt.','Reduced uncertainty: naming the confirmer lowers no-show anxiety.','Proof of provenance as a trust signal, the core PRIMA thesis.'],
+  vo:'Heading. Confirmed. Calder Room, tonight, 6:30 PM, table for 2. Vouched by Marta, The Aldwych House. Reference PR LDN 0417. Button, Add to Apple Wallet.'},
+ {id:'arrive',g:'m',n:'Arrival',p:'Threshold mode',why:'At the door the app becomes one large, high-contrast card: name, time, party. The host already has your needs, so arrival is a nod, not a negotiation.',
+  hig:['Dynamic Type: the arrival card stays legible at every size up to the largest accessibility sizes.','Color and contrast: inverted for low-light rooms, still above 7:1.','Live Activities: walking time to the venue on the Lock Screen and Dynamic Island.'],
+  sci:['Fitts\'s law: the only action is the full width of the screen.','Cognitive load at a threshold moment: one task, one card.','Reduced social friction: the vouch is visible, so the guest does not have to assert it.'],
+  vo:'Heading. Show this at the door. Jordan Ellis, table for 2, 6:30 PM, Calder Room. Needs already shared: Step-free access.'},
+ {id:'counter',g:'m',n:'Countersign',p:'Countersign, not a star rating',why:'After the meal the guest countersigns the vouch with three yes or not quite answers. It feeds back to the concierge, who stays accountable for what they recommend.',
+  hig:['Ratings and reviews: ask at a natural pause, keep it brief, never interrupt.','Buttons: paired choices with equal weight; no leading answer.','Text fields: an optional note, clearly marked optional.'],
+  sci:['Peak-end rule: the last interaction shapes memory of the whole evening.','Binary questions get higher completion than 5-point scales on mobile (lower response burden).','Reciprocity (Cialdini, 1984): closing the loop with the concierge invites the next introduction.'],
+  vo:'Heading. How was Calder Room. The table was ready. Yes, radio button. Not quite, radio button.'},
+ {id:'record',g:'m',n:'Your record',p:'The provenance record',why:'Every countersigned evening becomes an entry in the member\'s record, which travels with them to the next PRIMA hotel. The next introduction starts warmer.',
+  hig:['Lists: chronological, newest first, with clear dates.','Tab bars: the record is a top-level destination, one tap away.','Privacy: the member can see exactly what is held and remove any entry.'],
+  sci:['Endowed progress and identity: a visible history builds belonging.','Zeigarnik-style open loop: the next unclaimed entry invites return.','Trust portability: provenance that moves with the guest is the network effect.'],
+  vo:'Heading. Your record. 3 entries. Calder Room, London, countersigned, today.'},
+ {id:'join',g:'v',n:'Venue joins',p:'Join in four answers',why:'Venue sign-up states the deal first: no upfront cost, a set fee only when a vouched guest is seated, and the venue decides which tables PRIMA sees. Four answers, then live.',
+  hig:['Onboarding: explain the value before asking for anything.','Sign in with Apple and passkeys: no password to create.','Text fields: the minimum to start; everything else can wait.'],
+  sci:['Loss aversion (Kahneman and Tversky, 1979): "pay only when seated" removes the feared loss.','Commitment and consistency: small first steps raise follow-through (Freedman and Fraser, 1966).','Baymard form research: fewer fields, higher completion.'],
+  vo:'Heading. Bring your room to guests who arrive vouched for. Text field, Venue name, Orla. Button, Continue with Apple.'},
+ {id:'release',g:'v',n:'Release tables',p:'Your colours stay yours',why:'The venue chooses covers and windows, then picks its own accent. PRIMA shows the listing inside the current hotel\'s app and corrects the accent for contrast before it ships: the rule that refuses, in action.',
+  hig:['Color: never rely on colour alone, and ensure 4.5:1 for text.','Steppers: for small numeric values with a clear range.','Previews: show the outcome of a setting where it will appear.'],
+  sci:['WCAG 2.2 SC 1.4.3: contrast is calculated, not eyeballed.','Direct manipulation (Shneiderman, 1983): change a control, see the result immediately.','IKEA effect (Norton et al., 2012): owning the look raises commitment.'],
+  vo:'Heading. Release tables. Covers per evening, 8, adjustable. Accent, Vermilion, selected. Preview. Accent adjusted for contrast.'},
+ {id:'service',g:'v',n:'Tonight at the venue',p:'The service ledger',why:'The host sees each vouched guest with their house, time and needs before they arrive. One tap seats them, which is the only moment a fee accrues.',
+  hig:['Lists: actions on the row, large enough to hit mid-service.','Toggles: state shown by fill and label, not colour alone.','Widgets: tonight\'s count fits a Home Screen widget for the host stand iPad.'],
+  sci:['Situational awareness: needs shown ahead reduce service errors.','Fitts\'s law in a busy room: a 76 pt wide seat button.','Transparency builds partner trust: the tally shows exactly what is owed.'],
+  vo:'Heading. Tonight at Orla. Jordan Ellis, party of 2, 6:30 PM, via The Aldwych House, Step-free access. Seat, toggle button, off.'}
+];
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const t=()=>T[S.t];
+const venue=()=>{const a=t().v[S.v];return{n:a[0],kind:a[1],area:a[2],walk:a[3],by:a[4],q:a[5],slots:a[6],fee:a[7],sf:a[8]}};
+const fmtT=m=>new Intl.DateTimeFormat(t().lang,{hour:'numeric',minute:'2-digit'}).format(new Date(2026,10,26,Math.floor(m/60),m%60));
+const money=n=>new Intl.NumberFormat(t().lang,{style:'currency',currency:t().cur,maximumFractionDigits:0}).format(n);
+const today=new Intl.DateTimeFormat('en-GB',{weekday:'short',day:'numeric',month:'short'}).format(new Date(2026,10,26));
+const ref=()=>'PR-'+t().code+'-04'+(17+S.v);
+
+// WCAG 2.2 contrast
+const lum=h=>{const c=[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)/255).map(v=>v<=.03928?v/12.92:((v+.055)/1.055)**2.4);return .2126*c[0]+.7152*c[1]+.0722*c[2]};
+const ratio=(a,b)=>{const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
+const hex=v=>'#'+v.map(n=>Math.round(n).toString(16).padStart(2,'0')).join('');
+const resolve=(fg,bg,target=4.5)=>{let c=[1,3,5].map(i=>parseInt(fg.slice(i,i+2),16));let out=fg;for(let k=0;k<40&&ratio(out,bg)<target;k++){c=c.map(v=>v*.93);out=hex(c)}return out.toUpperCase()};
+
+const line=(stage,dark)=>{const v=venue();const nodes=[['You',S.name.split(' ')[0]],[t().hotel,S.names[S.t]?t().c:'concierge desk'],['PRIMA','carries'],[stage>=3?v.n:'Venue',stage>=3?fmtT(S.slot??v.slots[0]):'tonight']];
+  return `<ol class="line" aria-label="Line of introduction, step ${Math.min(stage+1,4)} of 4">${nodes.map((n,i)=>`<li class="${i<=stage?'on':''}" style="--i:${i}"><b>${esc(n[0])}</b><span>${esc(n[1])}</span></li>`).join('')}</ol>`};
+const sb=dark=>`<div class="sb ${dark?'dark':''}" aria-hidden="true"><span>9:41</span><span class="island"></span><span class="sbi"><svg width="18" height="11" viewBox="0 0 18 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="6" rx="1"/><rect x="10" y="2.5" width="3" height="8.5" rx="1"/><rect x="15" y="0" width="3" height="11" rx="1"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none" stroke="currentColor"><rect x=".5" y=".5" width="21" height="11" rx="3.5" opacity=".5"/><rect x="2" y="2" width="16" height="8" rx="2" fill="currentColor" stroke="none"/></svg></span></div>`;
+const tabs=cur=>{const ic={tonight:'<path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/>',pass:'<rect x="4" y="5" width="16" height="14" rx="3" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-dasharray="2 2"/>',record:'<path d="M6 4h12v16H6z M9 9h6M9 13h6" stroke="currentColor" stroke-width="1.8" fill="none"/>'};
+  return `<nav class="tabs" aria-label="Tabs">${[['tonight','Tonight',2],['pass','Pass',5],['record','Record',8]].map(([k,l,i])=>`<button type="button" data-go="${i}" ${cur===k?'aria-current="page"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${ic[k]}</svg>${l}</button>`).join('')}</nav>`};
+
+const R={
+ intro:()=>`${sb(1)}<div class="app"><div class="field"><div class="mark" aria-label="PRIMA">PRIMA</div><h1 class="disp t1" tabindex="-1" style="margin-top:28px">${esc(t().hotel)} introduces you.</h1>
+   <p class="lede">${S.names[S.t]?esc(t().c)+', your concierge,':'The '+esc(t().short)+' concierge desk'} can vouch for you at rooms in ${esc(t().city)} that do not take open bookings.</p>${line(1)}</div>
+   <div class="pad"><div class="rules"><div class="row"><span>Staying in</span><b>Room ${esc(t().room)}</b></div><div class="row"><span>Until</span><b>${esc(t().until)}</b></div><div class="row"><span>Introduced by</span><b>${S.names[S.t]?esc(t().c)+', concierge':esc(t().short)+' concierge desk'}</b></div></div>
+   <details><summary>What PRIMA shares, and with whom</summary><p class="small">Your name, party and any needs you choose go only to the venue you book and to ${esc(t().hotel)}, for service. Nothing is sold. You can remove your record at any time.</p></details></div>
+   <div class="dock"><button class="btn" data-go="1">Accept the introduction</button></div></div>`,
+ you:()=>`${sb()}<div class="app"><div class="pad" style="padding-top:8px"><h1 class="disp t2" tabindex="-1">About you</h1><p class="small" style="margin-top:6px">Asked once. Carried to every venue, so you never explain twice.</p>
+   <label class="lbl" for="nm">Name</label><input class="in" id="nm" value="${esc(S.name)}" autocomplete="name">
+   <span class="lbl" id="pl">Usual party</span><div class="step" role="group" aria-labelledby="pl"><button type="button" data-party="-1" aria-label="Fewer guests">−</button><output aria-live="polite">${S.party} guests</output><button type="button" data-party="1" aria-label="More guests">+</button></div>
+   <span class="lbl" id="nl">Anything the room should know?</span><div class="chips" role="group" aria-labelledby="nl">${NEEDS.map(n=>`<button type="button" class="chip" data-need="${esc(n)}" aria-pressed="${S.needs.has(n)}">${esc(n)}</button>`).join('')}</div>
+   </div><div class="dock"><button class="btn" data-go="2">Continue</button></div></div>`,
+ tonight:()=>{const list=t().v.map((a,i)=>({a,i})).filter(o=>S.filter==='all'||(S.filter==='c'?o.a[4]==='c':o.a[4]==='h'));const sf=S.needs.has('Step-free access');
+   return `${sb()}<div class="app"><div class="pad" style="padding-top:8px;padding-bottom:20px"><p class="small" style="margin:0">Tonight, ${today}</p><h1 class="disp t2" tabindex="-1">${esc(t().city)}, vouched for</h1>
+   <div class="filter" role="radiogroup" aria-label="Who is vouching">${[['all','All'],['c',W()],['h','PRIMA']].map(([k,l])=>`<button type="button" role="radio" aria-checked="${S.filter===k}" data-filter="${k}">${esc(l)}</button>`).join('')}</div>
+   <ul class="ledger">${list.map(({a,i})=>`<li><button class="entry" data-venue="${i}"><span class="num">Nº${String(i+1).padStart(2,'0')}</span><span><span class="vn">${esc(a[0])}</span><br><span class="vk">${esc(a[1])}. ${a[3]} min walk</span>
+     <p class="vq"><b>${a[4]==='c'?esc(W()):'PRIMA'}:</b> “${esc(a[5])}”</p><span class="times">${a[6].slice(0,4).map(m=>`<span>${fmtT(m)}</span>`).join('')}</span>
+     ${sf?`<span class="flag ${a[8]?'ok':'no'}">${a[8]?'✓ Step-free entrance':'Two steps at the entrance, ramp on request'}</span>`:''}</span></button></li>`).join('')}</ul></div>${tabs('tonight')}</div>`},
+ venue:()=>{const v=venue();if(S.slot==null||!v.slots.includes(S.slot))S.slot=v.slots[0];const x=m=>((m-1080)/300*100).toFixed(2)+'%';let ticks='';for(let m=1080;m<=1380;m+=15){const h=m%60===0;ticks+=`<i class="tick ${h?'h':''}" style="left:${x(m)}"></i>`+(h&&m<1380?`<span class="tl" style="left:${x(m)}">${fmtT(m).replace(':00','')}</span>`:'')}
+   return `${sb(1)}<div class="app"><div class="field"><button class="btn light" style="width:auto;min-height:44px;padding:6px 14px;font-size:15px" data-go="2" aria-label="Back to Tonight">‹ Tonight</button>
+   <h1 class="disp t1" tabindex="-1" style="margin-top:18px">${esc(v.n)}</h1><p class="lede">${esc(v.kind)}. ${esc(v.area)}, ${v.walk} min walk.</p><p class="lede"><b>${v.by==='c'?esc(W()):'PRIMA'}:</b> “${esc(v.q)}”</p></div>
+   <div class="pad"><p class="small" style="margin:0">Selected time</p><div class="big" aria-live="polite">${fmtT(S.slot)}</div>
+   <div class="rail" aria-hidden="true"><i class="base"></i>${ticks}${v.slots.map(m=>`<i class="notch ${m===S.slot?'sel':''}" style="left:${x(m)}"></i>`).join('')}</div>
+   <div class="chips" role="radiogroup" aria-label="Available times">${v.slots.map(m=>`<button type="button" class="chip" role="radio" aria-checked="${m===S.slot}" data-slot="${m}" style="font-variant-numeric:tabular-nums">${fmtT(m)}</button>`).join('')}</div>
+   <span class="lbl" id="pl2">Party</span><div class="step" role="group" aria-labelledby="pl2"><button type="button" data-party="-1" aria-label="Fewer guests">−</button><output aria-live="polite">${S.party} guests</output><button type="button" data-party="1" aria-label="More guests">+</button></div>
+   <div class="rules"><div class="row"><span>${v.fee?'Prime access fee':'Access'}</span><b>${v.fee?money(v.fee):'No fee, the house covers it'}</b></div><div class="row"><span>Release the table</span><b>Free until 2 hours before</b></div></div></div>
+   <div class="dock"><button class="btn" data-go="4">Ask ${v.by==='c'?esc(W()):'PRIMA'} to vouch</button></div></div>`},
+ seal:()=>{const v=venue();const st=S.sealing?3:2;
+   return `${sb()}<div class="app seal"><div class="pad" style="padding-top:8px"><h1 class="disp t2" tabindex="-1">Seal the introduction</h1>${line(st)}
+   <div class="rules"><div class="row"><span>Venue</span><b>${esc(v.n)}</b></div><div class="row"><span>When</span><b>Tonight, ${fmtT(S.slot)}</b></div><div class="row"><span>Party</span><b>${S.party}</b></div><div class="row"><span>Vouched by</span><b>${v.by==='c'?esc(W()):'PRIMA'}, ${esc(t().hotel)}</b></div><div class="row"><span>Carried to the room</span><b>${S.needs.size?esc([...S.needs].join(', ')):'Nothing'}</b></div><div class="row"><span>Fee</span><b>${v.fee?money(v.fee)+', charged to Room '+esc(t().room):'None'}</b></div></div>
+   <p class="small" role="status" aria-live="polite" style="margin-top:14px">${S.sealing?esc((v.by==='c'?W():'PRIMA')+' is vouching. '+v.n+' is confirming your table.'):'Nothing is charged until the venue confirms.'}</p></div>
+   <div class="dock"><button class="btn" id="sealbtn" ${S.sealing?'disabled aria-disabled="true"':''}>${S.sealing?'Sealing…':'Seal'}</button><button class="btn ghost" data-go="3">Change time</button></div></div>`},
+ pass:()=>{const v=venue();
+   return `${sb()}<div class="app"><div class="pad" style="padding-top:8px;padding-bottom:20px"><span class="stamp" style="color:var(--acct)">Confirmed</span><h1 class="disp t2" tabindex="-1" style="margin-top:10px">${esc(v.n)}, tonight</h1>
+   <div class="pass" style="margin-top:14px"><div style="display:flex;justify-content:space-between;align-items:baseline"><span class="mark">PRIMA</span><span class="ref">${ref()}</span></div><div class="big" style="margin-top:14px">${fmtT(S.slot)}</div><div style="opacity:.85">Table for ${S.party}</div>
+   <dl class="reg"><dt>Guest</dt><dd>${esc(S.name)}</dd><dt>Vouched by</dt><dd>${v.by==='c'?esc(W()):'PRIMA'}</dd><dt>House</dt><dd>${esc(t().hotel)}</dd><dt>Confirmed by</dt><dd>${esc(v.n)}, 9:42</dd></dl>
+   <svg class="qr" viewBox="0 0 21 21" role="img" aria-label="Door code for ${ref()}">${Array.from({length:21*21},(_,k)=>{const r=Math.floor(k/21),c=k%21;const fr=r<7?r:r>13?r-14:-1,fc=c<7?c:c>13?c-14:-1;const f=fr>=0&&fc>=0&&!(r>13&&c>13);const sep=(r===7&&(c<8||c>12))||(c===7&&(r<8||r>12))||(r===13&&c<8)||(c===13&&r<8);const on=f?(fr===0||fr===6||fc===0||fc===6||(fr>1&&fr<5&&fc>1&&fc<5)):sep?false:((r*7+c*13+r*c)%3===0);return on?`<rect x="${c}" y="${r}" width="1" height="1" fill="#111"/>`:''}).join('')}</svg></div>
+   <div style="display:grid;gap:8px;margin-top:14px"><button class="btn" style="background:#000;color:#fff" data-toast="Added to Apple Wallet. It will surface on your Lock Screen near ${esc(v.n)}.">Add to Apple Wallet</button><button class="btn ghost" data-go="6">I'm on my way</button></div></div>${tabs('pass')}</div>`},
+ arrive:()=>{const v=venue();
+   return `${sb(1)}<div class="app" style="background:var(--primary);color:var(--onp)"><div class="pad" style="padding-top:8px;padding-bottom:20px"><p style="margin:0;opacity:.85">Show this at the door</p><h1 class="disp" tabindex="-1" style="font-size:calc(var(--s)*46px);margin-top:8px">${esc(S.name)}</h1>
+   <div class="big" style="margin-top:14px;font-size:calc(var(--s)*64px)">${fmtT(S.slot)}</div><p class="lede" style="font-size:calc(var(--s)*20px)">Table for ${S.party} at ${esc(v.n)}</p>
+   <p class="lede">The host already has: <b>${S.needs.size?esc([...S.needs].join(', ')):'no special requests'}</b>.</p><p class="ref" style="margin-top:12px">${ref()}</p>
+   <div class="la" aria-label="Live Activity preview"><div><b>${esc(v.n)}</b><br><span style="opacity:.75;font-size:13px">${v.walk} min walk from ${esc(t().hotel)}</span></div><b style="font-variant-numeric:tabular-nums">${fmtT(S.slot)}</b><div class="walk" aria-hidden="true"><i></i></div></div>
+   <p class="small" style="color:var(--onp);opacity:.8">Lock Screen Live Activity, as it appears while walking.</p></div>
+   <div class="dock"><button class="btn light" data-go="7">We've been seated</button></div></div>`},
+ counter:()=>{const v=venue();const Q=['The table was ready on arrival','The room matched the vouch','I would send a friend'];
+   return `${sb()}<div class="app"><div class="pad" style="padding-top:8px"><p class="small" style="margin:0">Later that evening</p><h1 class="disp t2" tabindex="-1">Countersign ${esc(v.by==='c'?W():'PRIMA')}'s vouch</h1><p class="small">Three answers. It goes to the concierge, not to a public score.</p>
+   ${Q.map((q,i)=>`<div class="q" role="radiogroup" aria-label="${esc(q)}"><p>${esc(q)}</p><div class="chips">${['Yes','Not quite'].map(a=>`<button type="button" class="chip" role="radio" aria-checked="${S.ans[i]===a}" data-ans="${i}|${a}">${a}</button>`).join('')}</div></div>`).join('')}
+   <label class="lbl" for="note">A note for ${S.names[S.t]?esc(t().c):'the '+esc(t().short)+' desk'} (optional)</label><textarea class="in" id="note" rows="2">${esc(S.note)}</textarea></div>
+   <div class="dock"><button class="btn" data-go="8" ${Object.keys(S.ans).length<3?'aria-disabled="true" data-need3="1"':''}>Countersign</button></div></div>`},
+ record:()=>{const v=venue();const done=Object.keys(S.ans).length===3;
+   const rows=[[v.n,t().city,'Today',W(),done],['Halvard','New York','14 Oct',W(T.nyc),true],['Sal y Roca','Ibiza','2 Aug',W(T.ibz),true]];
+   return `${sb()}<div class="app"><div class="pad" style="padding-top:8px;padding-bottom:20px"><h1 class="disp t2" tabindex="-1">Your record</h1><p class="small">Every countersigned evening travels with you. The next PRIMA hotel starts from here.</p>
+   ${done?'<span class="stamp" style="color:var(--acct);margin-top:6px">Countersigned</span>':''}
+   <ul class="ledger" style="margin-top:14px">${rows.map((r,i)=>`<li class="entry" style="cursor:default"><span class="num">Nº${String(3-i).padStart(2,'0')}</span><span><span class="vn">${esc(r[0])}</span><br><span class="vk">${esc(r[1])}, ${esc(r[2])}. Vouched by ${esc(r[3])}</span><br><span class="flag ${r[4]?'ok':''}">${r[4]?'✓ Countersigned':'Awaiting your countersign'}</span></span></li>`).join('')}</ul>
+   <div class="next"><button class="btn" data-go="9">Now see the venue side</button><button class="btn ghost" data-go="2">Back to Tonight</button></div></div>${tabs('record')}</div>`},
+ join:()=>`${sb()}<div class="app"><div class="pad" style="padding-top:8px"><div class="mark">PRIMA <span class="small">for venues</span></div><h1 class="disp t2" tabindex="-1" style="margin-top:16px;font-family:Marcellus,serif;font-weight:400">Bring your room to guests who arrive vouched for.</h1>
+   <div class="rules"><div class="row"><span>Upfront cost</span><b>None</b></div><div class="row"><span>You pay</span><b>Only when a guest is seated</b></div><div class="row"><span>Tables PRIMA sees</span><b>Only the ones you release</b></div><div class="row"><span>Guest needs</span><b>Known before arrival</b></div></div>
+   <label class="lbl" for="vn">Venue name</label><input class="in" id="vn" value="${esc(S.vname)}" autocomplete="organization">
+   <label class="lbl" for="vk">What kind of room?</label><input class="in" id="vk" value="${esc(S.vkind)}">
+   <label class="lbl" for="vc">City</label><select class="in" id="vc">${Object.values(T).map(x=>`<option value="${x.key}" ${x.key===S.t?'selected':''}>${esc(x.city)}</option>`).join('')}</select>
+   <label class="lbl" for="ve">Bookings contact</label><input class="in" id="ve" type="email" value="host@orla.example" autocomplete="email"></div>
+   <div class="dock"><button class="btn" style="background:#000;color:#fff" data-go="10"> Continue with Apple</button></div></div>`,
+ release:()=>{const acc=S.vacc;const fixed=resolve(acc,t().ground);const r0=ratio(acc,t().ground),r1=ratio(fixed,t().ground);const SW=[['#E4572E','Vermilion'],['#F2C14E','Saffron'],['#6CC5B0','Mint'],['#2B4C7E','Ink blue']];
+   return `${sb()}<div class="app"><div class="pad" style="padding-top:8px"><h1 class="disp t2" tabindex="-1" style="font-family:Marcellus,serif;font-weight:400">Release tables</h1><p class="small">Decide what PRIMA can vouch into. Change it any night.</p>
+   <span class="lbl" id="cl">Covers per evening</span><div class="step" role="group" aria-labelledby="cl"><button type="button" data-cov="-2" aria-label="Fewer covers">−</button><output aria-live="polite">${S.covers} covers</output><button type="button" data-cov="2" aria-label="More covers">+</button></div>
+   <span class="lbl" id="wl">Windows</span><div class="chips" role="group" aria-labelledby="wl">${[1080,1140,1200,1260,1320].map(m=>`<button type="button" class="chip" data-win="${m}" aria-pressed="${S.win.has(m)}">${fmtT(m)}</button>`).join('')}</div>
+   <span class="lbl" id="al">Your accent</span><div class="sw" role="radiogroup" aria-labelledby="al">${SW.map(([c,n])=>`<button type="button" role="radio" aria-checked="${c===acc}" aria-label="${n}" data-acc="${c}" style="background:${c}"></button>`).join('')}</div>
+   <p class="lbl">How guests of ${esc(t().hotel)} will see you</p><div class="preview"><div class="pf"><span style="font-family:var(--df);font-weight:var(--dw);font-size:18px">${esc(t().hotel)}</span><br>Tonight, vouched for</div>
+   <div style="padding:12px 14px"><span class="vn">${esc(S.vname)}</span><br><span class="vk">${esc(S.vkind)}</span><p class="vq" style="margin-bottom:0"><b style="color:${fixed}">New to PRIMA:</b> “Ask for the window.”</p></div></div>
+   <p class="small" role="status">${r0>=4.5?`Your accent passes at ${r0.toFixed(1)}:1 on this hotel's paper.`:`Your accent ${acc} measures ${r0.toFixed(1)}:1 on this hotel's paper. PRIMA set text to ${fixed} (${r1.toFixed(1)}:1). Large fills keep your original.`}</p></div>
+   <div class="dock"><button class="btn" style="background:#111;color:#fff" data-go="11">Go live tonight</button></div></div>`},
+ service:()=>{const g=[[S.name,S.party,S.slot??1170,t().hotel,[...S.needs]],['Priya Raman',4,1200,'The Hollis',['Vegetarian']],['Sam Okafor',2,1230,'Casa Marea',['Celebrating']],['Lee Marchetti',3,1260,'Sa Punta',[]]];
+   const seated=g.filter((_,i)=>S.seated.has(i));const cov=seated.reduce((a,x)=>a+x[1],0);const rate={GBP:12,USD:15,EUR:14}[t().cur];
+   return `${sb()}<div class="app"><div class="pad" style="padding-top:8px;padding-bottom:30px"><p class="small" style="margin:0">${today}</p><h1 class="disp t2" tabindex="-1" style="font-family:Marcellus,serif;font-weight:400">Tonight at ${esc(S.vname)}</h1>
+   <div class="tally" role="status"><div><b>${g.reduce((a,x)=>a+x[1],0)}</b><span class="small">vouched covers</span></div><div><b>${cov}</b><span class="small">seated</span></div><div><b>${money(cov*rate)}</b><span class="small">owed, sample rate</span></div></div>
+   <div>${g.map((x,i)=>`<div class="guest"><div><b>${esc(x[0])}</b>, ${x[1]} · ${fmtT(x[2])}<br><span class="small">via ${esc(x[3])}${x[4].length?'. '+esc(x[4].join(', ')):''}</span></div><button type="button" class="seat" data-seat="${i}" aria-pressed="${S.seated.has(i)}" aria-label="Seat ${esc(x[0])}">${S.seated.has(i)?'Seated':'Seat'}</button></div>`).join('')}</div>
+   <p class="small" style="margin-top:14px">A fee accrues only when you tap Seat. No-shows cost you nothing.</p><div class="next"><button class="btn ghost" data-restart="1">Start again in another city</button></div></div></div>`}
+};
+
+function vo(x){const v=venue();const sl=S.slot??v.slots[0];const tm=new Intl.DateTimeFormat('en-US',{hour:'numeric',minute:'2-digit'}).format(new Date(2026,10,26,Math.floor(sl/60),sl%60));return x.replaceAll('Calder Room',v.n).replaceAll('6:30 PM',tm).replaceAll('The Aldwych House',t().hotel).replaceAll('Marta',v.by==='c'?W():'PRIMA').replaceAll('London',t().city).replaceAll('PR LDN 0417',ref().replaceAll('-',' ')).replaceAll('Jordan Ellis',S.name).replaceAll('Orla',S.vname)}
+function why(){const s=SCREENS[S.i];const fixed=resolve(t().acc,t().ground);
+  $('#why').innerHTML=`<h2>${s.g==='m'?'Member':'Venue'} · ${S.i+1} of ${SCREENS.length}</h2><h3>${esc(s.p)}</h3><p class="pat">${esc(s.why)}</p>
+  <div class="cols"><div><h4>Apple Human Interface Guidelines</h4><ul>${s.hig.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div><h4>Research behind it</h4><ul>${s.sci.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></div>
+  <div class="vo"><b>VoiceOver reads</b>${esc(vo(s.vo))}</div>
+  <p class="contrast"><i style="background:${t().acc}"></i>${esc(t().hotel)} accent ${t().acc} is ${ratio(t().acc,t().ground).toFixed(1)}:1 on its paper. <i style="background:${fixed}"></i>PRIMA renders accent text at ${fixed}, ${ratio(fixed,t().ground).toFixed(1)}:1. Display face ${esc(t().df.split(',')[0].replace(/"/g,''))} is locked out below 24 pt.</p><p class="contrast">Vouches are signed ${esc(W())}. ${esc(t().hotel)} has concierge names ${S.names[S.t]?'on':'off'} (TenantConfig <code>vouch.showConciergeName: ${!!S.names[S.t]}</code>), a per-hotel choice.</p>`}
+
+function nav(){const b=(s,i)=>`<li><button type="button" data-go="${i}" ${i===S.i?'aria-current="step"':''}><span class="jn">${String(i+1).padStart(2,'0')}</span>${esc(s.n)}</button></li>`;
+  $('#jm').innerHTML=SCREENS.map((s,i)=>s.g==='m'?b(s,i):'').join('');$('#jv').innerHTML=SCREENS.map((s,i)=>s.g==='v'?b(s,i):'').join('');
+  $('#tenants').innerHTML=Object.values(T).map(x=>`<button type="button" data-tenant="${x.key}" aria-pressed="${x.key===S.t}">${esc(x.city)}</button>`).join('');
+  $('#names').innerHTML=[[0,'Hotel shorthand'],[1,'Show names']].map(([v,l])=>`<button type="button" data-names="${v}" aria-pressed="${!!S.names[S.t]===!!v}">${l}</button>`).join('');$('#sizes').innerHTML=[[1,'Default'],[1.2,'Large'],[1.4,'Accessibility']].map(([v,l])=>`<button type="button" data-scale="${v}" aria-pressed="${S.scale===v}">${l}</button>`).join('')}
+
+function render(focus){const sc=$('#screen');const x=t();const s=SCREENS[S.i];
+  sc.style.cssText=`--s:${S.scale};--ground:${x.ground};--primary:${x.primary};--acc:${x.acc};--acct:${resolve(x.acc,x.ground)};--df:${x.df};--dw:${x.dw}`;
+  sc.classList.toggle('rm',S.rm);sc.classList.toggle('hc',S.hc);sc.classList.toggle('night',s.id==='arrive');
+  sc.innerHTML=R[s.id]()+'<div class="home" aria-hidden="true"></div>'+(S.toast?`<div class="toast" role="status">${esc(S.toast)}</div>`:'')+(S.coach&&S.i===0?`<div class="coach" role="dialog" aria-modal="true" aria-labelledby="ch"><div><h2 id="ch">A guest's evening, end to end</h2><p>You are staying at a hotel in ${esc(t().city)}. Tap the large button on each screen to book, arrive and countersign. The venue side follows. About two minutes.</p><button class="btn" id="coachgo" style="background:#111;color:#fff">Begin</button></div></div>`:'');
+  $('#rm').setAttribute('aria-pressed',S.rm);$('#hc').setAttribute('aria-pressed',S.hc);
+  nav();why();if(focus){const h=sc.querySelector(S.coach&&S.i===0?'#coachgo':'h1');h&&h.focus({preventScroll:true});sc.querySelector('.app').scrollTop=0}}
+
+function go(i){S.i=i;S.toast='';if(SCREENS[i].id!=='seal')S.sealing=false;render(true)}
+
+document.addEventListener('click',e=>{const el=e.target.closest('button');if(!el)return;const d=el.dataset;
+  if(d.restart){const k=Object.keys(T);S.t=k[(k.indexOf(S.t)+1)%k.length];S.v=0;S.slot=null;S.ans={};S.seated=new Set();S.coach=true;go(0);return}
+  if(d.need3){S.toast='Answer all three to countersign.';render();return}
+  if(d.go!=null){go(+d.go);return}
+  if(d.tenant){S.t=d.tenant;S.v=0;S.slot=null;render();return}
+  if(d.names!=null){S.names[S.t]=d.names==='1';render();return}
+  if(d.scale){S.scale=+d.scale;render();return}
+  if(el.id==='coachgo'){S.coach=false;render(true);return}
+  if(el.id==='rm'){S.rm=!S.rm;render();return}
+  if(el.id==='hc'){S.hc=!S.hc;render();return}
+  if(d.party){S.party=Math.max(1,Math.min(8,S.party+ +d.party));render();return}
+  if(d.need){S.needs.has(d.need)?S.needs.delete(d.need):S.needs.add(d.need);render();return}
+  if(d.filter){S.filter=d.filter;render();return}
+  if(d.venue!=null){S.v=+d.venue;S.slot=null;go(3);return}
+  if(d.slot){S.slot=+d.slot;render();return}
+  if(d.ans){const[i,a]=d.ans.split('|');S.ans[i]=a;render();return}
+  if(d.cov){S.covers=Math.max(2,Math.min(40,S.covers+ +d.cov));render();return}
+  if(d.win){const m=+d.win;S.win.has(m)?S.win.delete(m):S.win.add(m);render();return}
+  if(d.acc){S.vacc=d.acc;render();return}
+  if(d.seat){const i=+d.seat;S.seated.has(i)?S.seated.delete(i):S.seated.add(i);render();return}
+  if(d.toast){S.toast=d.toast;render();setTimeout(()=>{S.toast='';render()},2600);return}
+  if(el.id==='sealbtn'){S.sealing=true;render();setTimeout(()=>{if(SCREENS[S.i].id==='seal'){try{navigator.vibrate&&navigator.vibrate([20,40,20])}catch(_){}go(5)}},S.rm?500:1700)}
+});
+document.addEventListener('input',e=>{const id=e.target.id;if(id==='nm')S.name=e.target.value||'Guest';if(id==='vn')S.vname=e.target.value||'Your venue';if(id==='vk')S.vkind=e.target.value;if(id==='note')S.note=e.target.value});
+document.addEventListener('change',e=>{if(e.target.id==='vc'){S.t=e.target.value;S.v=0;S.slot=null;render()}});
+// radio groups: arrow keys move selection, per HIG and WAI-ARIA
+document.addEventListener('keydown',e=>{const r=e.target.closest('[role=radio]');if(!r||!['ArrowRight','ArrowLeft','ArrowDown','ArrowUp'].includes(e.key))return;const g=[...r.parentElement.querySelectorAll('[role=radio]')];const n=g[(g.indexOf(r)+(e.key==='ArrowRight'||e.key==='ArrowDown'?1:g.length-1))%g.length];e.preventDefault();const idx=g.indexOf(n);n.click();const again=[...document.querySelectorAll(`[role=radio]`)].find(b=>b.dataset.slot===n.dataset.slot&&b.dataset.filter===n.dataset.filter&&b.dataset.ans===n.dataset.ans&&b.dataset.acc===n.dataset.acc);again&&again.focus()});
+
+const start=d=>{if(d&&d.i!=null){S.i=d.i;S.t=d.t||S.t}render()};
+window.claude?.hot?.snapshot?.(()=>({i:S.i,t:S.t}));
+window.claude?.hot?.ready?window.claude.hot.ready(start):start(window.claude?.hot?.data??{});
+}
+</script>
+
+</body></html>
