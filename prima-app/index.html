@@ -187,6 +187,36 @@ details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;f
 .vo b{display:block;font-size:13px;color:var(--mute);margin-bottom:2px}
 .contrast{margin-top:14px;font-size:14px;color:var(--mute)}
 .contrast i{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:4px;border:1px solid var(--rule)}
+.hero{position:relative;height:calc(var(--s)*0px + 290px);background:#ddd}
+.car{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;height:100%;scrollbar-width:none}
+.car::-webkit-scrollbar{display:none}
+.car img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:start;max-width:none}
+.back{position:absolute;left:14px;top:12px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.92);font-size:26px;line-height:1;cursor:pointer;color:#141414}
+.count{position:absolute;right:14px;bottom:12px;background:rgba(0,0,0,.6);color:#fff;font-size:13px;border-radius:12px;padding:3px 10px;font-variant-numeric:tabular-nums}
+.facts{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.facts span{font-size:calc(var(--s)*13px);border:1px solid var(--rule);border-radius:999px;padding:4px 10px;background:#fff;white-space:nowrap}
+.vouch{margin:18px 0 0;border-left:3px solid var(--acct);padding:4px 0 4px 14px;font-size:calc(var(--s)*17px);line-height:1.4}
+.vouch b{display:block;font-size:calc(var(--s)*13px);color:var(--acct);margin-bottom:4px}
+.sh{font-size:calc(var(--s)*13px);font-weight:700;margin:26px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--ink)}
+.hl{list-style:none;margin:0;padding:0}
+.hl li{padding:9px 0 9px 20px;border-bottom:1px solid var(--rule);position:relative;font-size:calc(var(--s)*15px)}
+.hl li::before{content:"";position:absolute;left:2px;top:17px;width:7px;height:7px;background:var(--primary);transform:rotate(45deg)}
+.hl b{margin-right:6px}
+.mapbox{border:1px solid var(--rule);border-radius:16px;overflow:hidden;height:210px}
+.map{display:block;width:100%;height:100%}
+.map .ml{paint-order:stroke;stroke:#fbfaf8;stroke-width:4px}
+.near{list-style:none;margin:0;padding:0}
+.near li{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:10px;align-items:start;padding:11px 0;border-bottom:1px solid var(--rule)}
+.nk{width:22px;height:22px;border-radius:50%;border:1.2px solid var(--ink);font-size:11px;font-weight:700;display:grid;place-items:center;margin-top:1px}
+.nm{font-size:calc(var(--s)*14px);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.okc{color:#1d6b3a}.noc{color:#8a3b00}
+.entry.rich{grid-template-columns:96px minmax(0,1fr);gap:0 14px}
+.thumb{width:96px;height:120px;object-fit:cover;border-radius:12px;background:#ddd}
+.entry.rich .num{padding-top:0}
+.phs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.phs button{padding:0;border:0;border-radius:12px;overflow:hidden;height:84px;cursor:pointer;outline-offset:2px}
+.phs img{width:100%;height:100%;object-fit:cover;display:block}
+.phs button[aria-checked=true]{box-shadow:0 0 0 3px var(--ink)}
 .mbar{display:none}
 .coach{position:absolute;inset:0;z-index:8;background:rgba(10,10,12,.55);display:flex;align-items:flex-end;padding:16px 16px 34px}
 .coach div{background:#fff;color:#141414;border-radius:24px;padding:22px;width:100%}
@@ -264,8 +294,37 @@ const T={
        ['Sal y Roca','Cliff terrace, Mediterranean','Sant Josep',18,'h','House pick. Ask for the edge table.',[1215,1230,1290],40,true],
        ['Nit','Late counter','Ibiza Town',9,'h','After midnight it becomes something else.',[1320,1350],0,true]]}
 };
+
+// venue detail: photos (img/pN.jpg), mood, price band, dress, signature, highlights
+const D={
+ ldn:[{ph:[0,17,5],mood:'Intimate',pb:3,dress:'Smart casual',sig:'Smoked eel, brown butter, rye',h:['Twelve counter seats facing the hearth','Chef finishes the last course in front of you','Natural wine list, 300 bottles']},
+      {ph:[7,3,14],mood:'Lively',pb:2,dress:'Relaxed',sig:'Native oysters, three ways',h:['Oysters shucked to order at the bar','Small natural wine list, by the glass','Best before 19:30, busiest after']},
+      {ph:[26,5,17],mood:'Buzzing',pb:3,dress:'Smart casual',sig:'Whole turbot over oak',h:['Open fire kitchen, Basque technique','Booked out publicly until January','Private corner table for four']},
+      {ph:[16,11,0],mood:'Quiet',pb:4,dress:'Jacket preferred',sig:'Seven-course seasonal menu',h:['One sitting, twelve guests','Set menu, dietary notes honoured ahead','Host introduces every course']}],
+ nyc:[{ph:[8,13,17],mood:'Hushed',pb:4,dress:'Smart',sig:'Langoustine, birch, sea buckthorn',h:['Seats at the pass if you like to watch','Twelve-course Nordic tasting','Pairings include zero-proof']},
+      {ph:[25,3,7],mood:'Late and loud',pb:3,dress:'Anything goes',sig:'Dry-aged ribeye for two',h:['Kitchen open until 1 a.m.','Martini cart at the table','Floor manager knows the house']},
+      {ph:[31,14,3],mood:'Bright',pb:3,dress:'Relaxed',sig:'Crudo flight, citrus, chili',h:['Walk-ins wait an hour; you will not','Raw bar seats along the window','Champagne by the glass']},
+      {ph:[19,24,5],mood:'Convivial',pb:2,dress:'Relaxed',sig:'Whole roast duck, pancakes',h:['Banquet tables for six or more','Order the duck when you book','Family-style, generous portions']}],
+ mia:[{ph:[21,15,3],mood:'Sunset',pb:2,dress:'Resort',sig:'Snapper ceviche, leche de tigre',h:['Outdoor counter facing the water','End seats catch the sunset','Mezcal and citrus list']},
+      {ph:[18,25,5],mood:'Live music',pb:3,dress:'Dress up',sig:'Picanha from the churrasco grill',h:['Live band from 21:00','Big tables, big energy','Caipirinha flight']},
+      {ph:[12,23,14],mood:'Breezy',pb:4,dress:'Smart resort',sig:'Lobster linguine',h:['Garden terrace under the palms','House pick this month','Wood-fired breads all evening']},
+      {ph:[27,13,17],mood:'Intimate',pb:4,dress:'Smart',sig:'Ten-course Cuban tasting',h:['Ten seats at one counter','Two hours, worth every minute','Chef serves the final course']}],
+ ibz:[{ph:[26,5,15],mood:'Rustic',pb:3,dress:'Island casual',sig:'Catch of the day over embers',h:['Fish chosen at the counter','Family grill since 1987','Terrace under the carob tree']},
+      {ph:[9,21,3],mood:'Barefoot',pb:4,dress:'Shoes optional',sig:'Salt-baked sea bass',h:['Sunset sitting on the sand','DJ from 22:00, dinner first','Boat drop-off on request']},
+      {ph:[21,16,23],mood:'Romantic',pb:4,dress:'Smart resort',sig:'Red prawns, saffron rice',h:['Cliff terrace over the sea','Ask for the edge table','Sunset view of Es Vedrà']},
+      {ph:[25,3,7],mood:'After dark',pb:2,dress:'Anything goes',sig:'Tapas until 3 a.m.',h:['Opens at 22:00','Counter seats only','Becomes a bar after midnight']}]
+};
+// nearby experiences, in map coordinates (viewBox 340 by 210)
+const EXP={
+ ldn:[['Lumen Bar','Cocktails','A two-drink nightcap, no booking needed',196,62],['Royal Opera House','Theatre','Curtain at 19:30, so book 17:30',250,128],['Neal\'s Yard','Evening walk','Lit courtyards, five minutes on foot',150,40]],
+ nyc:[['Whitlock','Jazz room','Late set at 22:30',222,58],['Hudson River Park','Pier walk','Sunset over the river',60,96],['Greenwich Gallery','Art','Open late on Thursdays',272,152]],
+ mia:[['Altura','Rooftop bar','Skyline view, open until 2 a.m.',226,52],['Biscayne Walk','Waterfront','Bayside promenade',286,140],['Wynwood Walls','Street art','Lit murals after dark',150,34]],
+ ibz:[['Dalt Vila','Old town','Walls and views at night',230,48],['Cala Bassa','Beach','Morning swim, 20 minutes away',72,46],['Sunset Strip','Bars','Golden hour drinks',262,130]]
+};
+const WATER={ldn:'M0 178 C 80 160 160 196 240 176 S 340 170 340 170 L340 210 L0 210Z',nyc:'M0 0 L44 0 C 36 70 52 140 40 210 L0 210Z',mia:'M300 0 C 284 60 312 120 296 210 L340 210 L340 0Z',ibz:'M340 110 C 290 130 300 180 240 210 L340 210Z'};
 const NEEDS=['Step-free access','Quiet table','Vegetarian','Shellfish allergy','Celebrating'];
-const S={i:0,t:'ldn',v:0,slot:null,party:2,needs:new Set(['Step-free access']),name:'Jordan Ellis',filter:'all',sealing:false,ans:{},note:'',scale:1,rm:matchMedia('(prefers-reduced-motion: reduce)').matches,hc:false,vname:'Orla',vkind:'Neighbourhood bistro',covers:8,win:new Set([1140,1200,1260]),vacc:'#E4572E',seated:new Set(),toast:'',names:{},coach:true};
+const S={i:0,t:'ldn',v:0,slot:null,party:2,needs:new Set(['Step-free access']),name:'Jordan Ellis',filter:'all',sealing:false,ans:{},note:'',scale:1,rm:matchMedia('(prefers-reduced-motion: reduce)').matches,hc:false,vname:'Orla',vkind:'Neighbourhood bistro',covers:8,win:new Set([1140,1200,1260]),vacc:'#E4572E',seated:new Set(),toast:'',names:{},coach:true,vcover:11,vhl:new Set(['Window tables for two','Wood-fired bread','Kitchen open until 23:30'])};
+const VHL=['Window tables for two','Wood-fired bread','Kitchen open until 23:30','Chef\'s counter, six seats','Natural wine list','Private room for eight'];
 const W=(x=t())=>S.names[x.key]?x.c:x.short;
 
 const SCREENS=[
@@ -277,14 +336,14 @@ const SCREENS=[
   hig:['Accessibility: support people\'s needs as a feature, not a setting buried in a menu.','Text fields: prefill what you know; use the right keyboard and content type.','Toggles and buttons: every chip is a 44 by 44 pt target.'],
   sci:['Recognition over recall (Nielsen heuristic 6): pick from chips, never type a need.','Form length and abandonment (Baymard Institute checkout research): every field must earn its place, so this screen has three.','Default effect (Johnson and Goldstein, 2003): party of 2 is the sensible default.'],
   vo:'Heading. About you. Text field, Name, Jordan Ellis. Party size, 2, adjustable. Step-free access, toggle button, on.'},
- {id:'tonight',g:'m',n:'Tonight',p:'The vouch ledger',why:'Discovery is a short ledger, not an infinite feed. Each entry leads with who is vouching and what they said, not stars. Needs are matched honestly: a venue with steps is shown and flagged, never hidden.',
+ {id:'tonight',g:'m',n:'Tonight',p:'The vouch ledger',why:'Discovery is a short ledger, not an infinite feed. Each entry pairs a real photograph with who is vouching and what they said, not stars, plus mood and price band at a glance. Needs are matched honestly: a venue with steps is shown and flagged, never hidden.',
   hig:['Lists and tables: one tap target per row, generous row height.','Segmented controls: two to five options for filtering one list.','Tab bars: three destinations, labels always shown.'],
   sci:['Hick-Hyman law (Hick, 1952): four choices per filter keeps decision time low.','Choice overload (Iyengar and Lepper, 2000): curated sets convert better than large ones.','Source credibility: a quoted person reads as testimony, not advertising.'],
   vo:'Heading. Tonight in London. Filter, All, selected, 1 of 3. Button. Calder Room, Modern British, 6 minute walk. Marta says: Ask for the counter. Step-free.'},
- {id:'venue',g:'m',n:'Choose a time',p:'The hour rail',why:'Time is shown as a ruled line of the evening, so you see the shape of availability at a glance, then pick from large time buttons below it. The earliest good slot is preselected.',
-  hig:['Pickers: show only valid values; never offer a time that cannot be booked.','Layout: the selection is echoed large at the top so it is confirmed without reading the list.','VoiceOver: the rail is decorative; the times are a radio group with clear labels.'],
-  sci:['Progressive disclosure (Nielsen, 2006): price and policy appear only after a time is picked.','Gestalt continuity: notches on one line read as one evening.','Default effect: the first available slot is set, so one tap books it.'],
-  vo:'Heading. Calder Room. Selected time, 6:30 PM. Radio button, 6:30 PM, selected, 1 of 5. Button, Ask Marta to vouch.'},
+ {id:'venue',g:'m',n:'Venue details',p:'The venue page',why:'Everything needed to say yes on one scroll: photography first, the vouch, three highlights and the dish to order, the hour rail, then a walking map from the hotel with what is nearby before or after. Distance is shown in minutes from where the guest is staying, not in miles from a pin.',
+  hig:['Images: full-bleed photography with alt text for every image; swipeable, with a visible count.','Maps: show the route and only the points that help the decision; in the native build this is MapKit with a walking route and Look Around.','Layout: the primary action stays docked and restates the chosen time.','Accessibility: the carousel is a labelled region; each photo announces its position.'],
+  sci:['Picture superiority effect (Paivio, 1971; Nelson et al., 1976): images are recalled and trusted faster than text.','Distance decay in destination choice: travel time is among the strongest predictors of where people go, so it is stated in minutes from the hotel.','Information foraging (Pirolli and Card, 1999): highlights and the signature dish give strong scent without a menu download.','Progressive disclosure: map and nearby experiences sit below the booking controls, for those who want them.'],
+  vo:'Heading. Calder Room. Photos of Calder Room, carousel, 1 of 3. Marta vouches. Why it is worth it, list, 4 items. Map: The Aldwych House to Calder Room, 6 minute walk. Button, Ask Marta to vouch, 6:30 PM.'},
  {id:'seal',g:'m',n:'Seal',p:'Sealing the introduction',why:'Review is a register entry, not a form. One button seals it; the line of introduction draws itself to the venue while the request is carried, with a success haptic on confirmation.',
   hig:['Playing haptics: the system success notification on confirmation.','Feedback: show progress for anything over a moment, and say what is happening in words.','Motion: purposeful, short, and replaced by an instant state change when Reduce Motion is on.'],
   sci:['Doherty threshold (Doherty and Thadani, 1982): feedback within 400 ms keeps people engaged.','Goal-gradient effect (Hull, 1932; Kivetz et al., 2006): visible progress toward the last node accelerates action.','Labor illusion (Buell and Norton, 2011): showing the work being done raises perceived value.'],
@@ -309,7 +368,7 @@ const SCREENS=[
   hig:['Onboarding: explain the value before asking for anything.','Sign in with Apple and passkeys: no password to create.','Text fields: the minimum to start; everything else can wait.'],
   sci:['Loss aversion (Kahneman and Tversky, 1979): "pay only when seated" removes the feared loss.','Commitment and consistency: small first steps raise follow-through (Freedman and Fraser, 1966).','Baymard form research: fewer fields, higher completion.'],
   vo:'Heading. Bring your room to guests who arrive vouched for. Text field, Venue name, Orla. Button, Continue with Apple.'},
- {id:'release',g:'v',n:'Release tables',p:'Your colours stay yours',why:'The venue chooses covers and windows, then picks its own accent. PRIMA shows the listing inside the current hotel\'s app and corrects the accent for contrast before it ships: the rule that refuses, in action.',
+ {id:'release',g:'v',n:'Release tables',p:'Your colours stay yours',why:'The venue chooses covers and windows, a cover photo, exactly three highlights and its own accent. PRIMA shows the listing inside the current hotel\'s app and corrects the accent for contrast before it ships: the rule that refuses, in action.',
   hig:['Color: never rely on colour alone, and ensure 4.5:1 for text.','Steppers: for small numeric values with a clear range.','Previews: show the outcome of a setting where it will appear.'],
   sci:['WCAG 2.2 SC 1.4.3: contrast is calculated, not eyeballed.','Direct manipulation (Shneiderman, 1983): change a control, see the result immediately.','IKEA effect (Norton et al., 2012): owning the look raises commitment.'],
   vo:'Heading. Release tables. Covers per evening, 8, adjustable. Accent, Vermilion, selected. Preview. Accent adjusted for contrast.'},
@@ -322,7 +381,7 @@ const SCREENS=[
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const t=()=>T[S.t];
-const venue=()=>{const a=t().v[S.v];return{n:a[0],kind:a[1],area:a[2],walk:a[3],by:a[4],q:a[5],slots:a[6],fee:a[7],sf:a[8]}};
+const venue=()=>{const a=t().v[S.v];return{...D[S.t][S.v],n:a[0],kind:a[1],area:a[2],walk:a[3],by:a[4],q:a[5],slots:a[6],fee:a[7],sf:a[8]}};
 const fmtT=m=>new Intl.DateTimeFormat(t().lang,{hour:'numeric',minute:'2-digit'}).format(new Date(2026,10,26,Math.floor(m/60),m%60));
 const money=n=>new Intl.NumberFormat(t().lang,{style:'currency',currency:t().cur,maximumFractionDigits:0}).format(n);
 const today=new Intl.DateTimeFormat('en-GB',{weekday:'short',day:'numeric',month:'short'}).format(new Date(2026,10,26));
@@ -334,6 +393,20 @@ const ratio=(a,b)=>{const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min
 const hex=v=>'#'+v.map(n=>Math.round(n).toString(16).padStart(2,'0')).join('');
 const resolve=(fg,bg,target=4.5)=>{let c=[1,3,5].map(i=>parseInt(fg.slice(i,i+2),16));let out=fg;for(let k=0;k<40&&ratio(out,bg)<target;k++){c=c.map(v=>v*.93);out=hex(c)}return out.toUpperCase()};
 
+
+const pos=(i,walk)=>{const ang=(i*97+28)*Math.PI/180,r=Math.min(walk*8,120);const lo=S.t==='nyc'?70:40,hi=S.t==='mia'?270:300;return[Math.max(lo,Math.min(hi,120+r*Math.cos(ang))),Math.max(44,Math.min(170,150-Math.abs(r*Math.sin(ang))))]};
+const OFF=[[-78,-46],[84,18],[46,-70]];const epos=(vi)=>{const a=t().v[vi],[vx,vy]=pos(vi,a[3]);return OFF.map(([dx,dy],k)=>[Math.max(14,Math.min(326,vx+dx*(1+k*.25))),Math.max(14,Math.min(196,vy+dy))])};
+const map=(vi)=>{const x=t(),a=x.v[vi],[vx,vy]=pos(vi,a[3]);let st='';for(let k=0;k<11;k++){const o=(k*37+S.t.length*13)%9;st+=`<line x1="${k*34+o}" y1="0" x2="${k*34+o-6}" y2="210"/>`;}for(let k=0;k<7;k++){const o=(k*29)%7;st+=`<line x1="0" y1="${k*34+o}" x2="340" y2="${k*34+o+4}"/>`;}
+ const ex=EXP[S.t];const ep=epos(vi);const hx=120,hy=150;
+ return `<svg class="map" viewBox="0 0 340 210" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Map. ${esc(x.hotel)} to ${esc(a[0])}, ${a[3]} minute walk. Nearby: ${ex.map(e=>esc(e[0])).join(', ')}.">
+ <rect width="340" height="210" fill="#fbfaf8"/><rect x="236" y="150" width="58" height="34" fill="#e3ecdf"/><path d="${WATER[S.t]}" fill="#dfe9ee"/>
+ <g stroke="#d8d4cf" stroke-width="1">${st}</g><line x1="0" y1="96" x2="340" y2="60" stroke="#cfcac4" stroke-width="3"/>
+ <path d="M${hx} ${hy} L${vx} ${hy} L${vx} ${vy}" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+ ${ex.map((e,k)=>`<g><circle cx="${ep[k][0]}" cy="${ep[k][1]}" r="9" fill="#fff" stroke="#141414" stroke-width="1.2"/><text x="${ep[k][0]}" y="${ep[k][1]+3.5}" text-anchor="middle" font-size="10" font-weight="700" fill="#141414">${k+1}</text></g>`).join('')}
+ <rect x="${hx-7}" y="${hy-7}" width="14" height="14" fill="#141414"/><text x="${hx}" y="${hy+22}" text-anchor="middle" font-size="11" font-weight="600" fill="#141414" class="ml">${esc(x.short)}</text>
+ <circle cx="${vx}" cy="${vy}" r="9" fill="var(--primary)" stroke="#fff" stroke-width="2.5"/><text x="${vx>230?vx-14:vx+14}" y="${vy+4}" text-anchor="${vx>230?'end':'start'}" font-size="12" font-weight="700" fill="#141414" class="ml">${esc(a[0])}</text></svg>`};
+const near=vi=>{const a=t().v[vi],[vx,vy]=pos(vi,a[3]);const ep=epos(vi);return EXP[S.t].map((e,k)=>({n:e[0],k:e[1],note:e[2],m:Math.max(1,Math.round(Math.hypot(ep[k][0]-vx,ep[k][1]-vy)/8))}))};
+const pb=n=>({GBP:'£',USD:'$',EUR:'€'}[t().cur]).repeat(n);
 const line=(stage,dark)=>{const v=venue();const nodes=[['You',S.name.split(' ')[0]],[t().hotel,S.names[S.t]?t().c:'concierge desk'],['PRIMA','carries'],[stage>=3?v.n:'Venue',stage>=3?fmtT(S.slot??v.slots[0]):'tonight']];
   return `<ol class="line" aria-label="Line of introduction, step ${Math.min(stage+1,4)} of 4">${nodes.map((n,i)=>`<li class="${i<=stage?'on':''}" style="--i:${i}"><b>${esc(n[0])}</b><span>${esc(n[1])}</span></li>`).join('')}</ol>`};
 const sb=dark=>`<div class="sb ${dark?'dark':''}" aria-hidden="true"><span>9:41</span><span class="island"></span><span class="sbi"><svg width="18" height="11" viewBox="0 0 18 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="6" rx="1"/><rect x="10" y="2.5" width="3" height="8.5" rx="1"/><rect x="15" y="0" width="3" height="11" rx="1"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none" stroke="currentColor"><rect x=".5" y=".5" width="21" height="11" rx="3.5" opacity=".5"/><rect x="2" y="2" width="16" height="8" rx="2" fill="currentColor" stroke="none"/></svg></span></div>`;
@@ -354,18 +427,27 @@ const R={
  tonight:()=>{const list=t().v.map((a,i)=>({a,i})).filter(o=>S.filter==='all'||(S.filter==='c'?o.a[4]==='c':o.a[4]==='h'));const sf=S.needs.has('Step-free access');
    return `${sb()}<div class="app"><div class="pad" style="padding-top:8px;padding-bottom:20px"><p class="small" style="margin:0">Tonight, ${today}</p><h1 class="disp t2" tabindex="-1">${esc(t().city)}, vouched for</h1>
    <div class="filter" role="radiogroup" aria-label="Who is vouching">${[['all','All'],['c',W()],['h','PRIMA']].map(([k,l])=>`<button type="button" role="radio" aria-checked="${S.filter===k}" data-filter="${k}">${esc(l)}</button>`).join('')}</div>
-   <ul class="ledger">${list.map(({a,i})=>`<li><button class="entry" data-venue="${i}"><span class="num">Nº${String(i+1).padStart(2,'0')}</span><span><span class="vn">${esc(a[0])}</span><br><span class="vk">${esc(a[1])}. ${a[3]} min walk</span>
+   <ul class="ledger">${list.map(({a,i})=>`<li><button class="entry rich" data-venue="${i}"><img class="thumb" src="img/p${D[S.t][i].ph[0]}.jpg" alt="" loading="lazy"><span><span class="num">Nº${String(i+1).padStart(2,'0')} · ${esc(D[S.t][i].mood)} · ${pb(D[S.t][i].pb)}</span><br><span class="vn">${esc(a[0])}</span><br><span class="vk">${esc(a[1])}. ${a[3]} min walk</span>
      <p class="vq"><b>${a[4]==='c'?esc(W()):'PRIMA'}:</b> “${esc(a[5])}”</p><span class="times">${a[6].slice(0,4).map(m=>`<span>${fmtT(m)}</span>`).join('')}</span>
      ${sf?`<span class="flag ${a[8]?'ok':'no'}">${a[8]?'✓ Step-free entrance':'Two steps at the entrance, ramp on request'}</span>`:''}</span></button></li>`).join('')}</ul></div>${tabs('tonight')}</div>`},
  venue:()=>{const v=venue();if(S.slot==null||!v.slots.includes(S.slot))S.slot=v.slots[0];const x=m=>((m-1080)/300*100).toFixed(2)+'%';let ticks='';for(let m=1080;m<=1380;m+=15){const h=m%60===0;ticks+=`<i class="tick ${h?'h':''}" style="left:${x(m)}"></i>`+(h&&m<1380?`<span class="tl" style="left:${x(m)}">${fmtT(m).replace(':00','')}</span>`:'')}
-   return `${sb(1)}<div class="app"><div class="field"><button class="btn light" style="width:auto;min-height:44px;padding:6px 14px;font-size:15px" data-go="2" aria-label="Back to Tonight">‹ Tonight</button>
-   <h1 class="disp t1" tabindex="-1" style="margin-top:18px">${esc(v.n)}</h1><p class="lede">${esc(v.kind)}. ${esc(v.area)}, ${v.walk} min walk.</p><p class="lede"><b>${v.by==='c'?esc(W()):'PRIMA'}:</b> “${esc(v.q)}”</p></div>
-   <div class="pad"><p class="small" style="margin:0">Selected time</p><div class="big" aria-live="polite">${fmtT(S.slot)}</div>
+   const who=v.by==='c'?W():'PRIMA';const alts=['The room','Signature: '+v.sig,'At the table'];const nb=near(S.v);const sf=S.needs.has('Step-free access');
+   return `${sb()}<div class="app"><div class="hero"><div class="car" id="car" role="region" aria-roledescription="carousel" aria-label="Photos of ${esc(v.n)}" tabindex="0">${v.ph.map((n,k)=>`<img src="img/p${n}.jpg" alt="${esc(v.n)}, ${esc(alts[k])}" ${k?'loading="lazy"':''} role="group" aria-roledescription="slide" aria-label="${k+1} of 3">`).join('')}</div>
+   <button class="back" data-go="2" aria-label="Back to Tonight">‹</button><span class="count" aria-hidden="true" id="carc">1 / 3</span></div>
+   <div class="pad" style="padding-top:16px"><h1 class="disp t1" tabindex="-1">${esc(v.n)}</h1><p class="vk" style="margin:6px 0 0">${esc(v.kind)}. ${esc(v.area)}</p>
+   <div class="facts"><span>${esc(v.mood)}</span><span>${pb(v.pb)}</span><span>${esc(v.dress)}</span><span>${v.walk} min walk</span></div>
+   <blockquote class="vouch"><b>${esc(who)} vouches</b>“${esc(v.q)}”</blockquote>
+   <h2 class="sh">Why it's worth it</h2><ul class="hl">${v.h.map(h=>`<li>${esc(h)}</li>`).join('')}<li><b>Order</b> ${esc(v.sig)}</li></ul>
+   <h2 class="sh">Your table</h2><p class="small" style="margin:0">Selected time</p><div class="big" aria-live="polite">${fmtT(S.slot)}</div>
    <div class="rail" aria-hidden="true"><i class="base"></i>${ticks}${v.slots.map(m=>`<i class="notch ${m===S.slot?'sel':''}" style="left:${x(m)}"></i>`).join('')}</div>
    <div class="chips" role="radiogroup" aria-label="Available times">${v.slots.map(m=>`<button type="button" class="chip" role="radio" aria-checked="${m===S.slot}" data-slot="${m}" style="font-variant-numeric:tabular-nums">${fmtT(m)}</button>`).join('')}</div>
    <span class="lbl" id="pl2">Party</span><div class="step" role="group" aria-labelledby="pl2"><button type="button" data-party="-1" aria-label="Fewer guests">−</button><output aria-live="polite">${S.party} guests</output><button type="button" data-party="1" aria-label="More guests">+</button></div>
-   <div class="rules"><div class="row"><span>${v.fee?'Prime access fee':'Access'}</span><b>${v.fee?money(v.fee):'No fee, the house covers it'}</b></div><div class="row"><span>Release the table</span><b>Free until 2 hours before</b></div></div></div>
-   <div class="dock"><button class="btn" data-go="4">Ask ${v.by==='c'?esc(W()):'PRIMA'} to vouch</button></div></div>`},
+   <h2 class="sh">Getting there</h2><div class="mapbox">${map(S.v)}</div>
+   <div class="rules" style="margin-top:0"><div class="row"><span>From ${esc(t().hotel)}</span><b>${v.walk} min walk, ${v.walk*80} m</b></div>${sf?`<div class="row"><span>Route</span><b class="${v.sf?'okc':'noc'}">${v.sf?'Step-free all the way':'Two steps at the door, ramp on request'}</b></div>`:''}<div class="row"><span>Car from the hotel</span><b>${Math.max(3,Math.round(v.walk/2.5))} min, arranged by ${esc(W())}</b></div></div>
+   <h2 class="sh">Before or after</h2><ol class="near">${nb.map((e,k)=>`<li><span class="nk">${k+1}</span><span><b>${esc(e.n)}</b><br><span class="small">${esc(e.k)}. ${esc(e.note)}</span></span><span class="nm">${e.m} min</span></li>`).join('')}</ol>
+   <div class="rules"><div class="row"><span>${v.fee?'Prime access fee':'Access'}</span><b>${v.fee?money(v.fee):'No fee, the house covers it'}</b></div><div class="row"><span>Release the table</span><b>Free until 2 hours before</b></div></div>
+   <p class="small" style="margin-top:10px">Sample photography for concept purposes.</p></div>
+   <div class="dock"><button class="btn" data-go="4">Ask ${esc(who)} to vouch · ${fmtT(S.slot)}</button></div></div>`},
  seal:()=>{const v=venue();const st=S.sealing?3:2;
    return `${sb()}<div class="app seal"><div class="pad" style="padding-top:8px"><h1 class="disp t2" tabindex="-1">Seal the introduction</h1>${line(st)}
    <div class="rules"><div class="row"><span>Venue</span><b>${esc(v.n)}</b></div><div class="row"><span>When</span><b>Tonight, ${fmtT(S.slot)}</b></div><div class="row"><span>Party</span><b>${S.party}</b></div><div class="row"><span>Vouched by</span><b>${v.by==='c'?esc(W()):'PRIMA'}, ${esc(t().hotel)}</b></div><div class="row"><span>Carried to the room</span><b>${S.needs.size?esc([...S.needs].join(', ')):'Nothing'}</b></div><div class="row"><span>Fee</span><b>${v.fee?money(v.fee)+', charged to Room '+esc(t().room):'None'}</b></div></div>
@@ -407,8 +489,14 @@ const R={
    <span class="lbl" id="cl">Covers per evening</span><div class="step" role="group" aria-labelledby="cl"><button type="button" data-cov="-2" aria-label="Fewer covers">−</button><output aria-live="polite">${S.covers} covers</output><button type="button" data-cov="2" aria-label="More covers">+</button></div>
    <span class="lbl" id="wl">Windows</span><div class="chips" role="group" aria-labelledby="wl">${[1080,1140,1200,1260,1320].map(m=>`<button type="button" class="chip" data-win="${m}" aria-pressed="${S.win.has(m)}">${fmtT(m)}</button>`).join('')}</div>
    <span class="lbl" id="al">Your accent</span><div class="sw" role="radiogroup" aria-labelledby="al">${SW.map(([c,n])=>`<button type="button" role="radio" aria-checked="${c===acc}" aria-label="${n}" data-acc="${c}" style="background:${c}"></button>`).join('')}</div>
-   <p class="lbl">How guests of ${esc(t().hotel)} will see you</p><div class="preview"><div class="pf"><span style="font-family:var(--df);font-weight:var(--dw);font-size:18px">${esc(t().hotel)}</span><br>Tonight, vouched for</div>
-   <div style="padding:12px 14px"><span class="vn">${esc(S.vname)}</span><br><span class="vk">${esc(S.vkind)}</span><p class="vq" style="margin-bottom:0"><b style="color:${fixed}">New to PRIMA:</b> “Ask for the window.”</p></div></div>
+   <span class="lbl" id="phl">Photos, tap one to make it the cover</span><div class="phs" role="radiogroup" aria-labelledby="phl">${[11,13,0].map(n=>`<button type="button" role="radio" aria-checked="${S.vcover===n}" data-cover="${n}" aria-label="Photo ${n===11?'of the room':n===13?'of a signature dish':'of a table setting'}"><img src="img/p${n}.jpg" alt=""></button>`).join('')}</div>
+   <span class="lbl" id="hll">Highlights, pick three (${S.vhl.size} of 3)</span><div class="chips" role="group" aria-labelledby="hll">${VHL.map(h=>`<button type="button" class="chip" data-vhl="${esc(h)}" aria-pressed="${S.vhl.has(h)}">${esc(h)}</button>`).join('')}</div>
+   <h2 class="sh">How guests of ${esc(t().hotel)} will see you</h2><div class="preview"><div class="pf"><span style="font-family:var(--df);font-weight:var(--dw);font-size:18px">${esc(t().hotel)}</span><br>Tonight, vouched for</div>
+   <img src="img/p${S.vcover}.jpg" alt="Cover photo for ${esc(S.vname)}" style="display:block;width:100%;height:170px;object-fit:cover">
+   <div style="padding:12px 14px"><span class="vn">${esc(S.vname)}</span><br><span class="vk">${esc(S.vkind)}. 8 min walk from ${esc(t().short)}</span>
+   <div class="facts"><span>Neighbourhood</span><span>${pb(2)}</span><span>Relaxed</span></div>
+   <ul class="hl" style="margin-top:8px">${[...S.vhl].map(h=>`<li>${esc(h)}</li>`).join('')}</ul>
+   <p class="vq" style="margin-bottom:0"><b style="color:${fixed}">New to PRIMA:</b> “Ask for the window.”</p></div></div>
    <p class="small" role="status">${r0>=4.5?`Your accent passes at ${r0.toFixed(1)}:1 on this hotel's paper.`:`Your accent ${acc} measures ${r0.toFixed(1)}:1 on this hotel's paper. PRIMA set text to ${fixed} (${r1.toFixed(1)}:1). Large fills keep your original.`}</p></div>
    <div class="dock"><button class="btn" style="background:#111;color:#fff" data-go="11">Go live tonight</button></div></div>`},
  service:()=>{const g=[[S.name,S.party,S.slot??1170,t().hotel,[...S.needs]],['Priya Raman',4,1200,'The Hollis',['Vegetarian']],['Sam Okafor',2,1230,'Casa Marea',['Celebrating']],['Lee Marchetti',3,1260,'Sa Punta',[]]];
@@ -458,11 +546,14 @@ document.addEventListener('click',e=>{const el=e.target.closest('button');if(!el
   if(d.ans){const[i,a]=d.ans.split('|');S.ans[i]=a;render();return}
   if(d.cov){S.covers=Math.max(2,Math.min(40,S.covers+ +d.cov));render();return}
   if(d.win){const m=+d.win;S.win.has(m)?S.win.delete(m):S.win.add(m);render();return}
+  if(d.cover){S.vcover=+d.cover;render();return}
+  if(d.vhl){const h=d.vhl;if(S.vhl.has(h))S.vhl.delete(h);else if(S.vhl.size>=3){S.toast='Three highlights keep a listing scannable. Remove one first.';render();setTimeout(()=>{S.toast='';render()},2600);return}else S.vhl.add(h);render();return}
   if(d.acc){S.vacc=d.acc;render();return}
   if(d.seat){const i=+d.seat;S.seated.has(i)?S.seated.delete(i):S.seated.add(i);render();return}
   if(d.toast){S.toast=d.toast;render();setTimeout(()=>{S.toast='';render()},2600);return}
   if(el.id==='sealbtn'){S.sealing=true;render();setTimeout(()=>{if(SCREENS[S.i].id==='seal'){try{navigator.vibrate&&navigator.vibrate([20,40,20])}catch(_){}go(5)}},S.rm?500:1700)}
 });
+document.addEventListener('scroll',e=>{const c=e.target;if(c&&c.id==='car'){const n=Math.round(c.scrollLeft/c.clientWidth)+1;const el=document.getElementById('carc');if(el)el.textContent=n+' / 3'}},true);
 document.addEventListener('input',e=>{const id=e.target.id;if(id==='nm')S.name=e.target.value||'Guest';if(id==='vn')S.vname=e.target.value||'Your venue';if(id==='vk')S.vkind=e.target.value;if(id==='note')S.note=e.target.value});
 document.addEventListener('change',e=>{if(e.target.id==='vc'){S.t=e.target.value;S.v=0;S.slot=null;render()}});
 // radio groups: arrow keys move selection, per HIG and WAI-ARIA
