@@ -74,7 +74,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .sb.dark{color:var(--onp);background:var(--primary)}
 .island{position:absolute;left:50%;top:11px;width:118px;height:34px;margin-left:-59px;background:#000;border-radius:20px}
 .sbi{display:flex;gap:6px;align-items:center}
-.app{flex:1;overflow-y:auto;overflow-x:hidden;position:relative;scrollbar-width:none}
+.app{flex:1;overflow-y:auto;overflow-x:hidden;position:relative;scrollbar-width:none;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .app::-webkit-scrollbar{display:none}
 .home{position:absolute;bottom:8px;left:50%;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:#111;opacity:.85;z-index:5}
 .dark+.app~.home,.screen.night .home{background:#fff}
@@ -232,7 +233,7 @@ details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;f
 .cardhit:active{transform:scale(.985)}
 .cimg{display:block;position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/3;background:#ddd}
 .cimg img{width:100%;height:100%;object-fit:cover;display:block}
-.cbadge,.cwalk{position:absolute;top:12px;font-size:13px;font-weight:600;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#141414;white-space:nowrap}
+.cbadge,.cwalk{position:absolute;top:12px;font-size:13px;font-weight:600;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.94);color:#141414;white-space:nowrap}
 .cbadge{left:12px}.cwalk{right:12px}
 .cbody{display:block;padding:12px 2px 0}
 .cname{display:block;font-family:var(--df);font-weight:var(--dw);font-size:calc(var(--s)*28px);line-height:1.08;letter-spacing:-.01em}
@@ -379,7 +380,7 @@ button.info b{font-size:calc(var(--s)*15px);white-space:nowrap;overflow:hidden;t
 
 .introapp{background:var(--ground)}
 .ihero{position:relative;min-height:600px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;overflow:hidden}
-.ibg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none;transform:scale(1.04);animation:kb 18s ease-out forwards}
+.ibg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none}
 .rm .ibg{animation:none;transform:none}
 @keyframes kb{to{transform:scale(1.12) translateY(-8px)}}
 .ishade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 26%,rgba(0,0,0,.05) 44%,rgba(0,0,0,.78) 82%,rgba(0,0,0,.9) 100%)}
@@ -399,7 +400,19 @@ button.info b{font-size:calc(var(--s)*15px);white-space:nowrap;overflow:hidden;t
 .ftxt b{font-family:var(--df);font-weight:var(--dw);font-size:calc(var(--s)*20px);line-height:1.1}
 .feye{white-space:nowrap;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--acct)}
 .ftime{font-weight:700;font-size:calc(var(--s)*16px);padding:10px 12px;border-radius:12px;background:var(--primary);color:var(--onp);white-space:nowrap;font-variant-numeric:tabular-nums}
-@media(max-width:600px){.screen .coach{padding:12px 12px 20px}.screen .coach div{padding:18px}.screen .coach h2{font-size:20px}.screen .coach p{font-size:15px;margin-bottom:12px}.ihero{min-height:calc(100svh - 150px)}.itop{top:16px}}
+@media(max-width:600px){.screen .coach{padding:12px 12px 20px}.screen .coach div{padding:18px}.screen .coach h2{font-size:20px}.screen .coach p{font-size:15px;margin-bottom:12px}.ihero{min-height:calc(100svh - 210px)}.itop{top:16px}}
+
+.btn2{width:100%;min-height:50px;border-radius:16px;border:1.5px solid var(--primary);background:transparent;color:var(--primary);font:inherit;font-weight:600;font-size:calc(var(--s)*16px);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn2 span{color:var(--acct)}
+.plist{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:16px}
+.plist li{background:#fff;border-radius:20px;overflow:hidden}
+.plist img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.pl{padding:14px 16px 16px}
+.pk2{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--acct)}
+.pl b{display:block;font-family:var(--df);font-weight:var(--dw);font-size:calc(var(--s)*22px);line-height:1.15;margin-top:4px}
+.pl p{margin:6px 0 12px;font-size:calc(var(--s)*15px);line-height:1.45;color:var(--mute)}
+.req{min-height:44px;padding:0 16px;border-radius:12px;border:0;background:var(--primary);color:var(--onp);font:inherit;font-weight:600;cursor:pointer}
+.req[aria-pressed=true]{background:rgba(118,118,128,.16);color:var(--ink)}
 .mbar{display:none}
 .coach{position:absolute;inset:0;z-index:8;background:linear-gradient(transparent 40%,rgba(10,10,12,.55));display:flex;align-items:flex-end;padding:16px 16px 34px}
 .coach div{background:#fff;color:#141414;border-radius:24px;padding:22px;width:100%}
@@ -458,47 +471,46 @@ button.info b{font-size:calc(var(--s)*15px);white-space:nowrap;overflow:hidden;t
 {
 const T={
   ldn:{key:'ldn',city:'London',hotel:'The Aldwych House',room:'412',until:'Sun 29 Nov',c:'Marta',short:'Aldwych',ground:'#F7F3F1',primary:'#3A0E1C',acc:'#D98CA0',df:'"Cormorant Garamond",serif',dw:600,lang:'en-GB',cur:'GBP',code:'LDN',
-    v:[['Calder Room','Modern British, counter seats','Covent Garden',6,'c','Ask for the counter. Chef plates the last course in front of you.',[1110,1140,1215,1230,1290],30,true],
-       ['Wren Counter','Seafood and natural wine','Seven Dials',9,'c','Small room, big oysters. Go early.',[1080,1095,1320],0,false],
-       ['Sixty Lamb','Wood fire, Basque leaning','Clerkenwell',14,'h','The house pick this month. Booked out publicly until January.',[1170,1260,1275],45,true],
-       ['Tamsin\'s','Supper club, set menu','Marylebone',17,'h','Twelve seats, one sitting, very quiet.',[1170],0,true]]},
+    v:[['The Calder Room','Chef\'s counter, eight seats','Mayfair',6,'c','Eight seats at the hearth, booked to spring. We keep two a night.',[1110,1140,1215,1290],0,true],
+       ['Maison Vérane','French dining room','St James\'s',9,'c','The room London\'s chefs book on their night off.',[1170,1230,1260],75,true],
+       ['Lowe & Fennimore','Members\' supper club','Chelsea',14,'h','House pick. Members only, and members rarely give up a table.',[1200,1260,1320],120,false],
+       ['Shiro','Omakase, ten seats','Marylebone',17,'h','One sitting, ten guests. Chef Aoki decides.',[1140],150,true]]},
   nyc:{key:'nyc',city:'New York',hotel:'The Hollis',room:'1806',until:'Sat 28 Nov',c:'Desmond',short:'Hollis',ground:'#F4F4F1',primary:'#17322A',acc:'#7FA88F',df:'"Libre Caslon Text",serif',dw:700,lang:'en-US',cur:'USD',code:'NYC',
-    v:[['Halvard','Nordic tasting room','Tribeca',8,'c','Sit at the pass if you like to watch.',[1080,1170,1230,1260],40,true],
-       ['Nineteen Bowery','Chophouse, late','Lower East Side',12,'c','Best after nine. I know the floor manager.',[1260,1290,1350],0,false],
-       ['Ostra Fina','Raw bar','West Village',10,'h','House pick. Walk-ins wait an hour; you will not.',[1110,1125,1200],25,true],
-       ['Pell & Mott','Cantonese banquet','Chinatown',15,'h','Order the duck when you book.',[1140,1200],0,true]]},
+    v:[['Vesper','Nordic tasting counter','Tribeca',8,'c','Twelve seats at the pass. The hardest table below Canal.',[1110,1170,1230],0,true],
+       ['The Halcyon Room','Private supper club','Gramercy',12,'c','A members\' club that opens two tables a night to Hollis guests.',[1260,1290,1350],95,false],
+       ['Isola Bianca','Coastal Italian, rooftop','SoHo',10,'h','House pick. Ask for the corner of the terrace.',[1140,1200,1260],60,true],
+       ['Kaiseki Ren','Kaiseki, eight seats','West Village',15,'h','Eight seats, one chef, nine courses.',[1170],180,true]]},
   mia:{key:'mia',city:'Miami',hotel:'Casa Marea',room:'7',until:'Mon 30 Nov',c:'Lucía',short:'Marea',ground:'#F2F7F6',primary:'#0B4F55',acc:'#FF7A5C',df:'"DM Serif Display",serif',dw:400,lang:'en-US',cur:'USD',code:'MIA',
-    v:[['Low Tide Counter','Ceviche and grill','Brickell',7,'c','Outdoor counter at sunset, ask for the end seats.',[1110,1125,1140],0,true],
-       ['Palmeiro','Brazilian, live music','Wynwood',16,'c','Loud in the best way. Tables after nine.',[1260,1290,1320],35,true],
-       ['Casa Brisa','Coastal Italian','Miami Beach',11,'h','House pick. The terrace is the one to get.',[1155,1200,1230],50,false],
-       ['Mangle','Tasting counter','Little Havana',13,'h','Ten courses, two hours, worth it.',[1110],0,true]]},
+    v:[['Solenne','Chef\'s tasting counter','Brickell',7,'c','Ten seats, booked out all season. We hold two every night.',[1110,1170,1230],0,true],
+       ['Palmeira Club','Members\' supper club','Design District',16,'c','Members only after ten. Two tables a night go to Marea guests.',[1260,1290,1320],85,true],
+       ['Villa Aurelia','Oceanfront Italian','Miami Beach',11,'h','House pick. The terrace table at sunset is the one.',[1155,1200,1230],120,false],
+       ['Ceiba','Cuban tasting, ten seats','Little Havana',13,'h','Eleven courses, one sitting. Worth the whole trip.',[1110],150,true]]},
   ibz:{key:'ibz',city:'Ibiza',hotel:'Sa Punta',room:'Villa 3',until:'Tue 1 Dec',c:'Toni',short:'Sa Punta',ground:'#FAF6EE',primary:'#9A3F1E',acc:'#F2C14E',df:'Syne,sans-serif',dw:700,lang:'en-GB',cur:'EUR',code:'IBZ',
-    v:[['Es Fum','Fire and fish','Santa Eulària',12,'c','The grill master is my cousin. Truly.',[1170,1200,1260],0,true],
-       ['Cala Lume','Beach club dinner','Cala Jondal',22,'c','Sunset sitting is the one. Shoes optional.',[1110,1125],60,false],
-       ['Sal y Roca','Cliff terrace, Mediterranean','Sant Josep',18,'h','House pick. Ask for the edge table.',[1215,1230,1290],40,true],
-       ['Nit','Late counter','Ibiza Town',9,'h','After midnight it becomes something else.',[1320,1350],0,true]]}
+    v:[['Es Fum','Fire kitchen, chef\'s table','Santa Eulària',12,'c','Twelve seats by the fire. The island\'s hardest table in August.',[1170,1200,1260],0,true],
+       ['Cala Lume','Private cove dinner','Cala Jondal',22,'c','Twelve tables on the sand, reached by boat at sunset.',[1110,1125],140,false],
+       ['Sal y Roca','Cliff terrace, tasting menu','Sant Josep',18,'h','House pick. Ask for the edge table.',[1215,1230,1290],90,true],
+       ['Nit','Members\' late counter','Dalt Vila',9,'h','After midnight it becomes something else. Members only.',[1320,1350],0,true]]}
 };
 
 // venue detail: photos (img/pN.jpg), mood, price band, dress, signature, highlights
 const D={
- ldn:[{ph:[0,17,5],mood:'Intimate',pb:3,dress:'Smart casual',sig:'Smoked eel, brown butter, rye',h:['Twelve counter seats facing the hearth','Chef finishes the last course in front of you','Natural wine list, 300 bottles']},
-      {ph:[7,3,14],mood:'Lively',pb:2,dress:'Relaxed',sig:'Native oysters, three ways',h:['Oysters shucked to order at the bar','Small natural wine list, by the glass','Best before 19:30, busiest after']},
-      {ph:[26,5,17],mood:'Buzzing',pb:3,dress:'Smart casual',sig:'Whole turbot over oak',h:['Open fire kitchen, Basque technique','Booked out publicly until January','Private corner table for four']},
-      {ph:[16,11,0],mood:'Quiet',pb:4,dress:'Jacket preferred',sig:'Seven-course seasonal menu',h:['One sitting, twelve guests','Set menu, dietary notes honoured ahead','Host introduces every course']}],
- nyc:[{ph:[8,13,17],mood:'Hushed',pb:4,dress:'Smart',sig:'Langoustine, birch, sea buckthorn',h:['Seats at the pass if you like to watch','Twelve-course Nordic tasting','Pairings include zero-proof']},
-      {ph:[25,3,7],mood:'Late and loud',pb:3,dress:'Anything goes',sig:'Dry-aged ribeye for two',h:['Kitchen open until 1 a.m.','Martini cart at the table','Floor manager knows the house']},
-      {ph:[31,14,3],mood:'Bright',pb:3,dress:'Relaxed',sig:'Crudo flight, citrus, chili',h:['Walk-ins wait an hour; you will not','Raw bar seats along the window','Champagne by the glass']},
-      {ph:[19,24,5],mood:'Convivial',pb:2,dress:'Relaxed',sig:'Whole roast duck, pancakes',h:['Banquet tables for six or more','Order the duck when you book','Family-style, generous portions']}],
- mia:[{ph:[21,15,3],mood:'Sunset',pb:2,dress:'Resort',sig:'Snapper ceviche, leche de tigre',h:['Outdoor counter facing the water','End seats catch the sunset','Mezcal and citrus list']},
-      {ph:[18,25,5],mood:'Live music',pb:3,dress:'Dress up',sig:'Picanha from the churrasco grill',h:['Live band from 21:00','Big tables, big energy','Caipirinha flight']},
-      {ph:[12,23,14],mood:'Breezy',pb:4,dress:'Smart resort',sig:'Lobster linguine',h:['Garden terrace under the palms','House pick this month','Wood-fired breads all evening']},
-      {ph:[27,13,17],mood:'Intimate',pb:4,dress:'Smart',sig:'Ten-course Cuban tasting',h:['Ten seats at one counter','Two hours, worth every minute','Chef serves the final course']}],
- ibz:[{ph:[26,5,15],mood:'Rustic',pb:3,dress:'Island casual',sig:'Catch of the day over embers',h:['Fish chosen at the counter','Family grill since 1987','Terrace under the carob tree']},
-      {ph:[9,21,3],mood:'Barefoot',pb:4,dress:'Shoes optional',sig:'Salt-baked sea bass',h:['Sunset sitting on the sand','DJ from 22:00, dinner first','Boat drop-off on request']},
-      {ph:[21,16,23],mood:'Romantic',pb:4,dress:'Smart resort',sig:'Red prawns, saffron rice',h:['Cliff terrace over the sea','Ask for the edge table','Sunset view of Es Vedrà']},
-      {ph:[25,3,7],mood:'After dark',pb:2,dress:'Anything goes',sig:'Tapas until 3 a.m.',h:['Opens at 22:00','Counter seats only','Becomes a bar after midnight']}]
+ ldn:[{ph:[0,17,43],mood:'Intimate',pb:4,dress:'Jacket preferred',sig:'Smoked eel, brown butter, Oscietra',h:['Eight seats facing the open hearth','Chef serves the final course himself','Cellar of 1,200 bins, any bottle by the glass']},
+      {ph:[16,40,0],mood:'Hushed',pb:4,dress:'Jacket required',sig:'Blue lobster, sauce Américaine',h:['Fourteen tables under a 1920s skylight','Champagne trolley and tableside lobster','Three vintages of grower Champagne by the glass']},
+      {ph:[45,25,3],mood:'Candlelit',pb:4,dress:'Dress up',sig:'Dry-aged Galloway, bone marrow',h:['Members only, no public bookings','Jazz trio from ten','Private dining room for twelve']},
+      {ph:[31,17,42],mood:'Reverent',pb:4,dress:'Smart',sig:'Twenty-course Edomae omakase',h:['A single sitting at seven','Fish from Toyosu that morning','Sake from a private brewery']}],
+ nyc:[{ph:[8,44,17],mood:'Hushed',pb:4,dress:'Smart',sig:'Langoustine, birch, sea buckthorn',h:['Twelve seats at the pass','Fourteen-course Nordic tasting','Zero-proof pairing as considered as the wine']},
+      {ph:[25,45,3],mood:'Late and glamorous',pb:4,dress:'Cocktail attire',sig:'Dry-aged ribeye, Périgord truffle',h:['Members only after ten','Martini cart at the table','Piano bar until 2 a.m.']},
+      {ph:[21,41,0],mood:'Golden hour',pb:4,dress:'Smart',sig:'Crudo flight, citrus, Calabrian chili',h:['Rooftop terrace, eleven tables','Crudo cut to order at the bar','Cellar of Barolo back to 1978']},
+      {ph:[31,42,17],mood:'Reverent',pb:4,dress:'Smart',sig:'Nine-course seasonal kaiseki',h:['Eight seats around a hinoki counter','Ceramics made for the room','Sake list from forty breweries']}],
+ mia:[{ph:[0,41,44],mood:'Intimate',pb:4,dress:'Smart',sig:'Stone crab, Kaluga caviar, yuzu kosho',h:['Ten seats facing the open kitchen','Florida stone crab in season','Champagne list of 200 growers']},
+      {ph:[45,25,3],mood:'After dark',pb:4,dress:'Dress up',sig:'Wagyu picanha from the churrasqueira',h:['Members only after 10 p.m.','Live samba trio on the terrace','Cigar garden and rum library']},
+      {ph:[21,16,40],mood:'Oceanfront',pb:4,dress:'Smart resort',sig:'Blue lobster linguine',h:['Twelve tables on the ocean terrace','Dover sole filleted tableside','Super Tuscans back to 1985']},
+      {ph:[42,17,43],mood:'Reverent',pb:4,dress:'Smart',sig:'Eleven-course modern Cuban tasting',h:['One sitting, ten guests','Chef narrates every course','Rum pairing from private casks']}],
+ ibz:[{ph:[44,26,17],mood:'Firelit',pb:4,dress:'Island smart',sig:'Red prawns over holm oak embers',h:['Twelve seats around the fire','Fish chosen with the chef at the counter','Terrace under a 300-year-old carob']},
+      {ph:[21,46,40],mood:'Barefoot luxe',pb:4,dress:'Shoes optional',sig:'Salt-baked sea bass for two',h:['Reached by boat at sunset','Twelve tables on a private cove','Rosé from the estate across the bay']},
+      {ph:[16,0,41],mood:'Romantic',pb:4,dress:'Smart resort',sig:'Seven-course island tasting',h:['Tables on the cliff edge','Sunset over Es Vedrà','Wine list of 600 references']},
+      {ph:[3,45,25],mood:'After dark',pb:3,dress:'Anything goes',sig:'Caviar and chips until 3 a.m.',h:['Members only after midnight','Twelve stools, one bartender','DJ from one']}]
 };
-// nearby experiences, in map coordinates (viewBox 340 by 210)
 const EXP={
  ldn:[['Lumen Bar','Cocktails','A two-drink nightcap, no booking needed',196,62],['Royal Opera House','Theatre','Curtain at 19:30, so book 17:30',250,128],['Neal\'s Yard','Evening walk','Lit courtyards, five minutes on foot',150,40]],
  nyc:[['Whitlock','Jazz room','Late set at 22:30',222,58],['Hudson River Park','Pier walk','Sunset over the river',60,96],['Greenwich Gallery','Art','Open late on Thursdays',272,152]],
@@ -514,8 +526,8 @@ const W=(x=t())=>S.names[x.key]?x.c:x.short;
 const SCREENS=[
  {id:'intro',g:'m',n:'Introduction',p:'The hotel introduces you',why:'There is no sign-up. The member arrives already vouched for: the hotel scanned them in at check-in, so the first screen is a welcome, not a form. It opens on the city, full-bleed, and shows the table already held tonight, so the value is visible before the first tap.',
   hig:['Onboarding: "get people to the experience quickly"; defer account creation until it adds value.','Privacy: explain what is shared before asking, in plain language (the disclosure below the button).','Layout: primary action anchored at the bottom, within the reachable zone.','Materials: text over photography sits on a gradient scrim so it holds contrast at every image.'],
-  sci:['Endowed progress effect (Nunes and Drèze, 2006): the line opens with two of four nodes already filled, which raises completion.','Authority and social proof (Cialdini, 1984): a named house vouching is stronger than any rating.','Aesthetic-usability effect (Kurosu and Kashimura, 1995): first impressions of beauty raise perceived ease of use and trust.','Concreteness: a specific table at a specific time is more persuasive than a general promise.','Fitts\'s law (Fitts, 1954) and the thumb zone (Hoober, 2013): the one action is large and low.'],
-  vo:'Heading. Casa Marea introduces you. Button, Held for you tonight: Low Tide Counter, 6:30 PM. Line of introduction, step 2 of 4. Button, Accept the introduction.'},
+  sci:['Endowed progress effect (Nunes and Drèze, 2006): the line opens with two of four nodes already filled, which raises completion.','Authority and social proof (Cialdini, 1984): a named house vouching is stronger than any rating.','Aesthetic-usability effect (Kurosu and Kashimura, 1995): first impressions of beauty raise perceived ease of use and trust.','Concreteness: a specific table at a specific time is more persuasive than a general promise.','Scarcity and exclusivity (Worchel, Lee and Adewole, 1975): items framed as limited are valued more, so the private list is a secondary action, never the default.','Fitts\'s law (Fitts, 1954) and the thumb zone (Hoober, 2013): the one action is large and low.'],
+  vo:'Heading. The Aldwych House introduces you. Button, Held for you tonight: Calder Room, 6:30 PM. Line of introduction, step 2 of 4. Button, Accept the introduction. Button, View the private list.'},
  {id:'you',g:'m',n:'About you',p:'Asked once, carried everywhere',why:'Three fields, all prefilled from the hotel stay. Needs are captured once and travel to every venue, so a guest never explains a wheelchair or an allergy twice.',
   hig:['Accessibility: support people\'s needs as a feature, not a setting buried in a menu.','Text fields: prefill what you know; use the right keyboard and content type.','Toggles and buttons: every chip is a 44 by 44 pt target.'],
   sci:['Recognition over recall (Nielsen heuristic 6): pick from chips, never type a need.','Form length and abandonment (Baymard Institute checkout research): every field must earn its place, so this screen has three.','Default effect (Johnson and Goldstein, 2003): party of 2 is the sensible default.'],
@@ -591,7 +603,7 @@ const map=(vi)=>{const x=t(),a=x.v[vi],[vx,vy]=pos(vi,a[3]);let st='';for(let k=
  <circle cx="${vx}" cy="${vy}" r="9" fill="var(--primary)" stroke="#fff" stroke-width="2.5"/><text x="${vx>230?vx-14:vx+14}" y="${vy+4}" text-anchor="${vx>230?'end':'start'}" font-size="12" font-weight="700" fill="#141414" class="ml">${esc(a[0])}</text></svg>`};
 const near=vi=>{const a=t().v[vi],[vx,vy]=pos(vi,a[3]);const ep=epos(vi);return EXP[S.t].map((e,k)=>({n:e[0],k:e[1],note:e[2],m:Math.max(1,Math.round(Math.hypot(ep[k][0]-vx,ep[k][1]-vy)/8))}))};
 const IC={list:'<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>',map:'<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/></svg>',back:'<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',heart:'<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" stroke="currentColor" stroke-width="2" fill="none"/></svg>',heartf:'<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" fill="#e0245e"/></svg>',grid:'<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z" fill="currentColor"/></svg>',close:'<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>'};
-const POOL=[0,3,5,7,8,11,12,13,14,15,16,17,18,19,21,23,24,25,26,27,31];
+const POOL=[0,3,8,16,17,21,25,26,31,40,41,42,43,44,45];
 const ALTS=['The dining room','The signature dish','At the table','The bar','The kitchen at work','Late in the evening'];
 const photos=vi=>{const b=D[S.t][vi].ph;const ex=[];for(let k=0;ex.length<3;k++){const c=POOL[(vi*5+k*7+S.t.length)%POOL.length];if(!b.includes(c)&&!ex.includes(c))ex.push(c)}return [...b,...ex]};
 const streets=()=>{let st='';for(let k=0;k<11;k++){const o=(k*37+S.t.length*13)%9;st+=`<line x1="${k*34+o}" y1="0" x2="${k*34+o-6}" y2="210"/>`;}for(let k=0;k<9;k++){const o=(k*29)%7;st+=`<line x1="0" y1="${k*26+o}" x2="340" y2="${k*26+o+4}"/>`;}return st};
@@ -608,14 +620,14 @@ const tabs=cur=>{const ic={tonight:'<path d="M4 6h16M4 12h16M4 18h10" stroke="cu
   return `<nav class="tabs" aria-label="Tabs">${[['tonight','Tonight',2],['pass','Pass',5],['record','Record',8]].map(([k,l,i])=>`<button type="button" data-go="${i}" ${cur===k?'aria-current="page"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${ic[k]}</svg>${l}</button>`).join('')}</nav>`};
 
 const R={
- intro:()=>{const v0=t().v[0],d0=D[S.t][0],who=S.names[S.t]?esc(t().c)+', your concierge at '+esc(t().short)+',':'The '+esc(t().short)+' concierge desk';return `<div class="app introapp"><div class="ihero"><img src="img/p${d0.ph[0]}.jpg" alt="" class="ibg"><div class="ishade"></div>${sb(0).replace('class="sb ','class="sb glass ')}
+ intro:()=>{const v0=t().v[0],d0=D[S.t][0],who=S.names[S.t]?esc(t().c)+', your concierge at '+esc(t().short)+',':'The '+esc(t().short)+' concierge desk';return `<div class="app introapp"><div class="ihero"><img src="img/p${HERO[S.t]}.jpg" alt="" class="ibg"><div class="ishade"></div>${sb(0).replace('class="sb ','class="sb glass ')}
    <div class="itop"><span class="mark" aria-label="PRIMA">PRIMA</span><span class="ipill">${esc(t().city)} · by introduction</span></div>
    <div class="icopy"><p class="ieye">Welcome, ${esc(S.name.split(' ')[0])}</p><h1 class="disp ih1" tabindex="-1">${esc(t().hotel)} introduces you.</h1><p class="ilede">${who} can vouch for you at the rooms in ${esc(t().city)} that never take open bookings.</p></div></div>
-   <div class="pad ipad"><button type="button" class="feat" data-featured="1" aria-label="Held for you tonight: ${esc(v0[0])}, ${esc(v0[1])}, ${esc(v0[2])}, ${fmtT(v0[6][0])}. Accept the introduction to see it."><img src="img/p${d0.ph[1]}.jpg" alt=""><span class="ftxt"><span class="feye">Held for you tonight</span><b>${esc(v0[0])}</b><span class="small">${esc(v0[1])} · ${esc(v0[2])} · ${v0[3]} min walk</span></span><span class="ftime">${fmtT(v0[6][0])}</span></button>
+   <div class="pad ipad"><button type="button" class="feat" data-featured="1" aria-label="Held for you tonight: ${esc(v0[0])}, ${esc(v0[1])}, ${esc(v0[2])}, ${fmtT(v0[6][0])}. Accept the introduction to see it."><img src="img/p${d0.ph[0]}.jpg" alt=""><span class="ftxt"><span class="feye">Held for you tonight</span><b>${esc(v0[0])}</b><span class="small">${esc(v0[1])} · ${esc(v0[2])} · ${v0[3]} min walk</span></span><span class="ftime">${fmtT(v0[6][0])}</span></button>
    <h2 class="sh" style="margin-top:26px">Your line of introduction</h2>${line(1)}
    <div class="rules" style="margin-top:18px"><div class="row"><span>Staying in</span><b>Room ${esc(t().room)}</b></div><div class="row"><span>Until</span><b>${esc(t().until)}</b></div><div class="row"><span>Introduced by</span><b>${S.names[S.t]?esc(t().c)+', concierge':esc(t().short)+' concierge desk'}</b></div></div>
    <details><summary>What PRIMA shares, and with whom</summary><p class="small">Your name, party and any needs you choose go only to the venue you book and to ${esc(t().hotel)}, for service. Nothing is sold. You can remove your record at any time.</p></details></div>
-   <div class="dock"><button class="btn" data-go="1">Accept the introduction</button></div></div>`},
+   <div class="dock"><button class="btn" data-go="1">Accept the introduction</button><button type="button" class="btn2" data-modal="private"><span aria-hidden="true">✦</span> View the private list</button></div></div>`},
  you:()=>`${sb()}<div class="app"><div class="pad" style="padding-top:8px"><h1 class="disp t2" tabindex="-1">About you</h1><p class="small" style="margin-top:6px">Asked once. Carried to every venue, so you never explain twice.</p>
    <label class="lbl" for="nm">Name</label><input class="in" id="nm" value="${esc(S.name)}" autocomplete="name">
    <span class="lbl" id="pl">Usual party</span><div class="step" role="group" aria-labelledby="pl"><button type="button" data-party="-1" aria-label="Fewer guests">−</button><output aria-live="polite">${S.party} guests</output><button type="button" data-party="1" aria-label="More guests">+</button></div>
@@ -630,7 +642,7 @@ const R={
    const mapv=()=>{if(S.mapSel==null||!list.some(o=>o.i===S.mapSel))S.mapSel=list[0]?.i??0;const o=list.find(o=>o.i===S.mapSel)||list[0];return `${mapAll()}<ul class="mapcard">${card(o)}</ul>`};
    return `${sb()}<div class="app"><div class="pad" style="padding-top:6px;padding-bottom:24px"><div class="lt"><div><p class="small" style="margin:0">Tonight, ${today}</p><h1 class="disp t1" tabindex="-1">${esc(t().city)}</h1></div>
    <div class="vt" role="radiogroup" aria-label="View as"><button type="button" role="radio" aria-checked="${S.view==='list'}" data-view="list" aria-label="List">${IC.list}</button><button type="button" role="radio" aria-checked="${S.view==='map'}" data-view="map" aria-label="Map">${IC.map}</button></div></div>
-   <div class="filter" role="radiogroup" aria-label="Who is vouching">${[['all','All'],['c',W()],['h','PRIMA']].map(([k,l])=>`<button type="button" role="radio" aria-checked="${S.filter===k}" data-filter="${k}">${esc(l)}</button>`).join('')}</div>
+   <div class="filter" role="radiogroup" aria-label="Who is vouching">${[['h','PRIMA'],['c',W()],['all','All']].map(([k,l])=>`<button type="button" role="radio" aria-checked="${S.filter===k}" data-filter="${k}">${esc(l)}</button>`).join('')}</div>
    ${S.view==='map'?mapv():`<ul class="cards">${list.map(card).join('')}</ul>`}</div>${tabs('tonight')}</div>`},
  venue:()=>{const v=venue();if(S.slot==null||!v.slots.includes(S.slot))S.slot=v.slots[0];const x=m=>((m-1080)/300*100).toFixed(2)+'%';let ticks='';for(let m=1080;m<=1380;m+=30){const h=m%60===0;ticks+=`<i class="tick ${h?'h':''}" style="left:${x(m)}"></i>`+(h&&m<1380?`<span class="tl" style="left:${x(m)}">${fmtT(m).replace(':00','')}</span>`:'')}
    const who=v.by==='c'?W():'PRIMA';const ph=photos(S.v);const A=about(S.v);const nb=near(S.v);const sf=S.needs.has('Step-free access');const saved=S.saved.has(S.t+S.v);
@@ -679,7 +691,7 @@ const R={
    <label class="lbl" for="note">A note for ${S.names[S.t]?esc(t().c):'the '+esc(t().short)+' desk'} (optional)</label><textarea class="in" id="note" rows="2">${esc(S.note)}</textarea></div>
    <div class="dock"><button class="btn" data-go="8" ${Object.keys(S.ans).length<3?'aria-disabled="true" data-need3="1"':''}>Countersign</button></div></div>`},
  record:()=>{const v=venue();const done=Object.keys(S.ans).length===3;
-   const rows=[[v.n,t().city,'Today',W(),done],['Halvard','New York','14 Oct',W(T.nyc),true],['Sal y Roca','Ibiza','2 Aug',W(T.ibz),true]];
+   const rows=[[v.n,t().city,'Today',W(),done],['Vesper','New York','14 Oct',W(T.nyc),true],['Sal y Roca','Ibiza','2 Aug',W(T.ibz),true]];
    return `${sb()}<div class="app"><div class="pad" style="padding-top:8px;padding-bottom:20px"><h1 class="disp t2" tabindex="-1">Your record</h1><p class="small">Every countersigned evening travels with you. The next PRIMA hotel starts from here.</p>
    ${done?'<span class="stamp" style="color:var(--acct);margin-top:6px">Countersigned</span>':''}
    <ul class="ledger" style="margin-top:14px">${rows.map((r,i)=>`<li class="entry" style="cursor:default"><span class="num">Nº${String(3-i).padStart(2,'0')}</span><span><span class="vn">${esc(r[0])}</span><br><span class="vk">${esc(r[1])}, ${esc(r[2])}. Vouched by ${esc(r[3])}</span><br><span class="flag ${r[4]?'ok':''}">${r[4]?'✓ Countersigned':'Awaiting your countersign'}</span></span></li>`).join('')}</ul>
@@ -739,8 +751,16 @@ const about=vi=>{const d=D[S.t][vi],a=t().v[vi],sf=a[8];const r=(4.6+((vi*7+S.t.
  const busy=[22,48,86,100,74,40].map((b,k)=>Math.max(14,Math.min(100,b+((vi*13+k*7)%17)-8)));const peak=busy.indexOf(Math.max(...busy));
  const blurb=`${a[1]} in ${a[2]}, ${a[3]} minutes on foot from ${t().short}. ${d.mood}, and known for ${d.sig.charAt(0).toLowerCase()+d.sig.slice(1)}. ${d.h[0]}.`;
  return{r,n,tp,am,busy,peak,blurb}};
+const HERO={ldn:26,nyc:8,mia:47,ibz:46};
+const EXCL={ldn:[['After hours at The Calder Room','When the room closes at eleven, six guests stay for a private course with the chef.',43,'Six guests'],['The Maison Vérane cellar','A private wine dinner for eight among 1,200 bins.',40,'Up to eight'],['The Lowe & Fennimore library','The members\' room upstairs, opened for Aldwych guests on request.',45,'Up to ten']],
+ nyc:[['The kitchen table at Vesper','Two seats inside the kitchen, served by the chef between courses.',44,'Two guests'],['Above Isola Bianca','The rooftop closed to the public for your party at sunset.',21,'Up to twelve'],['The Halcyon piano bar','The piano bar opened early, for your table alone.',25,'Up to eight']],
+ mia:[['After hours at Solenne','When service ends, six guests stay for a private course with the chef.',44,'Six guests'],['Dinner on Biscayne Bay','A private yacht dinner across the bay, crew and chef included.',46,'Up to ten'],['The Palmeira back room','The members\' room behind the club, opened for Marea guests on request.',45,'Up to eight']],
+ ibz:[['Es Fum by the fire','The whole fire kitchen, for your party alone, after the last sitting.',44,'Up to twelve'],['A cove of your own','Cala Lume closed for one table, reached by boat at sunset.',46,'Up to ten'],['The Nit back counter','Six stools behind the bar, after midnight.',3,'Six guests']]};
+function privSheet(){return `<button type="button" class="scrim" data-mclose="1" tabindex="-1" aria-hidden="true"></button><div class="msheet priv" role="dialog" aria-modal="true" aria-labelledby="mtitle"><span class="grab" aria-hidden="true"></span><div class="mhead"><div><p class="feye" style="margin:0">By invitation · ${esc(t().short)} guests</p><h2 id="mtitle" class="disp">The private list</h2></div><button class="vclose dk" data-mclose="1" aria-label="Close">${IC.close}</button></div>
+ <div class="mbody"><p class="blurb">Rooms that never appear on any booking site. ${esc(t().hotel)} can request them for you, and PRIMA arranges the rest.</p><ul class="plist">${EXCL[S.t].map((e,k)=>`<li><img src="img/p${e[2]}.jpg" alt=""><div class="pl"><span class="pk2">${esc(e[3])} · by request</span><b>${esc(e[0])}</b><p>${esc(e[1])}</p><button type="button" class="req" data-req="${k}" aria-pressed="${!!(S.req&&S.req.has(S.t+k))}">${S.req&&S.req.has(S.t+k)?'Requested ✓':'Request through '+esc(W())}</button></div></li>`).join('')}</ul>
+ <p class="small" style="margin:16px 0 0">Requests are answered by the concierge within the hour. Nothing is charged until confirmed.</p></div></div>`}
 const HOURS=['6p','7p','8p','9p','10p','11p'];
-function modal(){if(!S.modal)return '';const v=venue(),A=about(S.v);const tabs2=[['about','About'],['reviews','Reviews']];
+function modal(){if(!S.modal)return '';if(S.modal==='private')return privSheet();const v=venue(),A=about(S.v);const tabs2=[['about','About'],['reviews','Reviews']];
  const chk=(ok,l)=>`<li class="${ok?'':'off'}"><span aria-hidden="true">${ok?'✓':'✕'}</span>${ok?'':'<span class="vh">No </span>'}${esc(l)}</li>`;
  const AB=`<p class="blurb">${esc(A.blurb)}</p>
   <h3 class="mh">Highlights</h3><ul class="pills">${v.h.map(h=>`<li>${esc(h)}</li>`).join('')}</ul>
@@ -762,7 +782,7 @@ function render(focus){const sc=$('#screen');const keep=!focus&&sc.querySelector
   $('#rm').setAttribute('aria-pressed',S.rm);$('#hc').setAttribute('aria-pressed',S.hc);
   nav();why();if(!focus&&keep){const ap=sc.querySelector('.app');if(ap)ap.scrollTop=keep}if(S.modal&&S._mfocus){S._mfocus=0;const c=sc.querySelector('.msheet .vclose');c&&c.focus({preventScroll:true})}if(S.viewer!=null){const st=document.getElementById('vstrip');if(st){st.scrollLeft=S.viewer*st.clientWidth}const c=sc.querySelector('.vclose');c&&c.focus({preventScroll:true})}if(focus){const h=sc.querySelector(S.coach&&S.i===0?'#coachgo':'h1');h&&h.focus({preventScroll:true});sc.querySelector('.app').scrollTop=0}}
 
-function go(i){S.i=i;S.toast='';if(SCREENS[i].id!=='seal')S.sealing=false;render(true)}
+function go(i){S.i=i;S.toast='';S.modal=null;S.viewer=null;if(SCREENS[i].id!=='seal')S.sealing=false;render(true);if(matchMedia('(max-width:600px)').matches&&window.scrollY>0)window.scrollTo(0,0)}
 
 document.addEventListener('click',e=>{const el=e.target.closest('button');if(!el)return;const d=el.dataset;
   if(d.restart){const k=Object.keys(T);S.t=k[(k.indexOf(S.t)+1)%k.length];S.v=0;S.slot=null;S.ans={};S.seated=new Set();S.coach=true;go(0);return}
@@ -782,6 +802,7 @@ document.addEventListener('click',e=>{const el=e.target.closest('button');if(!el
   if(d.view){S.view=d.view;render();return}
   if(d.pin!=null){S.mapSel=+d.pin;render();return}
   if(d.featured){go(1);return}
+  if(d.req!=null){S.req=S.req||new Set();const key=S.t+d.req;const mb=document.getElementById('mbody')||document.querySelector('.msheet .mbody');const k=mb?mb.scrollTop:0;if(S.req.has(key))S.req.delete(key);else{S.req.add(key);S.toast='Requested. '+W()+' will confirm within the hour.';setTimeout(()=>{S.toast='';render()},2400)}render();const m2=document.querySelector('.msheet .mbody');if(m2)m2.scrollTop=k;return}
   if(d.vtab){S.vtab=d.vtab;render();return}
   if(d.modal){const was=S.modal;S.modal=d.modal;S.mtopic=null;S._ret=was?S._ret:e.target.closest('[data-modal]');S._mfocus=!was;render();const mb=document.getElementById('mbody');if(mb)mb.scrollTop=0;return}
   if(d.mtopic!=null){S.mtopic=d.mtopic||null;const mb=document.getElementById('mbody'),k=mb?mb.scrollTop:0;render();const m2=document.getElementById('mbody');if(m2)m2.scrollTop=k;document.querySelector('[data-mtopic][aria-checked=true]')?.focus({preventScroll:true});return}
