@@ -217,6 +217,165 @@ details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;f
 .phs button{padding:0;border:0;border-radius:12px;overflow:hidden;height:84px;cursor:pointer;outline-offset:2px}
 .phs img{width:100%;height:100%;object-fit:cover;display:block}
 .phs button[aria-checked=true]{box-shadow:0 0 0 3px var(--ink)}
+
+/* native polish */
+.lt{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.vt{display:flex;background:rgba(118,118,128,.14);border-radius:12px;padding:3px}
+.vt button{width:48px;height:40px;border:0;background:none;border-radius:9px;display:grid;place-items:center;cursor:pointer;color:var(--ink)}
+.vt button[aria-checked=true]{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.16)}
+.filter{border:0;background:rgba(118,118,128,.14);border-radius:12px;padding:3px;gap:0;margin-top:16px}
+.filter button{border:0!important;border-radius:9px;min-height:40px;font-weight:600;font-size:calc(var(--s)*15px)}
+.filter button[aria-checked=true]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.16)}
+.cards{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:26px}
+.card{display:block}
+.cardhit{display:block;width:100%;border:0;background:none;padding:0;text-align:left;cursor:pointer;color:inherit;transition:transform .15s}
+.cardhit:active{transform:scale(.985)}
+.cimg{display:block;position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/3;background:#ddd}
+.cimg img{width:100%;height:100%;object-fit:cover;display:block}
+.cbadge,.cwalk{position:absolute;top:12px;font-size:13px;font-weight:600;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#141414;white-space:nowrap}
+.cbadge{left:12px}.cwalk{right:12px}
+.cbody{display:block;padding:12px 2px 0}
+.cname{display:block;font-family:var(--df);font-weight:var(--dw);font-size:calc(var(--s)*28px);line-height:1.08;letter-spacing:-.01em}
+.cmeta{display:block;color:var(--mute);font-size:calc(var(--s)*15px);margin-top:2px}
+.cvouch{display:block;font-size:calc(var(--s)*16px);line-height:1.4;margin-top:8px}
+.cvouch b{color:var(--acct);margin-right:4px}
+.ctimes{display:flex;gap:10px;overflow-x:auto;padding:12px 2px 2px;scrollbar-width:none}
+.ctimes::-webkit-scrollbar{display:none}
+.tbtn{flex:none;min-width:88px;min-height:50px;border-radius:14px;border:0;background:var(--primary);color:var(--onp);font-size:calc(var(--s)*17px);font-weight:600;font-variant-numeric:tabular-nums;cursor:pointer;transition:transform .12s}
+.tbtn:active{transform:scale(.96)}
+.mapcard{list-style:none;margin:14px 0 0;padding:0}
+.bigmap{position:relative;height:360px;border-radius:22px;overflow:hidden;margin-top:16px;border:1px solid var(--rule)}
+.bigmap svg{position:absolute;inset:0;width:100%;height:100%}
+.hpin{position:absolute;transform:translate(-50%,-50%);display:grid;justify-items:center;font-size:12px;font-weight:700;gap:4px}
+.hpin i{width:14px;height:14px;background:#141414}
+.vpin{position:absolute;transform:translate(-50%,-100%);border:0;background:#fff;border-radius:16px;padding:4px 10px 4px 4px;display:flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(0,0,0,.18);font-size:13px;cursor:pointer;min-height:44px;color:#141414;white-space:nowrap}
+.vpin img{width:36px;height:36px;border-radius:12px;object-fit:cover}
+.vpin.on{background:var(--primary);color:var(--onp);z-index:2}
+.vapp{position:relative}
+.hero{position:relative;height:400px;background:#222}
+.car{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;height:100%;scrollbar-width:none}
+.car::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;border:0;padding:0;scroll-snap-align:start;cursor:zoom-in;background:none}
+.slide img{width:100%;height:100%;object-fit:cover;display:block;max-width:none}
+.htop{position:absolute;inset:0 0 auto 0;background:linear-gradient(rgba(0,0,0,.45),transparent);pointer-events:none}
+.sb.glass{color:#fff}
+.gl{position:absolute;top:56px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:grid;place-items:center;cursor:pointer;color:#141414}
+.back{left:16px}.save{right:16px}
+.dots{position:absolute;left:50%;bottom:40px;transform:translateX(-50%);display:flex;gap:6px}
+.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.55)}
+.dots i.on{background:#fff}
+.allph{position:absolute;right:16px;bottom:34px;border:0;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;font-size:13px;font-weight:600;padding:0 12px;min-height:36px;display:flex;align-items:center;gap:6px;cursor:pointer;backdrop-filter:blur(10px)}
+.sheet{position:relative;margin-top:-24px;background:var(--ground);border-radius:24px 24px 0 0;padding:22px 20px 24px}
+.sheet::before{content:"";position:absolute;top:8px;left:50%;width:36px;height:5px;margin-left:-18px;border-radius:3px;background:rgba(0,0,0,.18)}
+.info{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:16px 0 0;border-block:1px solid var(--rule)}
+.info div{padding:10px 4px;text-align:center;border-right:1px solid var(--rule)}
+.info div:last-child{border-right:0}
+.info dt{font-size:11px;color:var(--mute);font-weight:600}
+.info dd{margin:2px 0 0;font-size:calc(var(--s)*15px);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:6px}
+.tgrid button{min-height:68px;border-radius:16px;border:1.5px solid var(--rule);background:#fff;cursor:pointer;display:grid;align-content:center;gap:2px;transition:transform .12s;color:var(--ink)}
+.tgrid button:active{transform:scale(.97)}
+.tgrid b{font-size:calc(var(--s)*20px);font-variant-numeric:tabular-nums}
+.tgrid span{font-size:12px;color:var(--mute)}
+.tgrid button[aria-checked=true]{background:var(--primary);border-color:var(--primary);color:var(--onp)}
+.tgrid button[aria-checked=true] span{color:var(--onp);opacity:.85}
+.prow{display:flex;justify-content:space-between;align-items:center;margin-top:16px;font-weight:600}
+.step.big2 button{width:52px;height:52px}.step.big2 output{min-width:2.5em;font-size:18px}
+.seg2{display:flex;background:rgba(118,118,128,.14);border-radius:12px;padding:3px;margin-top:24px}
+.seg2 button{flex:1;min-height:40px;border:0;background:none;border-radius:9px;font-weight:600;font-size:calc(var(--s)*14px);cursor:pointer;color:var(--ink)}
+.seg2 button[aria-selected=true]{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.16)}
+#panel{padding-top:16px}
+.order{display:grid;gap:2px;margin-top:14px;padding:14px 16px;background:#fff;border-radius:16px}
+.order b{font-size:calc(var(--s)*17px)}
+.pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.pgrid button{border:0;padding:0;border-radius:14px;overflow:hidden;aspect-ratio:1;cursor:zoom-in}
+.pgrid button:first-child{grid-column:1/-1;aspect-ratio:16/10}
+.pgrid img{width:100%;height:100%;object-fit:cover;display:block}
+.group{list-style:none;margin:12px 0 0;padding:0 16px;background:#fff;border-radius:16px}
+.group li{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--rule);font-size:calc(var(--s)*15px)}
+.group li:last-child{border-bottom:0}
+.group b{text-align:right}
+.btn .cta2{font-weight:500;opacity:.8;margin-left:8px;font-size:.85em}
+.viewer{position:absolute;inset:0;z-index:9;background:#000;color:#fff;display:flex;flex-direction:column;animation:fadein .2s}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.vtop{display:flex;justify-content:space-between;align-items:center;padding:54px 16px 8px}
+.vcount{font-weight:600;font-size:15px}
+.vclose{width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.18);color:#fff;display:grid;place-items:center;cursor:pointer}
+.vstrip{flex:1;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.vstrip::-webkit-scrollbar{display:none}
+.vstrip figure{flex:0 0 100%;margin:0;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center}
+.vstrip img{width:100%;max-height:70%;object-fit:contain;max-width:none}
+.vstrip figcaption{padding:14px 20px 0;font-size:15px;opacity:.9}
+.vstrip figcaption b{display:block}
+.vthumbs{display:flex;gap:8px;justify-content:center;padding:12px 16px 34px}
+.vthumbs button{width:48px;height:48px;border-radius:10px;overflow:hidden;border:2px solid transparent;padding:0;opacity:.6;cursor:pointer}
+.vthumbs button[aria-current=true]{border-color:#fff;opacity:1}
+.vthumbs img{width:100%;height:100%;object-fit:cover}
+@media(max-width:600px){.hero{height:360px}.htop .sb{display:none}.gl{top:14px}.vtop{padding-top:14px}}
+
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.ratingrow{display:flex;align-items:center;gap:6px;border:0;background:none;padding:8px 0 0;min-height:44px;cursor:pointer;color:var(--ink);font-size:calc(var(--s)*15px)}
+.stars{color:#c9821b;letter-spacing:1px;font-size:14px}
+.chev{color:var(--mute);font-size:22px;line-height:1;margin-left:auto;padding-left:6px}
+button.info{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;margin:10px 0 0;border:0;border-block:1px solid var(--rule);background:none;padding:0;cursor:pointer;color:var(--ink);font:inherit}
+button.info>span{padding:10px 4px;text-align:center;border-right:1px solid var(--rule);display:grid;gap:2px}
+button.info>span:last-child{border-right:0}
+button.info em{font-style:normal;font-size:11px;color:var(--mute);font-weight:600}
+button.info b{font-size:calc(var(--s)*15px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.summ{display:grid;gap:6px;width:100%;text-align:left;border:0;background:none;padding:14px 0 4px;cursor:pointer;color:var(--ink);font:inherit;font-size:calc(var(--s)*16px);line-height:1.45}
+.summ .more{color:var(--acct);font-weight:600;font-size:calc(var(--s)*15px)}
+.card2{display:grid;gap:10px;width:100%;text-align:left;margin-top:12px;padding:14px 16px;background:#fff;border:0;border-radius:16px;cursor:pointer;color:var(--ink);font:inherit;transition:transform .12s}
+.card2:active{transform:scale(.985)}
+.c2h{display:flex;align-items:center}.c2h b{font-size:calc(var(--s)*17px)}
+.c2q{font-size:calc(var(--s)*15px);line-height:1.4;color:var(--ink)}
+.amrow{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:calc(var(--s)*14px)}
+.amrow i{font-style:normal;margin-right:5px;color:#1f7a4a;font-weight:700}
+.amrow .off{color:var(--mute)}.amrow .off i{color:var(--mute)}
+.topics{display:flex;flex-wrap:wrap;gap:8px}
+.topics button,.topics.sm>span{border:1px solid var(--rule);background:#fff;border-radius:999px;padding:0 14px;min-height:40px;display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:calc(var(--s)*14px);font-weight:600;color:var(--ink);cursor:pointer}
+.topics.sm>span{min-height:30px;padding:0 10px;font-size:13px;background:var(--ground)}
+.topics button span,.topics.sm>span span{color:var(--mute);font-weight:500}
+.topics button[aria-checked=true]{background:var(--primary);border-color:var(--primary);color:var(--onp)}
+.topics button[aria-checked=true] span{color:var(--onp);opacity:.8}
+.scrim{position:absolute;inset:0;border:0;padding:0;width:100%;cursor:default;z-index:8;background:rgba(0,0,0,.38);animation:fadein .2s}
+.msheet{position:absolute;left:0;right:0;bottom:0;top:64px;z-index:9;background:var(--ground);border-radius:22px 22px 0 0;display:flex;flex-direction:column;box-shadow:0 -10px 40px rgba(0,0,0,.2);animation:sheetup .32s cubic-bezier(.2,.8,.2,1)}
+.rm .msheet,.rm .scrim,.rm .viewer{animation:none}
+@keyframes sheetup{from{transform:translateY(100%)}to{transform:none}}
+.grab{display:block;width:36px;height:5px;border-radius:3px;background:rgba(0,0,0,.2);margin:8px auto 0}
+.mhead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:10px 20px 0}
+.mhead h2{margin:2px 0 0;font-size:calc(var(--s)*26px);line-height:1.1}
+.vclose.dk{background:rgba(118,118,128,.16);color:var(--ink);flex:none}
+.msg{margin:14px 20px 0}
+.mbody{flex:1;overflow-y:auto;padding:6px 20px 40px;-webkit-overflow-scrolling:touch}
+.blurb{font-size:calc(var(--s)*17px);line-height:1.5;margin:14px 0 0}
+.mh{font-size:calc(var(--s)*13px);text-transform:uppercase;letter-spacing:.06em;color:var(--mute);margin:22px 0 10px}
+.pills{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.pills li{background:#fff;border-radius:14px;padding:12px 14px;font-size:calc(var(--s)*15px)}
+.busy{display:flex;align-items:flex-end;gap:8px;height:110px;padding:0 2px}
+.busy span{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px}
+.busy i{width:100%;background:rgba(118,118,128,.28);border-radius:6px 6px 2px 2px}
+.busy .pk i{background:var(--primary)}
+.busy em{font-style:normal;font-size:11px;color:var(--mute)}
+.amen{list-style:none;margin:0;padding:0 16px;background:#fff;border-radius:16px}
+.amen li{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--rule);font-size:calc(var(--s)*15px)}
+.amen li:last-child{border-bottom:0}
+.amen li>span:first-child{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#e3f2e9;color:#1f7a4a;font-weight:700;font-size:13px;flex:none}
+.amen li.off{color:var(--mute)}
+.amen li.off>span:first-child{background:rgba(118,118,128,.14);color:var(--mute)}
+.score{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;margin-top:16px;background:#fff;border-radius:16px;padding:16px}
+.score>div{display:grid;justify-items:center;gap:2px}
+.score>div b{font-size:44px;line-height:1;font-weight:700}
+.dist{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+.dist li{display:grid;grid-template-columns:12px 1fr;gap:8px;align-items:center;font-size:12px;color:var(--mute)}
+.dist i{height:7px;border-radius:4px;background:rgba(118,118,128,.18);overflow:hidden}
+.dist i b{display:block;height:100%;background:#c9821b;border-radius:4px}
+.revs{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:12px}
+.revs li{background:#fff;border-radius:16px;padding:14px 16px}
+.rh{display:flex;gap:10px;align-items:center;font-size:calc(var(--s)*14px)}
+.av{width:36px;height:36px;border-radius:50%;background:var(--primary);color:var(--onp);display:grid;place-items:center;font-weight:700}
+.revs p{margin:10px 0 8px;font-size:calc(var(--s)*16px);line-height:1.45}
+.tag{font-size:12px;font-weight:600;color:var(--mute);background:var(--ground);border-radius:999px;padding:4px 10px}
+@media(max-width:600px){.msheet{top:24px}}
 .mbar{display:none}
 .coach{position:absolute;inset:0;z-index:8;background:rgba(10,10,12,.55);display:flex;align-items:flex-end;padding:16px 16px 34px}
 .coach div{background:#fff;color:#141414;border-radius:24px;padding:22px;width:100%}
@@ -323,7 +482,7 @@ const EXP={
 };
 const WATER={ldn:'M0 178 C 80 160 160 196 240 176 S 340 170 340 170 L340 210 L0 210Z',nyc:'M0 0 L44 0 C 36 70 52 140 40 210 L0 210Z',mia:'M300 0 C 284 60 312 120 296 210 L340 210 L340 0Z',ibz:'M340 110 C 290 130 300 180 240 210 L340 210Z'};
 const NEEDS=['Step-free access','Quiet table','Vegetarian','Shellfish allergy','Celebrating'];
-const S={i:0,t:'ldn',v:0,slot:null,party:2,needs:new Set(['Step-free access']),name:'Jordan Ellis',filter:'all',sealing:false,ans:{},note:'',scale:1,rm:matchMedia('(prefers-reduced-motion: reduce)').matches,hc:false,vname:'Orla',vkind:'Neighbourhood bistro',covers:8,win:new Set([1140,1200,1260]),vacc:'#E4572E',seated:new Set(),toast:'',names:{},coach:true,vcover:11,vhl:new Set(['Window tables for two','Wood-fired bread','Kitchen open until 23:30'])};
+const S={i:0,t:'ldn',v:0,slot:null,party:2,needs:new Set(['Step-free access']),name:'Jordan Ellis',filter:'all',sealing:false,ans:{},note:'',scale:1,rm:matchMedia('(prefers-reduced-motion: reduce)').matches,hc:false,vname:'Orla',vkind:'Neighbourhood bistro',covers:8,win:new Set([1140,1200,1260]),vacc:'#E4572E',seated:new Set(),toast:'',names:{},coach:true,view:'list',vtab:'overview',viewer:null,modal:null,mtopic:null,saved:new Set(),vcover:11,vhl:new Set(['Window tables for two','Wood-fired bread','Kitchen open until 23:30'])};
 const VHL=['Window tables for two','Wood-fired bread','Kitchen open until 23:30','Chef\'s counter, six seats','Natural wine list','Private room for eight'];
 const W=(x=t())=>S.names[x.key]?x.c:x.short;
 
@@ -337,12 +496,12 @@ const SCREENS=[
   sci:['Recognition over recall (Nielsen heuristic 6): pick from chips, never type a need.','Form length and abandonment (Baymard Institute checkout research): every field must earn its place, so this screen has three.','Default effect (Johnson and Goldstein, 2003): party of 2 is the sensible default.'],
   vo:'Heading. About you. Text field, Name, Jordan Ellis. Party size, 2, adjustable. Step-free access, toggle button, on.'},
  {id:'tonight',g:'m',n:'Tonight',p:'The vouch ledger',why:'Discovery is a short ledger, not an infinite feed. Each entry pairs a real photograph with who is vouching and what they said, not stars, plus mood and price band at a glance. Needs are matched honestly: a venue with steps is shown and flagged, never hidden.',
-  hig:['Lists and tables: one tap target per row, generous row height.','Segmented controls: two to five options for filtering one list.','Tab bars: three destinations, labels always shown.'],
+  hig:['Images: full-width photo cards, the card is one target, and the times beneath are their own 50-point buttons.','Maps: a list and map toggle over the same set, as in Maps and Find My.','Segmented controls: two to five options for filtering one list.','Tab bars: three destinations, labels always shown.'],
   sci:['Hick-Hyman law (Hick, 1952): four choices per filter keeps decision time low.','Choice overload (Iyengar and Lepper, 2000): curated sets convert better than large ones.','Source credibility: a quoted person reads as testimony, not advertising.'],
   vo:'Heading. Tonight in London. Filter, All, selected, 1 of 3. Button. Calder Room, Modern British, 6 minute walk. Marta says: Ask for the counter. Step-free.'},
- {id:'venue',g:'m',n:'Venue details',p:'The venue page',why:'Everything needed to say yes on one scroll: photography first, the vouch, three highlights and the dish to order, the hour rail, then a walking map from the hotel with what is nearby before or after. Distance is shown in minutes from where the guest is staying, not in miles from a pin.',
-  hig:['Images: full-bleed photography with alt text for every image; swipeable, with a visible count.','Maps: show the route and only the points that help the decision; in the native build this is MapKit with a walking route and Look Around.','Layout: the primary action stays docked and restates the chosen time.','Accessibility: the carousel is a labelled region; each photo announces its position.'],
-  sci:['Picture superiority effect (Paivio, 1971; Nelson et al., 1976): images are recalled and trusted faster than text.','Distance decay in destination choice: travel time is among the strongest predictors of where people go, so it is stated in minutes from the hotel.','Information foraging (Pirolli and Card, 1999): highlights and the signature dish give strong scent without a menu download.','Progressive disclosure: map and nearby experiences sit below the booking controls, for those who want them.'],
+ {id:'venue',g:'m',n:'Venue details',p:'The venue page',why:'Everything needed to say yes, with the depth one tap away. Tap the rating, the info row or the summary and a sheet rises with amenities, popular times and review highlights you can filter by topic, modelled on the place sheet in Google Maps. On the page itself: photography first, the vouch, three highlights and the dish to order, the hour rail, then a walking map from the hotel with what is nearby before or after. Distance is shown in minutes from where the guest is staying, not in miles from a pin.',
+  hig:['Images: full-bleed photography with alt text for every image; swipeable, with a visible count.','Maps: show the route and only the points that help the decision; in the native build this is MapKit with a walking route and Look Around.','Layout: the primary action stays docked and restates the chosen time.','Accessibility: the carousel is a labelled region; each photo announces its position.','Sheets: details open in a sheet with a grabber and a close button; Escape and the scrim dismiss it, and focus returns to what opened it.','Segmented controls: About and Reviews inside the sheet, topic chips as a single-choice filter.','Buttons: every time tile and chip is at least 44 by 44 points; time tiles are 68 points tall.'],
+  sci:['Picture superiority effect (Paivio, 1971; Nelson et al., 1976): images are recalled and trusted faster than text.','Distance decay in destination choice: travel time is among the strongest predictors of where people go, so it is stated in minutes from the hotel.','Information foraging (Pirolli and Card, 1999): highlights and the signature dish give strong scent without a menu download.','Progressive disclosure: map and nearby experiences sit below the booking controls, for those who want them.','Progressive disclosure (Nielsen, 2006): the page answers whether to go; the sheet answers everything else, so the first view stays short.','Social proof (Cialdini, 1984) works best from similar others, so reviews come only from members who were seated, and say which hotel they stayed at.','Fitts\'s law (Fitts, 1954): larger, closer targets are faster and more accurate, so times became full-width tiles.'],
   vo:'Heading. Calder Room. Photos of Calder Room, carousel, 1 of 3. Marta vouches. Why it is worth it, list, 4 items. Map: The Aldwych House to Calder Room, 6 minute walk. Button, Ask Marta to vouch, 6:30 PM.'},
  {id:'seal',g:'m',n:'Seal',p:'Sealing the introduction',why:'Review is a register entry, not a form. One button seals it; the line of introduction draws itself to the venue while the request is carried, with a success haptic on confirmation.',
   hig:['Playing haptics: the system success notification on confirmation.','Feedback: show progress for anything over a moment, and say what is happening in words.','Motion: purposeful, short, and replaced by an instant state change when Reduce Motion is on.'],
@@ -406,6 +565,16 @@ const map=(vi)=>{const x=t(),a=x.v[vi],[vx,vy]=pos(vi,a[3]);let st='';for(let k=
  <rect x="${hx-7}" y="${hy-7}" width="14" height="14" fill="#141414"/><text x="${hx}" y="${hy+22}" text-anchor="middle" font-size="11" font-weight="600" fill="#141414" class="ml">${esc(x.short)}</text>
  <circle cx="${vx}" cy="${vy}" r="9" fill="var(--primary)" stroke="#fff" stroke-width="2.5"/><text x="${vx>230?vx-14:vx+14}" y="${vy+4}" text-anchor="${vx>230?'end':'start'}" font-size="12" font-weight="700" fill="#141414" class="ml">${esc(a[0])}</text></svg>`};
 const near=vi=>{const a=t().v[vi],[vx,vy]=pos(vi,a[3]);const ep=epos(vi);return EXP[S.t].map((e,k)=>({n:e[0],k:e[1],note:e[2],m:Math.max(1,Math.round(Math.hypot(ep[k][0]-vx,ep[k][1]-vy)/8))}))};
+const IC={list:'<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>',map:'<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/></svg>',back:'<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',heart:'<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" stroke="currentColor" stroke-width="2" fill="none"/></svg>',heartf:'<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" fill="#e0245e"/></svg>',grid:'<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z" fill="currentColor"/></svg>',close:'<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>'};
+const POOL=[0,3,5,7,8,11,12,13,14,15,16,17,18,19,21,23,24,25,26,27,31];
+const ALTS=['The dining room','The signature dish','At the table','The bar','The kitchen at work','Late in the evening'];
+const photos=vi=>{const b=D[S.t][vi].ph;const ex=[];for(let k=0;ex.length<3;k++){const c=POOL[(vi*5+k*7+S.t.length)%POOL.length];if(!b.includes(c)&&!ex.includes(c))ex.push(c)}return [...b,...ex]};
+const streets=()=>{let st='';for(let k=0;k<11;k++){const o=(k*37+S.t.length*13)%9;st+=`<line x1="${k*34+o}" y1="0" x2="${k*34+o-6}" y2="210"/>`;}for(let k=0;k<9;k++){const o=(k*29)%7;st+=`<line x1="0" y1="${k*26+o}" x2="340" y2="${k*26+o+4}"/>`;}return st};
+const mapAll=()=>{const x=t();const hx=120,hy=150;const pins=x.v.map((a,i)=>{const [px,py]=pos(i,a[3]);return{i,a,px,py}});
+ return `<div class="bigmap"><svg viewBox="0 0 340 210" preserveAspectRatio="none" aria-hidden="true"><rect width="340" height="210" fill="#f6f4f0"/><rect x="236" y="150" width="58" height="34" fill="#e1eadc"/><path d="${WATER[S.t]}" fill="#dce7ec"/><g stroke="#dcd7d1" stroke-width="1" vector-effect="non-scaling-stroke">${streets()}</g><line x1="0" y1="96" x2="340" y2="60" stroke="#cfc9c2" stroke-width="5" vector-effect="non-scaling-stroke"/>
+ ${pins.filter(p=>p.i===S.mapSel).map(p=>`<path d="M${hx} ${hy} L${p.px} ${hy} L${p.px} ${p.py}" fill="none" stroke="var(--primary)" stroke-width="3" stroke-dasharray="6 5" vector-effect="non-scaling-stroke"/>`).join('')}</svg>
+ <span class="hpin" style="left:${hx/3.4}%;top:${hy/2.1}%" aria-hidden="true"><i></i>${esc(x.short)}</span>
+ ${pins.map(p=>`<button type="button" class="vpin ${p.i===S.mapSel?'on':''}" style="left:${p.px/3.4}%;top:${p.py/2.1}%" data-pin="${p.i}" aria-pressed="${p.i===S.mapSel}" aria-label="${esc(p.a[0])}, ${p.a[3]} minute walk"><img src="img/p${D[S.t][p.i].ph[0]}.jpg" alt=""><b>${esc(p.a[0])}</b></button>`).join('')}</div>`};
 const pb=n=>({GBP:'£',USD:'$',EUR:'€'}[t().cur]).repeat(n);
 const line=(stage,dark)=>{const v=venue();const nodes=[['You',S.name.split(' ')[0]],[t().hotel,S.names[S.t]?t().c:'concierge desk'],['PRIMA','carries'],[stage>=3?v.n:'Venue',stage>=3?fmtT(S.slot??v.slots[0]):'tonight']];
   return `<ol class="line" aria-label="Line of introduction, step ${Math.min(stage+1,4)} of 4">${nodes.map((n,i)=>`<li class="${i<=stage?'on':''}" style="--i:${i}"><b>${esc(n[0])}</b><span>${esc(n[1])}</span></li>`).join('')}</ol>`};
@@ -425,29 +594,39 @@ const R={
    <span class="lbl" id="nl">Anything the room should know?</span><div class="chips" role="group" aria-labelledby="nl">${NEEDS.map(n=>`<button type="button" class="chip" data-need="${esc(n)}" aria-pressed="${S.needs.has(n)}">${esc(n)}</button>`).join('')}</div>
    </div><div class="dock"><button class="btn" data-go="2">Continue</button></div></div>`,
  tonight:()=>{const list=t().v.map((a,i)=>({a,i})).filter(o=>S.filter==='all'||(S.filter==='c'?o.a[4]==='c':o.a[4]==='h'));const sf=S.needs.has('Step-free access');
-   return `${sb()}<div class="app"><div class="pad" style="padding-top:8px;padding-bottom:20px"><p class="small" style="margin:0">Tonight, ${today}</p><h1 class="disp t2" tabindex="-1">${esc(t().city)}, vouched for</h1>
+   const card=({a,i})=>{const d=D[S.t][i];return `<li class="card"><button type="button" class="cardhit" data-venue="${i}" aria-label="${esc(a[0])}. ${esc(a[1])}. ${a[3]} minute walk. ${esc(d.mood)}.">
+     <span class="cimg"><img src="img/p${d.ph[0]}.jpg" alt="" loading="lazy"><span class="cbadge">${esc(d.mood)} · ${pb(d.pb)}</span><span class="cwalk">${a[3]} min walk</span></span>
+     <span class="cbody"><span class="cname">${esc(a[0])}</span><span class="cmeta">${esc(a[1])}, ${esc(a[2])}</span><span class="cvouch"><b>${a[4]==='c'?esc(W()):'PRIMA'}</b> “${esc(a[5])}”</span>
+     ${sf?`<span class="flag ${a[8]?'ok':'no'}">${a[8]?'Step-free entrance':'Two steps at the entrance, ramp on request'}</span>`:''}</span></button>
+     <div class="ctimes" role="group" aria-label="Book a time at ${esc(a[0])}">${a[6].map(m=>`<button type="button" class="tbtn" data-quick="${i}|${m}" aria-label="Book ${esc(a[0])} at ${fmtT(m)}">${fmtT(m)}</button>`).join('')}</div></li>`};
+   const mapv=()=>{if(S.mapSel==null||!list.some(o=>o.i===S.mapSel))S.mapSel=list[0]?.i??0;const o=list.find(o=>o.i===S.mapSel)||list[0];return `${mapAll()}<ul class="mapcard">${card(o)}</ul>`};
+   return `${sb()}<div class="app"><div class="pad" style="padding-top:6px;padding-bottom:24px"><div class="lt"><div><p class="small" style="margin:0">Tonight, ${today}</p><h1 class="disp t1" tabindex="-1">${esc(t().city)}</h1></div>
+   <div class="vt" role="radiogroup" aria-label="View as"><button type="button" role="radio" aria-checked="${S.view==='list'}" data-view="list" aria-label="List">${IC.list}</button><button type="button" role="radio" aria-checked="${S.view==='map'}" data-view="map" aria-label="Map">${IC.map}</button></div></div>
    <div class="filter" role="radiogroup" aria-label="Who is vouching">${[['all','All'],['c',W()],['h','PRIMA']].map(([k,l])=>`<button type="button" role="radio" aria-checked="${S.filter===k}" data-filter="${k}">${esc(l)}</button>`).join('')}</div>
-   <ul class="ledger">${list.map(({a,i})=>`<li><button class="entry rich" data-venue="${i}"><img class="thumb" src="img/p${D[S.t][i].ph[0]}.jpg" alt="" loading="lazy"><span><span class="num">Nº${String(i+1).padStart(2,'0')} · ${esc(D[S.t][i].mood)} · ${pb(D[S.t][i].pb)}</span><br><span class="vn">${esc(a[0])}</span><br><span class="vk">${esc(a[1])}. ${a[3]} min walk</span>
-     <p class="vq"><b>${a[4]==='c'?esc(W()):'PRIMA'}:</b> “${esc(a[5])}”</p><span class="times">${a[6].slice(0,4).map(m=>`<span>${fmtT(m)}</span>`).join('')}</span>
-     ${sf?`<span class="flag ${a[8]?'ok':'no'}">${a[8]?'✓ Step-free entrance':'Two steps at the entrance, ramp on request'}</span>`:''}</span></button></li>`).join('')}</ul></div>${tabs('tonight')}</div>`},
- venue:()=>{const v=venue();if(S.slot==null||!v.slots.includes(S.slot))S.slot=v.slots[0];const x=m=>((m-1080)/300*100).toFixed(2)+'%';let ticks='';for(let m=1080;m<=1380;m+=15){const h=m%60===0;ticks+=`<i class="tick ${h?'h':''}" style="left:${x(m)}"></i>`+(h&&m<1380?`<span class="tl" style="left:${x(m)}">${fmtT(m).replace(':00','')}</span>`:'')}
-   const who=v.by==='c'?W():'PRIMA';const alts=['The room','Signature: '+v.sig,'At the table'];const nb=near(S.v);const sf=S.needs.has('Step-free access');
-   return `${sb()}<div class="app"><div class="hero"><div class="car" id="car" role="region" aria-roledescription="carousel" aria-label="Photos of ${esc(v.n)}" tabindex="0">${v.ph.map((n,k)=>`<img src="img/p${n}.jpg" alt="${esc(v.n)}, ${esc(alts[k])}" ${k?'loading="lazy"':''} role="group" aria-roledescription="slide" aria-label="${k+1} of 3">`).join('')}</div>
-   <button class="back" data-go="2" aria-label="Back to Tonight">‹</button><span class="count" aria-hidden="true" id="carc">1 / 3</span></div>
-   <div class="pad" style="padding-top:16px"><h1 class="disp t1" tabindex="-1">${esc(v.n)}</h1><p class="vk" style="margin:6px 0 0">${esc(v.kind)}. ${esc(v.area)}</p>
-   <div class="facts"><span>${esc(v.mood)}</span><span>${pb(v.pb)}</span><span>${esc(v.dress)}</span><span>${v.walk} min walk</span></div>
-   <blockquote class="vouch"><b>${esc(who)} vouches</b>“${esc(v.q)}”</blockquote>
-   <h2 class="sh">Why it's worth it</h2><ul class="hl">${v.h.map(h=>`<li>${esc(h)}</li>`).join('')}<li><b>Order</b> ${esc(v.sig)}</li></ul>
-   <h2 class="sh">Your table</h2><p class="small" style="margin:0">Selected time</p><div class="big" aria-live="polite">${fmtT(S.slot)}</div>
-   <div class="rail" aria-hidden="true"><i class="base"></i>${ticks}${v.slots.map(m=>`<i class="notch ${m===S.slot?'sel':''}" style="left:${x(m)}"></i>`).join('')}</div>
-   <div class="chips" role="radiogroup" aria-label="Available times">${v.slots.map(m=>`<button type="button" class="chip" role="radio" aria-checked="${m===S.slot}" data-slot="${m}" style="font-variant-numeric:tabular-nums">${fmtT(m)}</button>`).join('')}</div>
-   <span class="lbl" id="pl2">Party</span><div class="step" role="group" aria-labelledby="pl2"><button type="button" data-party="-1" aria-label="Fewer guests">−</button><output aria-live="polite">${S.party} guests</output><button type="button" data-party="1" aria-label="More guests">+</button></div>
-   <h2 class="sh">Getting there</h2><div class="mapbox">${map(S.v)}</div>
-   <div class="rules" style="margin-top:0"><div class="row"><span>From ${esc(t().hotel)}</span><b>${v.walk} min walk, ${v.walk*80} m</b></div>${sf?`<div class="row"><span>Route</span><b class="${v.sf?'okc':'noc'}">${v.sf?'Step-free all the way':'Two steps at the door, ramp on request'}</b></div>`:''}<div class="row"><span>Car from the hotel</span><b>${Math.max(3,Math.round(v.walk/2.5))} min, arranged by ${esc(W())}</b></div></div>
-   <h2 class="sh">Before or after</h2><ol class="near">${nb.map((e,k)=>`<li><span class="nk">${k+1}</span><span><b>${esc(e.n)}</b><br><span class="small">${esc(e.k)}. ${esc(e.note)}</span></span><span class="nm">${e.m} min</span></li>`).join('')}</ol>
-   <div class="rules"><div class="row"><span>${v.fee?'Prime access fee':'Access'}</span><b>${v.fee?money(v.fee):'No fee, the house covers it'}</b></div><div class="row"><span>Release the table</span><b>Free until 2 hours before</b></div></div>
-   <p class="small" style="margin-top:10px">Sample photography for concept purposes.</p></div>
-   <div class="dock"><button class="btn" data-go="4">Ask ${esc(who)} to vouch · ${fmtT(S.slot)}</button></div></div>`},
+   ${S.view==='map'?mapv():`<ul class="cards">${list.map(card).join('')}</ul>`}</div>${tabs('tonight')}</div>`},
+ venue:()=>{const v=venue();if(S.slot==null||!v.slots.includes(S.slot))S.slot=v.slots[0];const x=m=>((m-1080)/300*100).toFixed(2)+'%';let ticks='';for(let m=1080;m<=1380;m+=30){const h=m%60===0;ticks+=`<i class="tick ${h?'h':''}" style="left:${x(m)}"></i>`+(h&&m<1380?`<span class="tl" style="left:${x(m)}">${fmtT(m).replace(':00','')}</span>`:'')}
+   const who=v.by==='c'?W():'PRIMA';const ph=photos(S.v);const A=about(S.v);const nb=near(S.v);const sf=S.needs.has('Step-free access');const saved=S.saved.has(S.t+S.v);
+   const T={overview:()=>`<blockquote class="vouch"><b>${esc(who)} vouches</b>“${esc(v.q)}”</blockquote><ul class="hl">${v.h.map(h=>`<li>${esc(h)}</li>`).join('')}</ul><div class="order"><span class="small">What to order</span><b>${esc(v.sig)}</b></div>
+       <button type="button" class="card2" data-modal="reviews"><span class="c2h"><b>Review highlights</b><span class="chev" aria-hidden="true">›</span></span><span class="topics sm" aria-hidden="true">${A.tp.slice(0,4).map(x=>`<span>${esc(x.l)} <span>${x.c}</span></span>`).join('')}</span><span class="c2q">“${esc(A.tp[0].q[0])}”</span></button>
+       <button type="button" class="card2" data-modal="about"><span class="c2h"><b>Amenities</b><span class="chev" aria-hidden="true">›</span></span><span class="amrow">${[[v.sf,'Step-free'],[true,'Zero-proof'],[true,'Vegetarian'],[true,'Room charge']].map(([ok,l])=>`<span class="${ok?'':'off'}"><i aria-hidden="true">${ok?'✓':'✕'}</i>${ok?'':'<span class="vh">No </span>'}${l}</span>`).join('')}</span></button>`,
+     photos:()=>`<div class="pgrid">${ph.map((n,k)=>`<button type="button" data-viewer="${k}" aria-label="Open photo ${k+1} of ${ph.length}, ${esc(ALTS[k])}"><img src="img/p${n}.jpg" alt="" loading="lazy"></button>`).join('')}</div>`,
+     map:()=>`<div class="mapbox">${map(S.v)}</div><ul class="group"><li><span>From ${esc(t().hotel)}</span><b>${v.walk} min walk, ${v.walk*80} m</b></li>${sf?`<li><span>Route</span><b class="${v.sf?'okc':'noc'}">${v.sf?'Step-free all the way':'Two steps, ramp on request'}</b></li>`:''}<li><span>By car</span><b>${Math.max(3,Math.round(v.walk/2.5))} min, arranged by ${esc(W())}</b></li></ul>
+       <h2 class="sh">Before or after</h2><ol class="near">${nb.map((e,k)=>`<li><span class="nk">${k+1}</span><span><b>${esc(e.n)}</b><br><span class="small">${esc(e.k)}. ${esc(e.note)}</span></span><span class="nm">${e.m} min</span></li>`).join('')}</ol>`};
+   return `<div class="app vapp"><div class="hero"><div class="car" id="car" tabindex="-1">${ph.slice(0,3).map((n,k)=>`<button type="button" class="slide" data-viewer="${k}" aria-label="Open photo ${k+1} of ${ph.length}, ${esc(ALTS[k])}"><img src="img/p${n}.jpg" alt="" ${k?'loading="lazy"':''}></button>`).join('')}</div>
+   <div class="htop">${sb(0).replace('class="sb ','class="sb glass ')}</div><button class="back gl" data-go="2" aria-label="Back to Tonight">${IC.back}</button><button class="save gl" data-save="1" aria-pressed="${saved}" aria-label="${saved?'Saved':'Save'} ${esc(v.n)}">${saved?IC.heartf:IC.heart}</button>
+   <span class="dots" aria-hidden="true" id="dots">${[0,1,2].map(k=>`<i class="${k?'':'on'}"></i>`).join('')}</span><button type="button" class="allph" data-viewer="0">${IC.grid} ${ph.length} photos</button></div>
+   <div class="sheet"><h1 class="disp t1" tabindex="-1">${esc(v.n)}</h1><p class="vk" style="margin:4px 0 0">${esc(v.kind)}, ${esc(v.area)}</p>
+   <button type="button" class="ratingrow" data-modal="reviews" aria-label="Rated ${A.r} by ${A.n} members. Read reviews"><b>${A.r}</b><span class="stars" aria-hidden="true">★★★★★</span><span class="small">(${A.n} members)</span><span class="chev" aria-hidden="true">›</span></button>
+   <button type="button" class="info" data-modal="about" aria-label="About ${esc(v.n)}: ${esc(v.mood)}, price ${v.pb} of 4, ${esc(v.dress)}, ${v.walk} minute walk. Show amenities and details"><span><em>Mood</em><b>${esc(v.mood)}</b></span><span><em>Price</em><b>${pb(v.pb)}</b></span><span><em>Dress</em><b>${esc(v.dress.split(' ')[0])}</b></span><span><em>Walk</em><b>${v.walk} min</b></span></button>
+   <button type="button" class="summ" data-modal="about"><span>${esc(A.blurb.split('. ').slice(0,2).join('. '))}.</span><span class="more">Amenities, accessibility and more <span aria-hidden="true">›</span></span></button>
+   <h2 class="sh">Tonight, table for ${S.party}</h2><div class="rail" aria-hidden="true"><i class="base"></i>${ticks}${v.slots.map(m=>`<i class="notch ${m===S.slot?'sel':''}" style="left:${x(m)}"></i>`).join('')}</div>
+   <div class="tgrid" role="radiogroup" aria-label="Available times">${v.slots.map(m=>`<button type="button" role="radio" aria-checked="${m===S.slot}" data-slot="${m}"><b>${fmtT(m)}</b><span>${m===S.slot?'Selected':(m%60?'1 table':'2 tables')}</span></button>`).join('')}</div>
+   <div class="prow"><span id="pl2">Guests</span><div class="step big2" role="group" aria-labelledby="pl2"><button type="button" data-party="-1" aria-label="Fewer guests">−</button><output aria-live="polite">${S.party}</output><button type="button" data-party="1" aria-label="More guests">+</button></div></div>
+   <div class="seg2" role="tablist" aria-label="Venue details">${[['overview','Overview'],['photos','Photos'],['map','Getting there']].map(([k,l])=>`<button type="button" role="tab" id="tab-${k}" aria-selected="${S.vtab===k}" aria-controls="panel" data-vtab="${k}">${l}</button>`).join('')}</div>
+   <div id="panel" role="tabpanel" aria-labelledby="tab-${S.vtab}">${T[S.vtab]()}</div>
+   <ul class="group" style="margin-top:18px"><li><span>${v.fee?'Prime access fee':'Access'}</span><b>${v.fee?money(v.fee):'No fee, the house covers it'}</b></li><li><span>Release the table</span><b>Free until 2 hours before</b></li></ul>
+   <p class="small" style="margin:12px 0 0">Sample photography for concept purposes.</p></div>
+   <div class="dock"><button class="btn" data-go="4"><span>Ask ${esc(who)} to vouch</span><span class="cta2">${fmtT(S.slot)} · ${S.party} guests</span></button></div></div>`},
  seal:()=>{const v=venue();const st=S.sealing?3:2;
    return `${sb()}<div class="app seal"><div class="pad" style="padding-top:8px"><h1 class="disp t2" tabindex="-1">Seal the introduction</h1>${line(st)}
    <div class="rules"><div class="row"><span>Venue</span><b>${esc(v.n)}</b></div><div class="row"><span>When</span><b>Tonight, ${fmtT(S.slot)}</b></div><div class="row"><span>Party</span><b>${S.party}</b></div><div class="row"><span>Vouched by</span><b>${v.by==='c'?esc(W()):'PRIMA'}, ${esc(t().hotel)}</b></div><div class="row"><span>Carried to the room</span><b>${S.needs.size?esc([...S.needs].join(', ')):'Nothing'}</b></div><div class="row"><span>Fee</span><b>${v.fee?money(v.fee)+', charged to Room '+esc(t().room):'None'}</b></div></div>
@@ -519,12 +698,41 @@ function nav(){const b=(s,i)=>`<li><button type="button" data-go="${i}" ${i===S.
   $('#tenants').innerHTML=Object.values(T).map(x=>`<button type="button" data-tenant="${x.key}" aria-pressed="${x.key===S.t}">${esc(x.city)}</button>`).join('');
   $('#names').innerHTML=[[0,'Hotel shorthand'],[1,'Show names']].map(([v,l])=>`<button type="button" data-names="${v}" aria-pressed="${!!S.names[S.t]===!!v}">${l}</button>`).join('');$('#sizes').innerHTML=[[1,'Default'],[1.2,'Large'],[1.4,'Accessibility']].map(([v,l])=>`<button type="button" data-scale="${v}" aria-pressed="${S.scale===v}">${l}</button>`).join('')}
 
-function render(focus){const sc=$('#screen');const x=t();const s=SCREENS[S.i];
+const TOPICS=[['service','Service',['The floor team remembered us from the hotel note before we sat down.','Service was warm without hovering. Water topped up, never interrupted.']],['dish','The signature',['Order {sig}. We went back for it the next night.','{sig} was the dish of the trip.']],['atmos','Atmosphere',['{mood} in the best way. You can hear each other talk.','Low light, good music, nobody on their phone.']],['wine','Wine and drinks',['The sommelier found us something under what we asked to spend.','Zero-proof pairing was as considered as the wine.']],['value','Worth it',['Not cheap, but every course earned its place.','Felt like a favour from the hotel, not a booking.']],['access','Accessibility',['Step-free from the door to the table, and they had a quiet table ready.','They moved a table so my wheelchair fit without fuss.']]];
+const CITIES=['Chicago','Lisbon','Toronto','Seoul','Melbourne','Lagos','Mexico City','Stockholm'];
+const about=vi=>{const d=D[S.t][vi],a=t().v[vi],sf=a[8];const r=(4.6+((vi*7+S.t.length)%4)/10).toFixed(1);const n=96+vi*41+S.t.length*13;
+ const tp=TOPICS.filter(x=>x[0]!=='access'||sf).map((x,k)=>({k:x[0],l:x[1],c:Math.round(n*(0.42-k*0.06)),q:x[2].map(q=>q.replace('{sig}',d.sig).replace('{mood}',d.mood))}));
+ const am=[['Accessibility',[[sf,'Step-free entrance'],[sf,'Accessible restroom'],[true,'Quiet table on request'],[true,'Large-print menu']]],
+  ['Offerings',[[true,'Dinner'],[vi%2===0,'Tasting menu'],[true,'Bar seating'],[vi!==1,'Private dining'],[true,'Zero-proof drinks']]],
+  ['Dietary',[[true,'Vegetarian options'],[vi%3!==1,'Vegan options'],[true,'Gluten-free on request'],[vi%2===1,'Halal on request']]],
+  ['Atmosphere',[[true,d.mood],[d.pb<4,'Good for groups'],[true,'Good for conversation'],[vi%2===1,'Live music']]],
+  ['Planning',[[true,'Dress: '+d.dress],[true,'Table held by PRIMA'],[true,'Hotel car on request'],[true,'Cloakroom']]],
+  ['Payments',[[true,'Settled to your room'],[true,'Cards and contactless']]]];
+ const busy=[22,48,86,100,74,40].map((b,k)=>Math.max(14,Math.min(100,b+((vi*13+k*7)%17)-8)));const peak=busy.indexOf(Math.max(...busy));
+ const blurb=`${a[1]} in ${a[2]}, ${a[3]} minutes on foot from ${t().short}. ${d.mood}, and known for ${d.sig.charAt(0).toLowerCase()+d.sig.slice(1)}. ${d.h[0]}.`;
+ return{r,n,tp,am,busy,peak,blurb}};
+const HOURS=['6p','7p','8p','9p','10p','11p'];
+function modal(){if(!S.modal)return '';const v=venue(),A=about(S.v);const tabs2=[['about','About'],['reviews','Reviews']];
+ const chk=(ok,l)=>`<li class="${ok?'':'off'}"><span aria-hidden="true">${ok?'✓':'✕'}</span>${ok?'':'<span class="vh">No </span>'}${esc(l)}</li>`;
+ const AB=`<p class="blurb">${esc(A.blurb)}</p>
+  <h3 class="mh">Highlights</h3><ul class="pills">${v.h.map(h=>`<li>${esc(h)}</li>`).join('')}</ul>
+  <h3 class="mh">Popular times tonight</h3><div class="busy" role="img" aria-label="Usually busiest around ${HOURS[A.peak].replace('p',' PM')}. Your table is held either way.">${A.busy.map((b,k)=>`<span class="${k===A.peak?'pk':''}"><i style="height:${b}%"></i><em>${HOURS[k]}</em></span>`).join('')}</div><p class="small" style="margin:6px 0 0">Usually busiest around ${HOURS[A.peak].replace('p',' PM')}. Your table is held either way.</p>
+  ${A.am.map(([g,items])=>`<h3 class="mh">${g}</h3><ul class="amen">${items.map(([ok,l])=>chk(ok,l)).join('')}</ul>`).join('')}`;
+ const sel=S.mtopic;const qs=A.tp.filter(x=>!sel||x.k===sel).flatMap((x,i)=>x.q.map((q,j)=>({q,x,who:CITIES[(i*2+j+S.v)%CITIES.length],m:['Oct','Sep','Nov','Aug'][(i+j)%4]})));
+ const RV=`<div class="score"><div><b>${A.r}</b><span class="stars" aria-hidden="true">★★★★★</span><span class="small">${A.n} members</span></div><ul class="dist" aria-label="Rating breakdown">${[5,4,3,2,1].map((st,k)=>{const w=[78,16,4,1,1][k];return `<li><span>${st}</span><i><b style="width:${w}%"></b></i></li>`}).join('')}</ul></div>
+  <p class="small" style="margin:14px 0 8px">Only members who were seated through PRIMA can review. Summarised from ${A.n} reviews.</p>
+  <h3 class="mh">People often mention</h3><div class="topics" role="radiogroup" aria-label="Filter reviews by topic"><button type="button" role="radio" aria-checked="${!sel}" data-mtopic="">All</button>${A.tp.map(x=>`<button type="button" role="radio" aria-checked="${sel===x.k}" data-mtopic="${x.k}">${esc(x.l)} <span>${x.c}</span></button>`).join('')}</div>
+  <ul class="revs">${qs.map(o=>`<li><div class="rh"><span class="av" aria-hidden="true">${o.who[0]}</span><span><b>Member from ${esc(o.who)}</b><br><span class="small">Stayed at ${esc(t().short)} · ${o.m}</span></span></div><p>“${esc(o.q)}”</p><span class="tag">${esc(o.x.l)}</span></li>`).join('')}</ul>`;
+ return `<button type="button" class="scrim" data-mclose="1" tabindex="-1" aria-hidden="true"></button><div class="msheet" role="dialog" aria-modal="true" aria-labelledby="mtitle"><span class="grab" aria-hidden="true"></span><div class="mhead"><div><p class="small" style="margin:0">${esc(v.kind)}, ${esc(v.area)}</p><h2 id="mtitle" class="disp">${esc(v.n)}</h2></div><button class="vclose dk" data-mclose="1" aria-label="Close">${IC.close}</button></div>
+  <div class="seg2 msg" role="tablist" aria-label="Details">${tabs2.map(([k,l])=>`<button type="button" role="tab" aria-selected="${S.modal===k}" data-modal="${k}">${l}</button>`).join('')}</div>
+  <div class="mbody" id="mbody">${S.modal==='about'?AB:RV}</div></div>`}
+function viewer(){if(S.viewer==null)return '';const ph=photos(S.v),v=venue();const k=S.viewer;return `<div class="viewer" role="dialog" aria-modal="true" aria-label="Photos of ${esc(v.n)}"><div class="vtop"><span class="vcount" id="vcount" aria-live="polite">${k+1} of ${ph.length}</span><button class="vclose" data-vclose="1" aria-label="Close photos">${IC.close}</button></div><div class="vstrip" id="vstrip">${ph.map((n,i)=>`<figure><img src="img/p${n}.jpg" alt="${esc(v.n)}, ${esc(ALTS[i])}"><figcaption><b>${esc(v.n)}</b> ${esc(ALTS[i])}</figcaption></figure>`).join('')}</div><div class="vthumbs">${ph.map((n,i)=>`<button type="button" data-vjump="${i}" aria-label="Photo ${i+1}" aria-current="${i===k}"><img src="img/p${n}.jpg" alt=""></button>`).join('')}</div></div>`}
+function render(focus){const sc=$('#screen');const keep=!focus&&sc.querySelector('.app')?sc.querySelector('.app').scrollTop:0;const x=t();const s=SCREENS[S.i];
   sc.style.cssText=`--s:${S.scale};--ground:${x.ground};--primary:${x.primary};--acc:${x.acc};--acct:${resolve(x.acc,x.ground)};--df:${x.df};--dw:${x.dw}`;
   sc.classList.toggle('rm',S.rm);sc.classList.toggle('hc',S.hc);sc.classList.toggle('night',s.id==='arrive');
-  sc.innerHTML=R[s.id]()+'<div class="home" aria-hidden="true"></div>'+(S.toast?`<div class="toast" role="status">${esc(S.toast)}</div>`:'')+(S.coach&&S.i===0?`<div class="coach" role="dialog" aria-modal="true" aria-labelledby="ch"><div><h2 id="ch">A guest's evening, end to end</h2><p>You are staying at a hotel in ${esc(t().city)}. Tap the large button on each screen to book, arrive and countersign. The venue side follows. About two minutes.</p><button class="btn" id="coachgo" style="background:#111;color:#fff">Begin</button></div></div>`:'');
+  sc.innerHTML=R[s.id]()+'<div class="home" aria-hidden="true"></div>'+viewer()+modal()+(S.toast?`<div class="toast" role="status">${esc(S.toast)}</div>`:'')+(S.coach&&S.i===0?`<div class="coach" role="dialog" aria-modal="true" aria-labelledby="ch"><div><h2 id="ch">A guest's evening, end to end</h2><p>You are staying at a hotel in ${esc(t().city)}. Tap the large button on each screen to book, arrive and countersign. The venue side follows. About two minutes.</p><button class="btn" id="coachgo" style="background:#111;color:#fff">Begin</button></div></div>`:'');
   $('#rm').setAttribute('aria-pressed',S.rm);$('#hc').setAttribute('aria-pressed',S.hc);
-  nav();why();if(focus){const h=sc.querySelector(S.coach&&S.i===0?'#coachgo':'h1');h&&h.focus({preventScroll:true});sc.querySelector('.app').scrollTop=0}}
+  nav();why();if(!focus&&keep){const ap=sc.querySelector('.app');if(ap)ap.scrollTop=keep}if(S.modal&&S._mfocus){S._mfocus=0;const c=sc.querySelector('.msheet .vclose');c&&c.focus({preventScroll:true})}if(S.viewer!=null){const st=document.getElementById('vstrip');if(st){st.scrollLeft=S.viewer*st.clientWidth}const c=sc.querySelector('.vclose');c&&c.focus({preventScroll:true})}if(focus){const h=sc.querySelector(S.coach&&S.i===0?'#coachgo':'h1');h&&h.focus({preventScroll:true});sc.querySelector('.app').scrollTop=0}}
 
 function go(i){S.i=i;S.toast='';if(SCREENS[i].id!=='seal')S.sealing=false;render(true)}
 
@@ -541,7 +749,18 @@ document.addEventListener('click',e=>{const el=e.target.closest('button');if(!el
   if(d.party){S.party=Math.max(1,Math.min(8,S.party+ +d.party));render();return}
   if(d.need){S.needs.has(d.need)?S.needs.delete(d.need):S.needs.add(d.need);render();return}
   if(d.filter){S.filter=d.filter;render();return}
-  if(d.venue!=null){S.v=+d.venue;S.slot=null;go(3);return}
+  if(d.venue!=null){S.v=+d.venue;S.slot=null;S.vtab='overview';go(3);return}
+  if(d.quick){const[i,m]=d.quick.split('|');S.v=+i;S.slot=+m;go(4);return}
+  if(d.view){S.view=d.view;render();return}
+  if(d.pin!=null){S.mapSel=+d.pin;render();return}
+  if(d.vtab){S.vtab=d.vtab;render();return}
+  if(d.modal){const was=S.modal;S.modal=d.modal;S.mtopic=null;S._ret=was?S._ret:e.target.closest('[data-modal]');S._mfocus=!was;render();const mb=document.getElementById('mbody');if(mb)mb.scrollTop=0;return}
+  if(d.mtopic!=null){S.mtopic=d.mtopic||null;const mb=document.getElementById('mbody'),k=mb?mb.scrollTop:0;render();const m2=document.getElementById('mbody');if(m2)m2.scrollTop=k;document.querySelector('[data-mtopic][aria-checked=true]')?.focus({preventScroll:true});return}
+  if(d.mclose){const lab=S._ret&&S._ret.className;S.modal=null;render();const b=lab?document.querySelector('.'+lab.split(' ')[0]+'[data-modal]'):null;b&&b.focus({preventScroll:true});return}
+  if(d.viewer!=null){S.viewer=+d.viewer;render();return}
+  if(d.vjump!=null){S.viewer=+d.vjump;const st=document.getElementById('vstrip');st&&st.scrollTo({left:S.viewer*st.clientWidth,behavior:S.rm?'auto':'smooth'});document.querySelectorAll('[data-vjump]').forEach(b=>b.setAttribute('aria-current',b.dataset.vjump==d.vjump));return}
+  if(d.vclose){const k=S.viewer;S.viewer=null;render();const b=document.querySelector(`[data-viewer="${Math.min(k,2)}"]`);b&&b.focus({preventScroll:true});return}
+  if(d.save){const key=S.t+S.v;S.saved.has(key)?S.saved.delete(key):S.saved.add(key);S.toast=S.saved.has(key)?'Saved. '+W()+' will see it on your list.':'Removed from your list.';render();setTimeout(()=>{S.toast='';render()},2200);return}
   if(d.slot){S.slot=+d.slot;render();return}
   if(d.ans){const[i,a]=d.ans.split('|');S.ans[i]=a;render();return}
   if(d.cov){S.covers=Math.max(2,Math.min(40,S.covers+ +d.cov));render();return}
@@ -553,7 +772,8 @@ document.addEventListener('click',e=>{const el=e.target.closest('button');if(!el
   if(d.toast){S.toast=d.toast;render();setTimeout(()=>{S.toast='';render()},2600);return}
   if(el.id==='sealbtn'){S.sealing=true;render();setTimeout(()=>{if(SCREENS[S.i].id==='seal'){try{navigator.vibrate&&navigator.vibrate([20,40,20])}catch(_){}go(5)}},S.rm?500:1700)}
 });
-document.addEventListener('scroll',e=>{const c=e.target;if(c&&c.id==='car'){const n=Math.round(c.scrollLeft/c.clientWidth)+1;const el=document.getElementById('carc');if(el)el.textContent=n+' / 3'}},true);
+document.addEventListener('scroll',e=>{const c=e.target;if(c&&c.id==='car'){const n=Math.round(c.scrollLeft/c.clientWidth);document.querySelectorAll('#dots i').forEach((d,i)=>d.classList.toggle('on',i===n))}if(c&&c.id==='vstrip'){const n=Math.round(c.scrollLeft/c.clientWidth);if(n!==S.viewer){S.viewer=n;const el=document.getElementById('vcount');if(el)el.textContent=(n+1)+' of '+photos(S.v).length;document.querySelectorAll('[data-vjump]').forEach(b=>b.setAttribute('aria-current',+b.dataset.vjump===n))}}},true);
+document.addEventListener('keydown',e=>{if(S.modal&&e.key==='Escape'){e.preventDefault();document.querySelector('.msheet [data-mclose]')?.click();return}if(S.viewer==null)return;const n=photos(S.v).length;if(e.key==='Escape'){e.preventDefault();document.querySelector('[data-vclose]')?.click()}if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const k=Math.max(0,Math.min(n-1,S.viewer+(e.key==='ArrowRight'?1:-1)));document.querySelector(`[data-vjump="${k}"]`)?.click()}});
 document.addEventListener('input',e=>{const id=e.target.id;if(id==='nm')S.name=e.target.value||'Guest';if(id==='vn')S.vname=e.target.value||'Your venue';if(id==='vk')S.vkind=e.target.value;if(id==='note')S.note=e.target.value});
 document.addEventListener('change',e=>{if(e.target.id==='vc'){S.t=e.target.value;S.v=0;S.slot=null;render()}});
 // radio groups: arrow keys move selection, per HIG and WAI-ARIA
